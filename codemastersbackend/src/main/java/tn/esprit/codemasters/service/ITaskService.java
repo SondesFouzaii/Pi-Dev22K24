@@ -7,7 +7,7 @@ import java.util.List;
 public interface ITaskService {
     public List<Task> retrieveAllTasks();
     public Task retrieveTask(Long TaskId);
-    public Task addTask(Task c);
+    public Task addTask(Task t);
     public void removeTask(Long TaskId);
     public Task modifyTask(Task task);
 
