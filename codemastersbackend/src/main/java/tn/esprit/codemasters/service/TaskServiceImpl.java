@@ -1,10 +1,13 @@
 package tn.esprit.codemasters.service;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import tn.esprit.codemasters.entity.Task;
 import tn.esprit.codemasters.repository.TaskRepository;
 
 import java.util.List;
-
+@Service
+@AllArgsConstructor
 public class TaskServiceImpl implements ITaskService{
     TaskRepository taskRepository;
     @Override
