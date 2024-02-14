@@ -1,11 +1,11 @@
 package tn.esprit.codemasters.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -23,4 +23,16 @@ public class UserStory {
     int priority;
     int estimation;
 
+    //
+    @ManyToOne(cascade = CascadeType.ALL)
+    Project project;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="userstory")
+    private Set<Claim> Reclamations;
+
+    @ManyToOne
+    User user;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="userstory")
+    private Set<Task> Tasks;
 }

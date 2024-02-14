@@ -1,13 +1,11 @@
 package tn.esprit.codemasters.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -20,7 +18,28 @@ public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String name;
-    Date date;
 
+    String name;
+    @Temporal(TemporalType.DATE)
+    Date date;
+    @Temporal(TemporalType.TIME)
+    Date time;
+    boolean isclosed;
+
+    int code;
+    String url;
+
+
+    //h
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Message> Messages;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    Card card;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="session")
+    private Set<FeedBack> Evaluations;
+
+    @OneToOne
+    private Project project;
 }

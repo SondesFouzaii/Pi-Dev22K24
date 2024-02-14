@@ -1,9 +1,6 @@
 package tn.esprit.codemasters.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -14,10 +11,15 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
-public class Evaluation {
+public class FeedBack {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     int value;
+    String message;
 
+
+    //h
+    @ManyToOne
+    Session session;
 }

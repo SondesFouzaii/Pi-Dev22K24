@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -21,6 +23,7 @@ public class Notification {
 
 
 
-
+    @ManyToMany(mappedBy="notifications", cascade = CascadeType.ALL)
+    private Set<User> users;
 
 }

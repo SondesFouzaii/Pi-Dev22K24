@@ -25,4 +25,10 @@ public class Comment {
     @JsonBackReference // Utilisation de @JsonBackReference pour éviter la récursion
     private Post post;
 
+
+
+    //h
+    @ManyToOne(cascade = CascadeType.ALL)
+    User user;
+
 }

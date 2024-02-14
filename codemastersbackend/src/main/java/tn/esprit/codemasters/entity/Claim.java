@@ -1,9 +1,6 @@
 package tn.esprit.codemasters.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -21,4 +18,10 @@ public class Claim {
     String title;
     String content;
 
+    //h
+    @ManyToOne
+    UserStory userstory;
+
+    @ManyToOne
+    User user;
 }

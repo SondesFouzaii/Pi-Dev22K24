@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -43,4 +44,27 @@ public class User {
     public enum Role{
         PRODUCT_OWNER,DEVELOPER,SCRUM_MASTER,ADMIN
     }
+
+
+    //h
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Notification> notifications;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    private Set<Post> Posts;
+    //les developpeurs
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Project> projectdevolpppers;
+    //product owner
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Project> Projectpo;
+    //scrum master
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Project> Projectscrummaster;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    private Set<Claim> Claims;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    private Set<UserStory> UserStorys;
 }

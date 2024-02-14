@@ -64,5 +64,9 @@ public class Post {
         }
     }
 
+    //h
+    @ManyToOne
+    User user;
+
 
 }
