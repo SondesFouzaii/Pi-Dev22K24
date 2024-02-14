@@ -24,6 +24,6 @@ public class Project {
 
 
     //h
-    @ManyToMany(mappedBy="projectdevolpppers", cascade = CascadeType.ALL)
-    private Set<User> users;
+    @ManyToOne
+    Team team;
 }

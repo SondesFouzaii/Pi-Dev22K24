@@ -1,9 +1,10 @@
 package tn.esprit.codemasters.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Set;
 
 @Entity
 @Getter
@@ -12,19 +13,18 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
-public class PostNotification {
+
+//@Table(name = "equipes")
+public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-
-    String title;
-    String message;
-
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    private Post post;
+    long id;
+    String name;
 
 
+    @ManyToMany(mappedBy="teams", cascade = CascadeType.ALL)
+    private Set<User> users;
 
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="team")
+    private Set<Project> Projects;
 }

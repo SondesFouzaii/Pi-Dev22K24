@@ -49,9 +49,6 @@ public class Post {
     int likes;
     int dislikes;
 
-    @OneToMany(mappedBy = "post")
-    private List<PostNotification> notifications;
-
     @PrePersist
     protected void onCreate() {
         creationDate = new Date();

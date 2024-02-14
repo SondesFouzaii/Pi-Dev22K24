@@ -54,10 +54,10 @@ public class User {
     private Set<Post> Posts;
     //les developpeurs
     @ManyToMany(cascade = CascadeType.ALL)
-    private Set<Project> projectdevolpppers;
+    private Set<Team> teams;
     //product owner
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Project> Projectpo;
+    private Set<Project> Projectproductowner;
     //scrum master
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Project> Projectscrummaster;
