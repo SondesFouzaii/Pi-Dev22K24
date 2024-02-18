@@ -1,11 +1,11 @@
 package tn.esprit.codemasters.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -18,4 +18,13 @@ public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-}
+    String title;
+    String description;
+    String image;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="test")
+    private Set<UserTest> userTests;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Question> questions;
+    }

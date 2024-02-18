@@ -33,5 +33,5 @@ public class Sprint {
     //Liste des tâches : List<Tâche>
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="sprint")
-    private Set<Task> Tasks;
+    private Set<Task> tasks;
 }

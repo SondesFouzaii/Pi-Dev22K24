@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -28,11 +27,11 @@ public class UserStory {
     Project project;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="userstory")
-    private Set<Claim> Reclamations;
+    private Set<Claim> reclamations;
 
     @ManyToOne
     User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="userstory")
-    private Set<Task> Tasks;
+    private Set<Task> tasks;
 }

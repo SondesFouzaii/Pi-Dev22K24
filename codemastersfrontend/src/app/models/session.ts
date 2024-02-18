@@ -1,4 +1,7 @@
 import { Card } from "./card";
+import { Feedback } from "./feedback";
+import { Message } from "./message";
+import { Project } from "./project";
 
 export interface Session {
     id: number;
@@ -8,5 +11,9 @@ export interface Session {
     isclosed: boolean;
     code: number;
     url: string;
+
+    messages: Message[];
     card: Card;
+    feedBacks: Feedback[];
+    project: Project;
   }

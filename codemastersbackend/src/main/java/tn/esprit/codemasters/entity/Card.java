@@ -30,5 +30,4 @@ public class Card {
     int v9;
     int v10;
     String image;
-
 }

@@ -26,5 +26,5 @@ public class Team {
     private Set<User> users;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="team")
-    private Set<Project> Projects;
+    private Set<Project> projects;
 }

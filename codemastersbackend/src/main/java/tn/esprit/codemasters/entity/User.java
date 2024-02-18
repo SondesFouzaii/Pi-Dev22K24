@@ -3,6 +3,7 @@ package tn.esprit.codemasters.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import java.util.Date;
 import java.util.Set;
@@ -18,7 +19,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
         long id;
-        String name;
+        //String name;
         String first_name;
         String last_name;
         @Temporal(TemporalType.DATE)
@@ -27,16 +28,20 @@ public class User {
         Gender gender;
         String address;
         String phone_number;
+        @Column(unique = true)
         String email;
         String password;
         String image;
-        String security_question;
-        String security_answer;
         String status;
         @Enumerated(EnumType.STRING)
         Role role;
-        String theme_preferences;
-        int etat;
+        String barrcode;
+        boolean enabled;
+        boolean non_locked;
+        boolean using_mfa;
+        @Temporal(TemporalType.DATE)
+        Date created_date;
+
 
     public enum Gender{
         Homme,Femme,Non_Binaire,Genre_Fluide,Agender,Bigenre,Trigender,Genderqueer
@@ -51,20 +56,24 @@ public class User {
     private Set<Notification> notifications;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-    private Set<Post> Posts;
+    private Set<Post> posts;
     //les developpeurs
     @ManyToMany(cascade = CascadeType.ALL)
     private Set<Team> teams;
     //product owner
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Project> Projectproductowner;
+    private Set<Project> projectproductowner;
     //scrum master
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Project> Projectscrummaster;
+    private Set<Project> projectscrummaster;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-    private Set<Claim> Claims;
+    private Set<Claim> claims;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-    private Set<UserStory> UserStorys;
+    private Set<UserStory> userStorys;
+
+    //test
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    private Set<UserTest> userTests;
 }
