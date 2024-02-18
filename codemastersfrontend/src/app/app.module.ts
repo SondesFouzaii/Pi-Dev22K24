@@ -19,6 +19,13 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { DashboardComponent } from './Back office/dashboard/dashboard.component';
 import { UsersComponent } from './Back office/users/users.component';
 import { UserdetailsComponent } from './Back office/userdetails/userdetails.component';
+import { RouterLink } from '@angular/router';
+import { FrontComponent } from './Front office/front/front.component';
+import { FrontdashboardComponent } from './Front office/frontdashboard/frontdashboard.component';
+import { FrontheaderComponent } from './Front office/front/frontheader/frontheader.component';
+import { FrontfooterComponent } from './Front office/front/frontfooter/frontfooter.component';
+import { MyprofileComponent } from './Front office/myprofile/myprofile.component';
+import { ProfileComponent } from './Front office/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +48,7 @@ import { UserdetailsComponent } from './Back office/userdetails/userdetails.comp
     MatNativeDateModule,
     MaterialExampleModule,
     ReactiveFormsModule,
+    RouterLink
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,46 @@
-<p>users works!</p>
+<div></div>
+<div class="content">
+    <br><br>
+    <h1 class="display-1 text-center" >List of users</h1>
+    <div class="row">
+
+        <div class="col-sm-12 col-xl-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Hoverable Table</h6>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Enabled account</th>
+                            <th scope="col">Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let u of users,let i=index">
+                            <th scope="row">{{u.id}}</th>
+                            <td>{{u.first_name}}</td>
+                            <td>{{u.last_name}}</td>
+                            <td>{{u.role}}</td>
+                            <td>{{u.enabled}}</td>
+                            <td><button class="btn-primary" (click)="cr(i)">Modifier Role <br> </button>
+                                
+                                <div [hidden]="displayrole[i]">
+                                    <select [(ngModel)]="newrole[i]" >
+                                        <option value="" *ngFor="let r of roleList" [ngValue]="r">{{r}}</option>
+                                    </select>
+                                    <!--input type="text" [(ngModel)]="newrole[i]" -->
+                                    <button (click)="modifierrole(u.id,newrole[i],i)">appliquer</button> 
+                                </div>
+                                
+                                <button class="btn-danger" (click)="bd(u.id)"><div *ngIf="u.enabled==true">Bloquer</div><div *ngIf="u.enabled==false">Debloquer</div></button></td>
+                          </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

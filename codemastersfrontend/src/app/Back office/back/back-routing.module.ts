@@ -9,8 +9,8 @@ const routes: Routes = [
   { path: '', component: BackComponent, children: [
       {path: 'dashboard',component: DashboardComponent},
       {path: 'users',component: UsersComponent},
-      {path: 'user/:id',component: UserdetailsComponent}
-
+      {path: 'user/:id',component: UserdetailsComponent},
+      {path: '', redirectTo: '/admin/dashboard', pathMatch: 'full'}
   ] }
 ];
 

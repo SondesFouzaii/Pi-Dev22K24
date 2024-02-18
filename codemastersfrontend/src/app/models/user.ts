@@ -7,7 +7,6 @@ import { Userstory } from "./userstory";
 
 export interface User {
     id:number;
-    name:String;
     first_name:String;
     last_name:String;
     birth_date:String;
@@ -17,12 +16,12 @@ export interface User {
     email:string;
     password:string;
     image:string;
-    security_question:string;
-    security_answer:string;
     status:string;
     role:string;
-    theme_preferences:string;
-    etat:number;
+    barrcode:string;
+    enabled:boolean;
+    non_locked:boolean;
+    using_mfa:boolean;
     notifications: Notification[];
     Posts: Post[];
     teams: Team[];
