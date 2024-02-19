@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "assets/vendor/bootstrap/scss/bootstrap.scss";
+
+
+
 @import "scss/variables";
 
 /* fonts-icon */
@@ -21,4 +25,3 @@
 
 @import "scss/custom";
 
-@import "assets/vendor/bootstrap/scss/bootstrap.scss";

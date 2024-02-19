@@ -30,10 +30,12 @@
               "src/assets"
             ],
             "styles": [
-        
+              "node_modules/bootstrap/dist/css/bootstrap.css",
               "@angular/material/prebuilt-themes/purple-green.css",
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/app/Front office/front/frontheader/frontheader.component.scss"
+
               
             ],
             "scripts": [
