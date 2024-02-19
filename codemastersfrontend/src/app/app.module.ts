@@ -26,6 +26,8 @@ import { FrontheaderComponent } from './Front office/front/frontheader/fronthead
 import { FrontfooterComponent } from './Front office/front/frontfooter/frontfooter.component';
 import { MyprofileComponent } from './Front office/myprofile/myprofile.component';
 import { ProfileComponent } from './Front office/profile/profile.component';
+import { ResetComponent } from './reset/reset.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { ProfileComponent } from './Front office/profile/profile.component';
     HeaderComponent,
     SigninComponent,
     SignupComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,
