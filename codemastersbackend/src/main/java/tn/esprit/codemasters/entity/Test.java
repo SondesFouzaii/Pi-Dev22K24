@@ -21,6 +21,7 @@ public class Test {
     String title;
     String description;
     String image;
+    boolean active;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="test")
     private Set<UserTest> userTests;

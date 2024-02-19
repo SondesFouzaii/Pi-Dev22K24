@@ -32,18 +32,10 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "@angular/material/prebuilt-themes/purple-green.css",
-              "src/styles.scss",
-              "src/assets/css/bootstrap.min.css",
-              "src/assets/css/style.css",
-              "src/assets/css/stylea.css",
-              "src/assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css",
-              "src/assets/lib/owlcarousel/assets/owl.carousel.min.css"
-              
+              "@angular/material/prebuilt-themes/purple-green.css"
             ],
             "scripts": [
-              "src/assets/js/main.js",
-              "src/assets/js/maina.js"
+   
             ]
           },
           "configurations": {

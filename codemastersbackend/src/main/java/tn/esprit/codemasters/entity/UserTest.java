@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
+
 @Entity
 @Getter
 @Setter
@@ -16,6 +18,8 @@ public class UserTest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     int score;
+    @Temporal(TemporalType.DATE)
+    Date date;
 
     @ManyToOne
     User user;
