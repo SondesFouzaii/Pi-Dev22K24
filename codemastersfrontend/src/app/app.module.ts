@@ -27,8 +27,11 @@ import { FrontfooterComponent } from './Front office/front/frontfooter/frontfoot
 import { MyprofileComponent } from './Front office/myprofile/myprofile.component';
 import { ProfileComponent } from './Front office/profile/profile.component';
 import { ResetComponent } from './reset/reset.component';
+import { VheaderComponent } from './Back office/back/vheader/vheader.component';
+import {enableProdMode} from '@angular/core';
 
 
+enableProdMode();
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +41,8 @@ import { ResetComponent } from './reset/reset.component';
     SigninComponent,
     SignupComponent,
     NotfoundComponent,
-    ResetComponent
+    ResetComponent,
+    VheaderComponent
   ],
   imports: [
     BrowserModule,

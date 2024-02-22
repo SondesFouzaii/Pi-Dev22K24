@@ -1,351 +1,438 @@
+<main class="main-wrapper">
+   <div class="container-fluid">
+       <div class="inner-contents">
+           <div class="page-header d-flex align-items-center justify-content-between mr-bottom-30">
+               <div class="left-part">
+                   <h2 class="text-dark">Invoice Dashboard</h2>
+                   <p class="text-gray mb-0">Lorem ipsum dolor sit amet </p>
+               </div>
+               <div class="right-part">
+                   <a href="assets/templatefront/img/kleon-invoice.pdf" class="btn btn-primary rounded-2 ff-heading fs-18 fw-bold py-4" download><i class="bi bi-pie-chart-fill me-1"></i> Download Report</a>
+               </div>
+           </div>
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero">
-    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+           <div class="row">
+               <div class="col-xxl-6 col-lg-12">
+                   <div class="row">
+                       <div class="col col-12">
+                           <div class="card border-0 shadow-sm py-3">
+                               <div class="card-body py-0">
+                                   <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
+                                       <div class="d-flex align-items-center gap-0 flex-wrap">
+                                           <div id="chart-45"></div> 
+                                           <div> 
+                                               <h4 class="mb-3">Total Balance</h4>
+                                               <h2 class="fs-38 mb-0">$21,560.57</h2> 
+                                           </div>
+                                       </div>
+   
+                                       <div>
+                                           <h5 class="fw-semibold mb-1">Average from last month</h5>
+                                           <p class="text-gray mb-0"><span class="text-success fw-bold"><i class="bi bi-graph-up-arrow"></i> +0.5%</span> invoices sent</p>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
 
-      <div class="carousel-inner" role="listbox">
+                       <div class="col col-lg-6">
+                           <div class="card border-0 shadow-sm pd-top-40 pd-bottom-40">
+                               <div class="card-body py-0">
+                                   <h4 class="mb-3">Invoice Sent</h4>
+                                   <h2 class="fs-38 d-flex align-items-center gap-4"> 421 <div class="badge bg-success fs-16"><i class="bi bi-graph-up-arrow me-2"></i> 0.5%</div></h2>
+                               </div>
+                           </div>
+                       </div>
 
-        <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg);">
-          <div class="carousel-container">
-            <div class="carousel-content animate__animated animate__fadeInUp">
-              <h2>Welcome to <span>Company</span></h2>
-              <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
-            </div>
-          </div>
-        </div>
+                       <div class="col col-lg-6">
+                           <div class="card border-0 shadow-sm pd-top-40 pd-bottom-40">
+                               <div class="card-body py-0">
+                                   <h4 class="mb-3">Invoice Completed</h4>
+                                   <h2 class="fs-38 d-flex align-items-center gap-4"> 874 <div class="badge bg-danger fs-16"><i class="bi bi-graph-down-arrow me-2"></i> -6.4%</div></h2>
+                               </div>
+                           </div>
+                       </div>
 
-        <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg);">
-          <div class="carousel-container">
-            <div class="carousel-content animate__animated animate__fadeInUp">
-              <h2>Lorem Ipsum Dolor</h2>
-              <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
-            </div>
-          </div>
-        </div>
+                       <div class="col col-lg-6">
+                           <div class="card border-0 shadow-sm p-5">
+                               <div class="card-body p-0 d-flex align-items-center justify-content-between gap-5 flex-wrap flex-xl-nowrap">
+                                   <div class="flex-shrink-0">
+                                       <h4 class="mb-3">Total Clients</h4>
+                                       <h2 class="fs-38 d-flex align-items-center gap-4"> 68 <div class="text-success fs-16"><i class="bi bi-caret-up-fill"></i> 0.5%</div></h2>
+                                   </div>
+                                   <div id="chart-46"></div>
+                               </div>
+                           </div>
+                       </div>
 
-        <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-3.jpg);">
-          <div class="carousel-container">
-            <div class="carousel-content animate__animated animate__fadeInUp">
-              <h2>Sequi ea ut et est quaerat</h2>
-              <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
-            </div>
-          </div>
-        </div>
+                       <div class="col col-lg-6">
+                           <div class="card border-0 shadow-sm pd-top-40 pd-bottom-40">
+                               <div class="card-body py-0">
+                                   <h4 class="mb-3">Invoice Remaining</h4>
+                                   <div class="d-flex align-items-center gap-3 mt-3"> 
+                                       <div class="flex-grow-1">
+                                           <div class="progress rounded-1 bg-light-200 mb-2" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+                                               <div class="progress-bar bg-primary bg-gradient rounded-1" style="width: 24%"></div>
+                                           </div>
+                                           <p class="text-gray mb-0"><span class="text-danger fw-bold">-0.8%</span> from last month</p>
+                                       </div>
+                                       <h2 class="fs-38"> 24</h2>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
 
-      </div>
+                       <div class="col col-12">
+                           <div class="card pie-card border-0 shadow-sm">
+                               <div class="card-header bg-transparent border-0 p-5 pb-0 d-flex align-items-center justify-content-between gap-3 flex-wrap">
+                                   <h4 class="mb-0">Pie Chart</h4>
+                                   <div class="d-flex align-items-center gap-3"> 
+                                       <div class="d-flex align-items-center gap-3">
+                                           <div class="form-check form-check-inline m-0">
+                                               <label class="form-label mb-0 ff-heading fs-18 fw-semibold" for="checkbox1">Chart</label>
+                                               <input type="checkbox" class="form-check-input" id="checkbox1"  value="">
+                                           </div>                               
+                                           <div class="form-check form-check-inline m-0">
+                                               <label class="form-label mb-0 ff-heading fs-18 fw-semibold" for="checkbox2">Value</label>
+                                               <input type="checkbox" class="form-check-input" id="checkbox2"  value="" checked>
+                                           </div>
+                                       </div> 
+                                   </div>
+                               </div>
 
-      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-      </a>
+                               <div class="card-body pt-0">
+                                   <div class="d-flex align-items-center justify-content-around justify-content-xxl-between gap-3 flex-wrap">
+                                       <div>
+                                           <div id="chart-48"></div> 
+                                           <h5 class="fw-semibold text-center mb-0 negative-margin">Invoices Made</h5>
+                                       </div>
+                                       <div>
+                                           <div id="chart-49"></div> 
+                                           <h5 class="fw-semibold text-center mb-0 negative-margin">Clients Growth</h5>
+                                       </div>
+                                       <div>
+                                           <div id="chart-50"></div> 
+                                           <h5 class="fw-semibold text-center mb-0 negative-margin">Projects Done</h5>
+                                       </div>
+                                   </div>
 
-      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-      </a>
+                                   <div class="card-footer d-flex align-items-center justify-content-between gap-4 flex-wrap p-0 pt-5 mt-6">
+                                       <div>
+                                           <h5 class="fs-20">Best tips increase management</h5>
+                                           <p class="fs-14 text-gray mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+                                       </div>
 
-      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+                                       <div class="btn-group flex-shrink-0">
+                                           <a href="inbox.html" class="btn bg-soft-success btn-outline-success rounded-2 ff-heading fs-18 fw-bold lh-24 py-3"> Learn More</a>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
 
-    </div>
-  </section><!-- End Hero -->
+                       <div class="col col-12">
+                           <div class="card border-0 shadow-sm">
+                               <div class="card-header bg-transparent border-0 p-5 pb-2">
+                                   <div>
+                                       <h4>Projects Calendar</h4>
+                                       <p class="text-gray mb-0">Lorem ipsum dolor sit amet</p>
+                                   </div>
+                               </div>
+                               <div class="card-body pt-0">
+                                   <div class="flatpickr-inline"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               
+               <div class="col-xxl-6 col-lg-12">
+                   <div class="card border-0 shadow-sm">
+                       <div class="card-header bg-transparent border-0 p-5 pb-0 d-flex align-items-center justify-content-between gap-3 flex-wrap">
+                           <h4 class="mb-0">Invoices Statistic</h4>
+                           <div class="d-flex align-items-center gap-3">
+                               <select class="kleon-select-simple nav-toggler-content">
+                                   <option value="0">Daily</option>
+                                   <option value="1">Weekly</option>
+                                   <option selected value="2">Monthly</option>
+                                   <option value="3">Yearly</option>
+                               </select>
 
-  <main id="main">
+                               <div class="dropdown">
+                                   <a href="#" data-bs-toggle="dropdown" class="fs-24 text-gray">
+                                       <i class="bi bi-three-dots-vertical"></i>
+                                   </a>
+                                   <div class="dropdown-menu p-0">
+                                       <a class="dropdown-item" href="#">Download SVG</a>
+                                       <a class="dropdown-item" href="#">Download PDF</a>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
 
-    <!-- ======= About Us Section ======= -->
-    <section id="about-us" class="about-us">
-      <div class="container" data-aos="fade-up">
+                       <div class="card-body pt-2">
+                           <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
+                               <div>
+                                   <div class="d-flex align-items-baseline gap-3 gap-xxl-7 mb-3">
+                                       <p class="mb-0"><span class="indicator bg-success"></span> Total Paid</p> 
+                                       <h4 class="fs-20 mb-0">1,567</h4>
+                                   </div>
+                                   <div class="d-flex align-items-baseline gap-3 gap-xxl-7">
+                                       <p class="mb-0"><span class="indicator bg-info"></span> Total Unpaid</p>
+                                       <h4 class="fs-20 mb-0">569</h4>
+                                   </div>
+                               </div>
 
-        <div class="row content">
-          <div class="col-lg-6" data-aos="fade-right">
-            <h2>Eum ipsam laborum deleniti velitena</h2>
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left">
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p>
-            <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
-            </ul>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-          </div>
-        </div>
+                               <div class="d-flex align-items-center gap-4 justify-content-center flex-wrap">
+                                   <div class="form-switch">
+                                       <input type="checkbox" class="form-check-input border-0" id="number" checked>
+                                       <label class="form-label mb-0 fs-18 fw-semibold lh-32" for="number">Number</label>
+                                   </div>
+                                   <div class="form-switch">
+                                       <input type="checkbox" class="form-check-input border-0" id="analytics">
+                                       <label class="form-label mb-0 fs-18 fw-semibold lh-32" for="analytics">Analytics</label>
+                                   </div>
+                               </div>
+                           </div>
 
-      </div>
-    </section><!-- End About Us Section -->
+                           <div id="chart-44"></div>
+                       </div>
+                   </div>
 
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      <div class="container" data-aos="fade-up">
+                   <div class="card border-0 shadow-sm">
+                       <div class="card-header bg-transparent border-0 p-5 pb-0">
+                           <h4 class="mb-0">Latest Invoice Payment</h4>
+                       </div>
 
-        <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box iconbox-blue">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
-                </svg>
-                <i class="bx bxl-dribbble"></i>
-              </div>
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
-          </div>
+                       <div class="card-body pt-2">
+                           <div class="table-responsive">
+                               <table id="table-6" class="display text-center">
+                                   <thead>
+                                       <tr>
+                                           <th>Invoice No</th>
+                                           <th>Amount</th>
+                                           <th>Date</th>
+                                           <th>Action</th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                       <tr>
+                                           <td> 
+                                               <div class="d-flex gap-2 flex-wrap">
+                                                   <div class="profilepicture flex-shrink-0 d-none d-xl-block">
+                                                       <img src="assets/templatefront/img/clients/1.jpg" alt="img">
+                                                   </div>
+                                                   <div>
+                                                       <a href="invoice.html" class="fs-14 fw-semibold">#INV-0001234</a>
+                                                       <h6 class="fw-semibold mb-0">Jean Graphic Inc.</h6>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                           <td>
+                                               <div class="d-flex gap-2">
+                                                   <i class="bi bi-bookmark-check-fill text-gray"></i>
+                                                   <div>
+                                                       <p class="fs-14 fw-semibold text-dark mb-0">Amount</p>
+                                                       <h5 class="fs-20 mb-0">$ 650,036.34</h5>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                           <td><p class="fs-14 text-gray mb-0">2m ago</p></td>
+                                           <td>
+                                               <div class="dropdown text-end">
+                                                   <a href="#" data-bs-toggle="dropdown" class="fs-24 text-gray">
+                                                       <i class="bi bi-three-dots-vertical"></i>
+                                                   </a>
+                                                   <div class="dropdown-menu p-0">
+                                                       <a class="dropdown-item" href="invoice.html"><i class="bi bi-eye"></i></a>
+                                                       <a class="dropdown-item" href="assets/templatefront/img/kleon-invoice.pdf" download><i class="bi bi-download"></i></a>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                       </tr>
+                                       
+                                       <tr>
+                                           <td> 
+                                               <div class="d-flex gap-2 flex-wrap">
+                                                   <div class="profilepicture flex-shrink-0 d-none d-xl-block">
+                                                       <img src="assets/templatefront/img/clients/2.jpg" alt="img">
+                                                   </div>
+                                                   <div>
+                                                       <a href="invoice.html" class="fs-14 fw-semibold">#INV-0001235</a>
+                                                       <h6 class="fw-semibold mb-0">Higspeed Studios</h6>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                           <td>
+                                               <div class="d-flex gap-2">
+                                                   <i class="bi bi-bookmark-check-fill text-gray"></i>
+                                                   <div>
+                                                       <p class="fs-14 fw-semibold text-dark mb-0">Amount</p>
+                                                       <h5 class="fs-20 mb-0">$ 178.34</h5>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                           <td><p class="fs-14 text-gray mb-0">12m ago</p></td>
+                                           <td>
+                                               <div class="dropdown text-end">
+                                                   <a href="#" data-bs-toggle="dropdown" class="fs-24 text-gray">
+                                                       <i class="bi bi-three-dots-vertical"></i>
+                                                   </a>
+                                                   <div class="dropdown-menu p-0">
+                                                       <a class="dropdown-item" href="invoice.html"><i class="bi bi-eye"></i></a>
+                                                       <a class="dropdown-item" href="assets/templatefront/img/kleon-invoice.pdf" download><i class="bi bi-download"></i></a>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                       </tr>
+                                       
+                                       <tr>
+                                           <td> 
+                                               <div class="d-flex gap-2 flex-wrap">
+                                                   <div class="profilepicture flex-shrink-0 d-none d-xl-block">
+                                                       <img src="assets/templatefront/img/clients/3.jpg" alt="img">
+                                                   </div>
+                                                   <div>
+                                                       <a href="invoice.html" class="fs-14 fw-semibold">#INV-0001236</a>
+                                                       <h6 class="fw-semibold mb-0">Fullspeedo Crew</h6>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                           <td>
+                                               <div class="d-flex gap-2">
+                                                   <i class="bi bi-bookmark-check-fill text-gray"></i>
+                                                   <div>
+                                                       <p class="fs-14 fw-semibold text-dark mb-0">Amount</p>
+                                                       <h5 class="fs-20 mb-0">$ 326.34</h5>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                           <td><p class="fs-14 text-gray mb-0">6h ago</p></td>
+                                           <td>
+                                               <div class="dropdown text-end">
+                                                   <a href="#" data-bs-toggle="dropdown" class="fs-24 text-gray">
+                                                       <i class="bi bi-three-dots-vertical"></i>
+                                                   </a>
+                                                   <div class="dropdown-menu p-0">
+                                                       <a class="dropdown-item" href="invoice.html"><i class="bi bi-eye"></i></a>
+                                                       <a class="dropdown-item" href="assets/templatefront/img/kleon-invoice.pdf" download><i class="bi bi-download"></i></a>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                       </tr>
+                                       
+                                       <tr>
+                                           <td> 
+                                               <div class="d-flex gap-2 flex-wrap">
+                                                   <div class="profilepicture flex-shrink-0 d-none d-xl-block">
+                                                       <img src="assets/templatefront/img/clients/4.jpg" alt="img">
+                                                   </div>
+                                                   <div>
+                                                       <a href="invoice.html" class="fs-14 fw-semibold">#INV-0001237</a>
+                                                       <h6 class="fw-semibold mb-0">Wedeloper Team</h6>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                           <td>
+                                               <div class="d-flex gap-2">
+                                                   <i class="bi bi-bookmark-check-fill text-gray"></i>
+                                                   <div>
+                                                       <p class="fs-14 fw-semibold text-dark mb-0">Amount</p>
+                                                       <h5 class="fs-20 mb-0">$ 50,036.34</h5>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                           <td><p class="fs-14 text-gray mb-0">18h ago</p></td>
+                                           <td>
+                                               <div class="dropdown text-end">
+                                                   <a href="#" data-bs-toggle="dropdown" class="fs-24 text-gray">
+                                                       <i class="bi bi-three-dots-vertical"></i>
+                                                   </a>
+                                                   <div class="dropdown-menu p-0">
+                                                       <a class="dropdown-item" href="invoice.html"><i class="bi bi-eye"></i></a>
+                                                       <a class="dropdown-item" href="assets/templatefront/img/kleon-invoice.pdf" download><i class="bi bi-download"></i></a>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                       </tr>
+                                       
+                                       <tr>
+                                           <td> 
+                                               <div class="d-flex gap-2 flex-wrap">
+                                                   <div class="profilepicture flex-shrink-0 d-none d-xl-block">
+                                                       <img src="assets/templatefront/img/clients/5.jpg" alt="img">
+                                                   </div>
+                                                   <div>
+                                                       <a href="invoice.html" class="fs-14 fw-semibold">#INV-0001238</a>
+                                                       <h6 class="fw-semibold mb-0">Humbly Humble</h6>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                           <td>
+                                               <div class="d-flex gap-2">
+                                                   <i class="bi bi-bookmark-check-fill text-gray"></i>
+                                                   <div>
+                                                       <p class="fs-14 fw-semibold text-dark mb-0">Amount</p>
+                                                       <h5 class="fs-20 mb-0">$ 23,936.34</h5>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                           <td><p class="fs-14 text-gray mb-0">Yesterday, 07:03 AM</p></td>
+                                           <td>
+                                               <div class="dropdown text-end">
+                                                   <a href="#" data-bs-toggle="dropdown" class="fs-24 text-gray">
+                                                       <i class="bi bi-three-dots-vertical"></i>
+                                                   </a>
+                                                   <div class="dropdown-menu p-0">
+                                                       <a class="dropdown-item" href="invoice.html"><i class="bi bi-eye"></i></a>
+                                                       <a class="dropdown-item" href="assets/templatefront/img/kleon-invoice.pdf" download><i class="bi bi-download"></i></a>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                       </tr>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="icon-box iconbox-orange ">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,582.0697525312426C382.5290701553225,586.8405444964366,449.9789794690241,525.3245884688669,502.5850820975895,461.55621195738473C556.606425686781,396.0723002908107,615.8543463187945,314.28637112970534,586.6730223649479,234.56875336149918C558.9533121215079,158.8439757836574,454.9685369536778,164.00468322053177,381.49747125262974,130.76875717737553C312.15926192815925,99.40240125094834,248.97055460311594,18.661163978235184,179.8680185752513,50.54337015887873C110.5421016452524,82.52863877960104,119.82277516462835,180.83849132639028,109.12597500060166,256.43424936330496C100.08760227029461,320.3096726198365,92.17705696193138,384.0621239912766,124.79988738764834,439.7174275375508C164.83382741302287,508.01625554203684,220.96474134820875,577.5009287672846,300,582.0697525312426"></path>
-                </svg>
-                <i class="bx bx-file"></i>
-              </div>
-              <h4><a href="">Sed Perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div>
+                   <div class="card border-0 shadow-sm">
+                       <div class="card-header bg-transparent border-0 p-5 pb-0 d-flex align-items-center justify-content-between gap-3 flex-wrap">
+                           <h4 class="mb-0">Completion Project Rate</h4>
+                           <div class="d-flex align-items-center gap-3">
+                               <div class="dropdown">
+                                   <a href="#" data-bs-toggle="dropdown" class="fs-24 text-gray">
+                                       <i class="bi bi-three-dots-vertical"></i>
+                                   </a>
+                                   <div class="dropdown-menu p-0">
+                                       <a class="dropdown-item" href="#">Download SVG</a>
+                                       <a class="dropdown-item" href="#">Download PDF</a>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon-box iconbox-pink">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
-                </svg>
-                <i class="bx bx-tachometer"></i>
-              </div>
-              <h4><a href="">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-            </div>
-          </div>
+                       <div class="card-body d-flex align-items-center gap-3 flex-wrap">
+                           <div id="chart-43" class="flex-grow-1"></div>
+                           <div class="flex-shrink-0">
+                               <h2 class="d-flex align-items-center gap-2 mb-2"> 49 <i class="bi bi-arrow-up-circle-fill fs-26 text-success ms-1"></i></h2>
+                               <h5 class="fw-semibold lh-24 mb-0">Total Task Closed</h5>
+                               <h5 class="fw-semibold text-gray mb-0"><span class="text-success fw-bold">+5.4%</span> than last day</h5>
+                           </div>
+                       </div>
+                   </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box iconbox-yellow">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,503.46388370962813C374.79870501325706,506.71871716319447,464.8034551963731,527.1746412648533,510.4981551193396,467.86667711651364C555.9287308511215,408.9015244558933,512.6030010748507,327.5744911775523,490.211057578863,256.5855673507754C471.097692560561,195.9906835881958,447.69079081568157,138.11976852964426,395.19560036434837,102.3242989838813C329.3053358748298,57.3949838291264,248.02791733380457,8.279543830951368,175.87071277845988,42.242879143198664C103.41431057327972,76.34704239035025,93.79494320519305,170.9812938413882,81.28167332365135,250.07896920659033C70.17666984294237,320.27484674793965,64.84698225790005,396.69656628748305,111.28512138212992,450.4950937839243C156.20124167950087,502.5303643271138,231.32542653798444,500.4755392045468,300,503.46388370962813"></path>
-                </svg>
-                <i class="bx bx-layer"></i>
-              </div>
-              <h4><a href="">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-            </div>
-          </div>
+                   <!-- <div class="card border-0 shadow-sm">
+                       <div class="card-header bg-transparent border-0 p-5 pb-0 d-flex align-items-center justify-content-between gap-3 flex-wrap">
+                           <h4 class="mb-0">Other Chart</h4>
+                       </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
-            <div class="icon-box iconbox-red">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,532.3542879108572C369.38199826031484,532.3153073249985,429.10787420159085,491.63046689027357,474.5244479745417,439.17860296908856C522.8885846962883,383.3225815378663,569.1668002868075,314.3205725914397,550.7432151929288,242.7694973846089C532.6665558377875,172.5657663291529,456.2379748765914,142.6223662098291,390.3689995646985,112.34683881706744C326.66090330228417,83.06452184765237,258.84405631176094,53.51806209861945,193.32584062364296,78.48882559362697C121.61183558270385,105.82097193414197,62.805066853699245,167.19869350419734,48.57481801355237,242.6138429142374C34.843463184063346,315.3850353017275,76.69343916112496,383.4422959591041,125.22947124332185,439.3748458443577C170.7312796277747,491.8107796887764,230.57421082200815,532.3932930995766,300,532.3542879108572"></path>
-                </svg>
-                <i class="bx bx-slideshow"></i>
-              </div>
-              <h4><a href="">Dele Cardo</a></h4>
-              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon-box iconbox-teal">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,566.797414625762C385.7384707136149,576.1784315230908,478.7894351017131,552.8928747891023,531.9192734346935,484.94944893311C584.6109503024035,417.5663521118492,582.489472248146,322.67544863468447,553.9536738515405,242.03673114598146C529.1557734026468,171.96086150256528,465.24506316201064,127.66468636344209,395.9583748389544,100.7403814666027C334.2173773831606,76.7482773500951,269.4350130405921,84.62216499799875,207.1952322260088,107.2889140133804C132.92018162631612,134.33871894543012,41.79353780512637,160.00259165414826,22.644507872594943,236.69541883565114C3.319112789854554,314.0945973066697,72.72355303640163,379.243833228382,124.04198916343866,440.3218312028393C172.9286146004772,498.5055451809895,224.45579914871206,558.5317968840102,300,566.797414625762"></path>
-                </svg>
-                <i class="bx bx-arch"></i>
-              </div>
-              <h4><a href="">Divera Don</a></h4>
-              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-      <div class="container">
-
-        <div class="row" data-aos="fade-up">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container" data-aos="fade-up">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 1</h4>
-              <p>App</p>
-              <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>App</p>
-              <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 2</h4>
-              <p>Card</p>
-              <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 2</h4>
-              <p>Web</p>
-              <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>App</p>
-              <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 1</h4>
-              <p>Card</p>
-              <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Portfolio Section -->
-
-    <!-- ======= Our Clients Section ======= -->
-    <section id="clients" class="clients">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Clients</h2>
-        </div>
-
-        <div class="row no-gutters clients-wrap clearfix" data-aos="fade-up">
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Our Clients Section -->
-
-  </main><!-- End #main -->
+                       <div class="card-body pt-2">
+                           <div id="chart-47"></div>
+                       </div>
+                   </div> -->
+               </div>
+           </div>
+       </div>
+   </div>
+</main>

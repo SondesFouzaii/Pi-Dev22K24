@@ -30,19 +30,15 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-              "@angular/material/prebuilt-themes/purple-green.css",
-              "node_modules/bootstrap/scss/bootstrap.scss",
-              "src/styles.scss",
-              "src/app/Front office/front/frontheader/frontheader.component.scss"
+              "src/styles.scss"
 
-              
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.esm.js"
-   
+             
+            ],
+            "allowedCommonJsDependencies": [
+              "chart.js",
+              "assets/templateback/js/scripts.js"
             ]
           },
           "configurations": {
@@ -104,10 +100,9 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/purple-green.css",
-              "src/styles.scss"
+              "src/scss/styles.scss"
             ],
-            "scripts": []
+            "scripts": [            ]
           }
         }
       }
