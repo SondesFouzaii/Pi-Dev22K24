@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FrontComponent } from './front.component';
-import { FrontdashboardComponent } from '../frontdashboard/frontdashboard.component';
-import { MyprofileComponent } from '../myprofile/myprofile.component';
-import { ProfileComponent } from '../profile/profile.component';
+import { FrontdashboardComponent } from './frontdashboard/frontdashboard.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: FrontComponent, children: [
