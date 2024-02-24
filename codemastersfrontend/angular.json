@@ -30,8 +30,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
-            ],
+          ],
+          
             "scripts": []
           },
           "configurations": {
@@ -100,5 +100,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "1aeeee34-b03d-4cb3-87db-1976a0216593"
   }
 }

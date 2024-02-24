@@ -41,4 +41,9 @@ public class TaskRestController {
     public void removeTask(@PathVariable("task-id") Long id) {
         taskService.removeTask(id);
     }
+
+    @GetMapping("/retrieve-tasks-by-status")
+    public List<Task> getTasksByStatus(@RequestParam Task.TaskStat status) {
+        return taskService.retrieveTasksByStatus(status);
+    }
 }

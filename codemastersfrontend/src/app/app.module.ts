@@ -3,6 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BackofficeComponent } from './backoffice/backoffice.component';
+import { FrontofficeComponent } from './frontoffice/frontoffice.component';
+import { BackofficeModule } from './backoffice/backoffice.module';
+import { FrontofficeModule } from './frontoffice/frontoffice.module';
+import { FrontofficeRoutingModule } from './frontoffice/frontoffice-routing.module';
+import { BackofficeRoutingModule } from './backoffice/backoffice-routing.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +16,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BackofficeModule,
+    FrontofficeModule,
+    FrontofficeRoutingModule,
+    BackofficeRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

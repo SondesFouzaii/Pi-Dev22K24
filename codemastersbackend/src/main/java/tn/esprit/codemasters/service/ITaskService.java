@@ -10,5 +10,6 @@ public interface ITaskService {
     public Task addTask(Task t);
     public void removeTask(Long TaskId);
     public Task modifyTask(Task task);
+    public List<Task> retrieveTasksByStatus(Task.TaskStat status);
 
 }

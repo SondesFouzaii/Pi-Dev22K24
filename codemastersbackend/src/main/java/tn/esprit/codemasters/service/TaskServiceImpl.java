@@ -34,4 +34,9 @@ public class TaskServiceImpl implements ITaskService{
     public Task modifyTask(Task task) {
         return taskRepository.save(task);
     }
+
+    @Override
+    public List<Task> retrieveTasksByStatus(Task.TaskStat status) {
+        return taskRepository.findByStatus(status);
+    }
 }
