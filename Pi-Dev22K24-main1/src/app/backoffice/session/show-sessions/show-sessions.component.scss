@@ -1,0 +1,121 @@
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  table {
+    width: 100%;
+    max-width: 800px; /* Adjust the maximum width as needed */
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th,
+  td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  tbody tr:hover {
+    background-color: #f2f2f2; /* Gray background color on hover */
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Blue background color for the Add Product button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* Styles for the delete button */
+  .td-actions .btn-danger {
+    background-color: #dc3545; /* Red background color for the delete button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .td-actions .btn-danger:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }
+  
+  /* Styles for the update button */
+  .td-actions .btn-primary {
+    background-color: #17a2b8; /* Teal background color for the update button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .td-actions .btn-primary:hover {
+    background-color: #138496; /* Darker teal on hover */
+  }
+  
+  /* Search input styles */
+  .search-hero {
+    margin-top: 20px;
+  }
+  
+  .search-hero input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Center the Add Product button */
+  .add-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Styles for the page title */
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+  }
+  
+  
+  .search-hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%; /* Adjust the width as needed */
+    margin: 20px auto; /* Add margin for centering */
+  }
+  
+  /* Search input styles */
+  .search-hero input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  

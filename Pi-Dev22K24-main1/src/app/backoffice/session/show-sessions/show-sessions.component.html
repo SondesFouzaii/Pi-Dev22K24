@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body> 
+    
+    <main>
+        <div class="container-fluid px-4">
+          <h1 class="mt-4" align="center">List of Sessions</h1>
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active"></li>
+          </ol>
+          <div>
+            <div class="search-hero" class="col-md-3">
+              <!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a session"> -->
+            </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Session Name</th>
+                <th>Date Session</th>
+                <th>Time Session</th>
+                <th>Status</th>
+                <th>Code</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let session of sessions">
+                <td>{{ session.name }}</td>
+                <td data-type="date" data-format="DD/MM/YY">{{ session.dateSession | date:'shortDate' }}</td>
+                <!-- <td data-type="date" data-format="YYYY/DD/MM">{{ session.dateSession | date:'shortDate' }}</td> -->
+                <td>{{ session.timeSession }}</td>
+                <td>{{ session.etat ? 'Open' : 'Closed' }}</td>
+                <td>{{ session.code }}</td>
+                <td><a href="{{ session.url }}" target="_blank">{{ session.url }}</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-primary" (click)="addSession()">Add Session</button>
+    
+ 
+
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>
