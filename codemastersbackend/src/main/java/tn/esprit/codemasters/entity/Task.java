@@ -1,5 +1,6 @@
 package tn.esprit.codemasters.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -38,8 +39,11 @@ public class Task {
 
     //
     @ManyToOne
+    @JoinColumn(name = "userstory_id")
+    @JsonBackReference
     UserStory userstory;
 
     @ManyToOne
+    @JsonBackReference
     Sprint sprint;
 }

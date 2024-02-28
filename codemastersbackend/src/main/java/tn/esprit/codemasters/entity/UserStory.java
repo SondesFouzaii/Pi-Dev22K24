@@ -1,5 +1,6 @@
 package tn.esprit.codemasters.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -31,6 +32,7 @@ public class UserStory {
     private Set<Claim> Reclamations;
 
     @ManyToOne
+    @JsonBackReference
     User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="userstory")

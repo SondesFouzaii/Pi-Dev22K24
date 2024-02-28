@@ -26,7 +26,7 @@ public class Sprint {
     String retrospective;
 
     public enum StatSprint{
-        ACTIF,CLOSED
+        PLANNED,IN_PROGRESS,COMPLETED
     }
 
 

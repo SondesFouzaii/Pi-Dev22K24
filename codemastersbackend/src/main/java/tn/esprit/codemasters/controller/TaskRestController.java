@@ -43,7 +43,7 @@ public class TaskRestController {
     }
 
     @GetMapping("/retrieve-tasks-by-status")
-    public List<Task> getTasksByStatus(@RequestParam Task.TaskStat status) {
-        return taskService.retrieveTasksByStatus(status);
+    public List<Task> getTasksByStatus(@RequestParam Task.TaskStat status,@RequestParam long userstory_id) {
+        return taskService.retrieveTasksByStatusAndUserStory(status,userstory_id);
     }
 }
