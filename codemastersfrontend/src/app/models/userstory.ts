@@ -10,8 +10,8 @@ export interface Userstory {
     priority: number;
     estimation: number;
 
-    project: Project;
-    Claim: Claim[];
-    User: User;
-    Tasks: Task[];
+    project?: Project;
+    Claim?: Claim[];
+    User?: User;
+    Tasks?: Task[];
   }

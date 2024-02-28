@@ -6,6 +6,9 @@ import { FrontofficeRoutingModule } from './frontoffice-routing.module';
 import { FrontofficeHeaderComponent } from './frontoffice-header/frontoffice-header.component';
 import { FrontofficeSidebarComponent } from './frontoffice-sidebar/frontoffice-sidebar.component';
 import { FrontofficeFooterComponent } from './frontoffice-footer/frontoffice-footer.component';
+import { TaskListComponent } from './Task/task-list/task-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SprintListComponent } from './Sprint/sprint-list/sprint-list.component';
 
 
 
@@ -15,11 +18,14 @@ import { FrontofficeFooterComponent } from './frontoffice-footer/frontoffice-foo
     HomepageComponent,
     FrontofficeHeaderComponent,
     FrontofficeSidebarComponent,
-    FrontofficeFooterComponent
+    FrontofficeFooterComponent,
+    TaskListComponent,
+    SprintListComponent
   ],
   imports: [
     CommonModule,
-    FrontofficeRoutingModule
+    FrontofficeRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class FrontofficeModule { }

@@ -9,6 +9,7 @@ import { BackofficeModule } from './backoffice/backoffice.module';
 import { FrontofficeModule } from './frontoffice/frontoffice.module';
 import { FrontofficeRoutingModule } from './frontoffice/frontoffice-routing.module';
 import { BackofficeRoutingModule } from './backoffice/backoffice-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BackofficeRoutingModule } from './backoffice/backoffice-routing.module'
     BackofficeModule,
     FrontofficeModule,
     FrontofficeRoutingModule,
-    BackofficeRoutingModule
+    BackofficeRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
