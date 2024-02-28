@@ -2,25 +2,24 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BackRoutingModule } from './back-routing.module';
-import { UsersComponent } from './users/users.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { MainComponent } from './dashboard/main.component';
+import { BackComponent } from './back.component';
+import { Header2Component } from './header2/header2.component';
 
 
 @NgModule({
   declarations: [
-    DashboardComponent,
-    UsersComponent
+    BackComponent,
+    MainComponent,
+    HeaderComponent,
+    FooterComponent,
+    Header2Component
   ],
   imports: [
     CommonModule,
-    BackRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule,
-    ReactiveFormsModule,
+    BackRoutingModule
   ]
 })
 export class BackModule { }

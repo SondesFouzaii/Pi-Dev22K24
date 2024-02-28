@@ -1,49 +1,36 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BackComponent } from './Back office/back.component';
-import { FooterComponent } from './Back office/footer/footer.component';
-import { HeaderComponent } from './Back office/header/header.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { MatNativeDateModule } from '@angular/material/core';
-import {MaterialExampleModule} from '../material.module';
-import {HttpClientModule} from '@angular/common/http';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
-import { NotfoundComponent } from './notfound/notfound.component';
 import { RouterLink } from '@angular/router';
-import { ResetComponent } from './reset/reset.component';
-import { VheaderComponent } from './Back office/vheader/vheader.component';
-import {enableProdMode} from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { SigninComponent } from './Main/signin/signin.component';
+import { SignupComponent } from './Main/signup/signup.component';
+import { ResetComponent } from './Main/reset/reset.component';
+import { VerifComponent } from './Main/verif/verif.component';
+import { WelcomeComponent } from './Main/welcome/welcome.component';
+import { NotfoundComponent } from './Main/notfound/notfound.component';
 
-
-enableProdMode();
 @NgModule({
   declarations: [
     AppComponent,
-    BackComponent,
-    FooterComponent,
-    HeaderComponent,
     SigninComponent,
     SignupComponent,
-    NotfoundComponent,
     ResetComponent,
-    VheaderComponent
+    VerifComponent,
+    WelcomeComponent,
+    NotfoundComponent,
+    
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatToolbarModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    MatNativeDateModule,
-    MaterialExampleModule,
     ReactiveFormsModule,
     RouterLink
   ],

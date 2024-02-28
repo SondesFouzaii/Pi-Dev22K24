@@ -31,15 +31,8 @@
             ],
             "styles": [
               "src/styles.scss"
-
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ],
-            "allowedCommonJsDependencies": [
-              "chart.js",
-              "assets/templateback/js/scripts.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -100,9 +93,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/scss/styles.scss"
+              "src/styles.scss"
             ],
-            "scripts": [            ]
+            "scripts": []
           }
         }
       }

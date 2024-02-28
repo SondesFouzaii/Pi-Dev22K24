@@ -3,76 +3,98 @@
 
 <head>
   <meta charset="utf-8">
-  <title>CodemastersPokerPlanning</title>
+  <title>Codemastersfrontend</title>
   <base href="/">
-  <meta name="description" content="houssem-eddin">
-  <meta name="author" content="houssem-eddin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-
-  <link href="assets/templateback/css/styles.css" rel="stylesheet" />
   <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <link href="assets/templateback/css/styles.css" rel="stylesheet" />
 
-
-  <link href="assets/templatefront/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom fonts for this template-->
-  <link href="assets/templatefront/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <!-- Custom styles for this template-->
-  <link href="assets/templatefront/css/osahan.css" rel="stylesheet">
-  <!-- Owl Carousel -->
-  <link rel="stylesheet" href="assets/templatefront/vendor/owl-carousel/owl.carousel.css">
-  <link rel="stylesheet" href="assets/templatefront/vendor/owl-carousel/owl.theme.css">
+  <!-- Favicon and touch Icons -->
+  <link href="assets/tempaltefront/assets/img/favicon.png" rel="shortcut icon" type="image/png">
+  <link href="assets/tempaltefront/assets/img/apple-touch-icon.html" rel="apple-touch-icon">
+  <link href="assets/tempaltefront/assets/img/apple-touch-icon-72x72.html" rel="apple-touch-icon" sizes="72x72">
+  <link href="assets/tempaltefront/assets/img/apple-touch-icon-114x114.html" rel="apple-touch-icon" sizes="114x114">
+  <link href="assets/tempaltefront/assets/img/apple-touch-icon-144x144.html" rel="apple-touch-icon" sizes="144x144">
+  <!-- Styles Include -->
+  <link rel="stylesheet" href="assets/tempaltefront/assets/css/main.css" id="stylesheet">
+  <!-- Hethi welcom -->
+  <link rel="stylesheet" href="assets/welcom/css/styles.css">
 </head>
 
-<body class="sb-nav-fixed"  id="page-top">
+<body class="bg-light  sb-nav-fixed">
   <app-root></app-root>
+
   <script>
-    setTimeout(function() {
-        // Code for Chart.min.js
-        var script0 = document.createElement('script');
-        script0.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js';
-        script0.setAttribute('crossorigin', 'anonymous');
-        document.body.appendChild(script0);
+    setTimeout(function () {
+      // Code for Chart.min.js   
+      var script0 = document.createElement('script');
+      script0.src = 'assets/tempaltefront/assets/js/theme.js';
+      script0.setAttribute('crossorigin', 'anonymous');
+      document.body.appendChild(script0);
+      //ApexChart 
+      var script1 = document.createElement('script');
+      script1.src = 'assets/tempaltefront/plugins/apexchart/apexcharts.min.js';
+      script1.setAttribute('crossorigin', 'anonymous');
+      document.body.appendChild(script1);
 
-        // Code for chart-area-demo.js
-        var script1 = document.createElement('script');
-        script1.src = 'assets/demo/chart-area-demo.js';
-        document.body.appendChild(script1);
-
-        // Code for chart-bar-demo.js
-        var script2 = document.createElement('script');
-        script2.src = 'assets/demo/chart-bar-demo.js';
-        document.body.appendChild(script2);
-
-        // Code for simple-datatables.min.js
-        var script3 = document.createElement('script');
-        script3.src = 'https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js';
-        script3.setAttribute('crossorigin', 'anonymous');
-        document.body.appendChild(script3);
-
-        // Code for datatables-simple-demo.js
-        var script4 = document.createElement('script');
-        script4.src = 'assets/templateback/js/datatables-simple-demo.js';
-        document.body.appendChild(script4);
-
+      var script2 = document.createElement('script');
+      script2.src = 'assets/tempaltefront/plugins/apexchart/apexchart-inits/apexcharts-general.js';
+      script2.setAttribute('crossorigin', 'anonymous');
+      document.body.appendChild(script2);
     }, 1200); // 5000 milliseconds = 5 seconds
-</script>
-<script src="assets/templateback/js/scripts.js"></script>
+  </script>
+  <!-- Core JS -->
+  <script src="assets/tempaltefront/assets/js/jquery-3.6.0.min.js"></script>
+  <script src="assets/tempaltefront/assets/js/bootstrap.bundle.min.js"></script>
+
+  <!-- jQuery UI Kit -->
+  <script src="assets/tempaltefront/plugins/jquery_ui/jquery-ui.1.12.1.min.js"></script>
+
+  <!-- Peity  -->
+  <script src="assets/tempaltefront/plugins/peity/jquery.peity.min.js"></script>
+  <script src="assets/tempaltefront/plugins/peity/piety-init.js"></script>
+
+  <!-- Select 2 -->
+  <script src="assets/tempaltefront/plugins/select2/js/select2.min.js"></script>
+
+  <!-- Datatables -->
+  <script src="assets/tempaltefront/plugins/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="assets/tempaltefront/plugins/datatables/js/datatables.init.js"></script>
+
+  <!-- Date Picker -->
+  <script src="assets/tempaltefront/assets/tempaltefront/plugins/flatpickr/flatpickr.min.js"></script>
+
+  <!-- Dropzone -->
+  <script src="assets/tempaltefront/plugins/dropzone/dropzone.min.js"></script>
+  <script src="assets/tempaltefront/plugins/dropzone/dropzone_custom.js"></script>
+
+  <!-- TinyMCE -->
+  <script src="assets/tempaltefront/plugins/tinymce/tinymce.min.js"></script>
+  <script src="assets/tempaltefront/plugins/prism/prism.js"></script>
+  <script src="assets/tempaltefront/plugins/jquery-repeater/jquery.repeater.js"></script>
+
+  <!-- Sweet Alert -->
+  <script src="assets/tempaltefront/plugins/sweetalert/sweetalert2.min.js"></script>
+  <script src="assets/tempaltefront/plugins/sweetalert/sweetalert2-init.js"></script>
+  <script src="assets/tempaltefront/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+
+  <!-- Snippets JS -->
+  <script src="assets/tempaltefront/assets/js/snippets.js"></script>
 
 
 
 
- <!-- Bootstrap core JavaScript-->
- <script src="assets/templatefront/vendor/jquery/jquery.min.js"></script>
- <script src="assets/templatefront/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
- <!-- Core plugin JavaScript-->
- <script src="assets/templatefront/vendor/jquery-easing/jquery.easing.min.js"></script>
- <!-- Owl Carousel -->
- <script src="assets/templatefront/vendor/owl-carousel/owl.carousel.js"></script>
- <!-- Custom scripts for all pages-->
- <script src="assets/templatefront/js/custom.js"></script>
+  <script src="assets/templateback/js/scripts.js"></script>
 
-</body> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="assets/demo/chart-area-demo.js"></script>
+<script src="assets/demo/chart-bar-demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+    crossorigin="anonymous"></script>
+<script src="js/datatables-simple-demo.js"></script>
+</body>
+
 </html>

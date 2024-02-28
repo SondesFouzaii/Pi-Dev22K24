@@ -2,33 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FrontRoutingModule } from './front-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { ProfileComponent } from './profile/profile.component';
-import { MyprofileComponent } from './myprofile/myprofile.component';
-import { FrontfooterComponent } from './frontfooter/frontfooter.component';
-import { FrontdashboardComponent } from './frontdashboard/frontdashboard.component';
-import { FrontheaderComponent } from './frontheader/frontheader.component';
 import { FrontComponent } from './front.component';
+import { HeaderfrontComponent } from './headerfront/headerfront.component';
+import { MainfrontComponent } from './dashboardfront/mainfront.component';
+import { TestfrontComponent } from './testfront/testfront.component';
 
 
 @NgModule({
-  declarations: [
+  declarations: [ 
     FrontComponent,
-    FrontdashboardComponent,
-    FrontheaderComponent,
-    FrontfooterComponent,
-    MyprofileComponent,
-    ProfileComponent
-  ],
+    HeaderfrontComponent,
+    MainfrontComponent,
+    TestfrontComponent],
   imports: [
     CommonModule,
-    FrontRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule,
-    ReactiveFormsModule,
+    FrontRoutingModule
   ]
 })
 export class FrontModule { }
