@@ -25,7 +25,8 @@ import { SprintListComponent } from './Sprint/sprint-list/sprint-list.component'
   imports: [
     CommonModule,
     FrontofficeRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class FrontofficeModule { }

@@ -194,12 +194,13 @@ export class TaskListComponent implements OnInit {
   onSubmit() {
     if (this.taskForm.valid) {
       const taskData: Task = this.taskForm.value;
-    taskData.userstory = this.Userstory;
+     taskData.userstory = this.Userstory;
       this.taskService.addTask(taskData).subscribe(
         data => {
           console.log(data);
           // Réinitialisez le formulaire après la soumission réussie
           this.taskForm.reset();
+           console.log(taskData);
         },
         error => console.log(error)
       );
@@ -207,7 +208,9 @@ export class TaskListComponent implements OnInit {
       // Gérez les cas où le formulaire n'est pas valide
       console.log('Le formulaire n\'est pas valide.');
     }
-    window.location.reload();
+    window.location.reload(); 
+   
+
   }
 
 
