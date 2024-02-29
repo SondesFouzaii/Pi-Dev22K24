@@ -35,4 +35,9 @@ public class SprintServiceImpl implements ISprintService{
     public Sprint modifySprint(Sprint sprint) {
         return sprintRepository.save(sprint);
     }
+
+    @Override
+    public List<Sprint> getSprintsbyTitle(String title) {
+        return sprintRepository.findByTitle(title);
+    }
 }

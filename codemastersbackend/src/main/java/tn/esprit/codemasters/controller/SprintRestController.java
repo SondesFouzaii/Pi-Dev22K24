@@ -37,8 +37,13 @@ public class SprintRestController {
     }
 
 
-    @DeleteMapping("/remove-sprint/{sprint-id}")
+    @DeleteMapping("/delete-sprint/{sprint-id}")
     public void removeSprint(@PathVariable("sprint-id") Long id) {
         sprintService.removeSprint(id);
+    }
+
+    @GetMapping("/get-sprints-by-title/{sprint-title}")
+    public List <Sprint> getSprintByTitle(@PathVariable("sprint-title") String title) {
+        return sprintService.getSprintsbyTitle(title);
     }
 }

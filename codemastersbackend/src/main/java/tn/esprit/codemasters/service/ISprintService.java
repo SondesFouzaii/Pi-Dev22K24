@@ -10,4 +10,5 @@ public interface ISprintService {
     public Sprint addSprint(Sprint s);
     public void removeSprint(Long SprintId);
     public Sprint modifySprint(Sprint sprint);
+    public List<Sprint> getSprintsbyTitle(String title);
 }
