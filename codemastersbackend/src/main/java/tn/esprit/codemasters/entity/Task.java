@@ -1,9 +1,13 @@
 package tn.esprit.codemasters.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.io.Serializable;
 
 @Entity
 @Getter
@@ -12,7 +16,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
-public class Task {
+public class Task implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
@@ -38,12 +42,13 @@ public class Task {
 
 
     //
+    @ToString.Exclude
     @ManyToOne
-    @JoinColumn(name = "userstory_id")
-    @JsonBackReference
     UserStory userstory;
 
+
+    @ToString.Exclude
     @ManyToOne
-    @JsonBackReference
+            @JsonIgnore
     Sprint sprint;
 }

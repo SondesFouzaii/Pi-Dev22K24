@@ -27,6 +27,9 @@ public class TaskRestController {
 
     @PostMapping("/add-task")
     public Task addTask(@RequestBody Task task) {
+
+        System.err.println(task.toString());
+        //System.err.println(task.getUserstory().toString());
         return taskService.addTask(task);
     }
 

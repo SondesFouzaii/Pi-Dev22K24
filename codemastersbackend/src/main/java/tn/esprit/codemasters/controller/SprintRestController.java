@@ -14,7 +14,7 @@ public class SprintRestController {
     @Autowired
     ISprintService sprintService;
 
-    @GetMapping("/retrieve-all-sprints")
+    @GetMapping("/get-all-sprints")
     public List<Sprint> getSprints() {
         return sprintService.retrieveAllSprints();
     }

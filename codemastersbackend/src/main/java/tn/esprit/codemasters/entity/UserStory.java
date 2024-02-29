@@ -1,10 +1,11 @@
 package tn.esprit.codemasters.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
-public class UserStory {
+public class UserStory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
@@ -25,16 +26,21 @@ public class UserStory {
     int estimation;
 
     //
+    @ToString.Exclude
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     Project project;
-
+    @ToString.Exclude
     @OneToMany(cascade = CascadeType.ALL, mappedBy="userstory")
+    @JsonIgnore
     private Set<Claim> Reclamations;
-
+    @ToString.Exclude
     @ManyToOne
-    @JsonBackReference
+    @JsonIgnore
     User user;
+    @ToString.Exclude
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy="userstory")
     private Set<Task> Tasks;
 }

@@ -1,5 +1,6 @@
 package tn.esprit.codemasters.entity;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -13,7 +14,9 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+
 @FieldDefaults(level=AccessLevel.PRIVATE)
+
 public class Sprint {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +36,7 @@ public class Sprint {
     //Liste des tâches : List<Tâche>
 
     @OneToMany(mappedBy="sprint")
+    @JsonManagedReference
+    @JsonIgnore
     private Set<Task> Tasks;
 }
