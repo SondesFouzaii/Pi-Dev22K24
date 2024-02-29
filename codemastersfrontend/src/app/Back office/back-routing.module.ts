@@ -7,6 +7,7 @@ const routes: Routes = [
   {
     path: '', component: BackComponent, children: [
       { path: 'dashboard', component: MainComponent },
+      {path: 'ut', loadChildren: () => import('./user+test/usertest.module').then((m)=> m.UsertestModule)},
       { path: '', redirectTo: '/admin/dashboard', pathMatch: 'full' }
     ]
   }

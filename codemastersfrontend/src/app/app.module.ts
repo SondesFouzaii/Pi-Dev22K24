@@ -12,6 +12,7 @@ import { ResetComponent } from './Main/reset/reset.component';
 import { VerifComponent } from './Main/verif/verif.component';
 import { WelcomeComponent } from './Main/welcome/welcome.component';
 import { NotfoundComponent } from './Main/notfound/notfound.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NotfoundComponent } from './Main/notfound/notfound.component';
     ReactiveFormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

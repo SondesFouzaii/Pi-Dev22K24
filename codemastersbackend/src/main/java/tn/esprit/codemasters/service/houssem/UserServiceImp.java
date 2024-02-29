@@ -230,8 +230,10 @@ public class UserServiceImp implements IUserService{
      */
     @Override
     public String resetpwd(String email) {
+        if (userRepository.getUserByEmail(email)==null)
+            return "email dosent exist";
         User user=userRepository.getUserByEmail(email);
-        sendEmail(email,decrypt(user.getPassword()));
+        sendEmail(email,user);
         return "password sent seccesfuly";
     }
 
@@ -245,14 +247,11 @@ public class UserServiceImp implements IUserService{
     }
 
     /**
-     * @param comment
-     * @return
+     * @param idtoremove
      */
     @Override
-    public Comment addcomment(Comment comment,Long idu,Long idp) {
-        comment.setUser(userRepository.findById(idu).orElse(null));
-        comment.setPost(postRepository.findById(idp).orElse(null));
-        return commentRepository.save(comment);
+    public void removeaccount(Long idtoremove) {
+        userRepository.deleteById(idtoremove);
     }
 
 
@@ -316,13 +315,13 @@ public class UserServiceImp implements IUserService{
     @Autowired
     private JavaMailSender emailSender;
 
-    public void sendEmail(String recipient,String pwd) {
+    public void sendEmail(String recipient,User user) {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
             helper.setTo(recipient);
             helper.setSubject("Test email");
-            helper.setText("Bonjour, admin une nouvelle station a ete ajouter!"+pwd);
+            helper.setText("Bonjour, "+user.getFirst_name()+" " +user.getLast_name()+" your password is :"+decrypt(user.getPassword()));
             emailSender.send(message);
             System.out.println("Message envoye");
         } catch (MessagingException e) {

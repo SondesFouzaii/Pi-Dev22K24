@@ -8,6 +8,7 @@ const routes: Routes = [
   {
     path: '', component: FrontComponent, children: [
       { path: 'pokerplanning', component: MainfrontComponent },
+      {path: 'ut', loadChildren: () => import('./user+test/usertest.module').then((m)=> m.UsertestModule)},
       { path: 'test', component: TestfrontComponent },
       { path: '', redirectTo: '/home/pokerplanning', pathMatch: 'full' }
     ]

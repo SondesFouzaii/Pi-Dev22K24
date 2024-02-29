@@ -16,6 +16,14 @@ public class UserRestController {
     @Autowired
     IUserService userService;
 
+    @GetMapping("/retrieve-all-users")
+    public List<User> getusers() {
+        return userService.retrieveAllUsers();
+    }
+    @GetMapping("/retrieve-user/{id}")
+    public User getuser(@PathVariable Long id) {
+        return userService.retrieveUser(id);
+    }
     @PostMapping("/add-simple-user")
     public String addSimpleUser(@RequestBody User user) {
         return userService.addSimpleUser(user);
@@ -38,9 +46,29 @@ public class UserRestController {
         return userService.resetpwd(email);
     }
 
-
-    @PostMapping("/add-comment")
-    public Comment addSimpleUser(@RequestBody Comment comment,Long idu,Long idp) {
-        return userService.addcomment(comment,idu,idp);
+    @PutMapping("/modify-role/{UserId}/{role}")
+    public void modifyRole(@PathVariable("UserId") Long UserId,@PathVariable("role") User.Role role) {
+         userService.modifyRole(UserId, role);
     }
+
+    @PutMapping("/bloquer-debloquer/{UserId}")
+    public void bloquerdebloquer(@PathVariable("UserId") Long UserId) {
+        userService.blockunblock(UserId);
+    }
+
+    @GetMapping("/genders")
+    public List<User.Gender> getGenders() {
+        return Arrays.asList(User.Gender.values());
+    }
+
+    @GetMapping("/roles")
+    public List<User.Role> getRoles() {
+        return Arrays.asList(User.Role.values());
+    }
+
+    @DeleteMapping("/remove-user/{id}")
+    public void deleteuser(@PathVariable Long id) {
+        userService.removeaccount(id);
+    }
+
 }

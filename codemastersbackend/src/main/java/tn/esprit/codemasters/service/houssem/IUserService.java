@@ -20,5 +20,6 @@ public interface IUserService {
     public void modifyRole(Long userid,User.Role role);
     public String resetpwd(String email);
     public boolean verifyaccount(String code);
-    public Comment addcomment(Comment comment,Long idu,Long idp);
+    public void removeaccount(Long idtoremove);
+
 }
