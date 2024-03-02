@@ -1,0 +1,274 @@
+body{
+    font-size: small;
+  }
+  .container-fluid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width:max-content;
+    }
+    
+    table {
+     
+     max-width: max-content;
+      border-collapse: collapse;
+      margin:auto;
+    }
+    
+    th,
+    td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    tbody tr:hover {
+      background-color: #f2f2f2; /* Gray background color on hover */
+    }
+    
+    .btn-primary {
+      background-color: #007bff; /* Blue background color for the Add Product button */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    
+    .btn-primary:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+    }
+    
+    /* Styles for the delete button */
+    .td-actions .btn-danger {
+      background-color: #dc3545; /* Red background color for the delete button */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .td-actions .btn-danger:hover {
+      background-color: #c82333; /* Darker red on hover */
+    }
+    
+    /* Styles for the update button */
+    .td-actions .btn-primary {
+      background-color: #17a2b8; /* Teal background color for the update button */
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .td-actions .btn-primary:hover {
+      background-color: #138496; /* Darker teal on hover */
+    }
+    
+    /* Search input styles */
+    .search-hero {
+      margin-top: 20px;
+    }
+    
+    .search-hero input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    
+    /* Center the Add Product button */
+    .add-button {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    /* Styles for the page title */
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+    
+    
+    .search-hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80%; /* Adjust the width as needed */
+      margin: 20px auto; /* Add margin for centering */
+    }
+    
+    /* Search input styles */
+    .search-hero input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+  
+  
+  
+  /* update-product.component.css */
+  
+  /* Center the form vertically and horizontally */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0; /* Optional: Add background color to the container */
+  }
+  
+  form {
+    z-index: 2;
+    position: fixed;
+    width: 600px; /* Increased width to make the form wider */
+    height: 450px; /* Increased height to make the form taller */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Increased border radius for rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: auto; /* Center the form horizontally */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Vertically space the form elements */
+    background-color: #f7f7f7;
+    bottom: 200px;
+    left: 400px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px; /* Increased margin between form groups */
+  }
+  
+  label {
+    font-weight: bold;
+    width: 120px; /* Fixed width for labels */
+  }
+  
+  input {
+    flex: 1; /* Take up the remaining space in the form group */
+    padding: 12px; /* Increased padding to make the input fields taller */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .alert {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 15px; /* Increased margin between alert messages */
+  }
+  
+  /* New CSS for the center button */
+  .center-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Add some spacing between the last form element and the button */
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px; /* Increased padding to make the button taller */
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .add-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Add some spacing between the last form element and the button */
+  }
+  
+  .btn-success {
+    background-color: #28a745; /* Green color for the button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px; /* Increased padding to make the button taller */
+    cursor: pointer;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838; /* Darker green color on hover */
+  }
+  
+  /* Style de la liste déroulante */
+  .select-style {
+  flex: 1; /* Take up the remaining space in the form group */
+  padding: 12px; /* Increased padding to make the input fields taller */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  }
+  
+  /* Style des options */
+  .select-style option {
+  padding: 8px; /* Remplissage intérieur */
+  background-color: #fff; /* Couleur de fond */
+  color: #333; /* Couleur du texte */
+  }
+  
+  /* Style au survol de la souris */
+  .select-style:hover {
+  border-color: #aaa; /* Changement de couleur de bordure au survol */
+  }
+  
+  /* Style lorsqu'il est focus */
+  .select-style:focus {
+  outline: none; /* Supprimer le contour par défaut */
+  border-color: #4CAF50; /* Changement de couleur de bordure lorsqu'il est focus */
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1); /* Ajouter une ombre lorsqu'il est focus */
+  }
+  
+  .select-style {
+    flex: 1; /* Take up the remaining space in the form group */
+    padding: 12px; /* Increased padding to make the input fields taller */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    }
+  .option-style {
+    flex: 1; /* Take up the remaining space in the form group */
+    padding: 12px; /* Increased padding to make the input fields taller */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    }
+  
+  .X-style{
+    direction: rtl;
+    text-align: right;
+    cursor: pointer;
+  }
+  
+  
+  

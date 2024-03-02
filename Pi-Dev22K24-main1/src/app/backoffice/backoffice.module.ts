@@ -29,6 +29,7 @@ import { DeleteSessionComponent } from './session/delete-session/delete-session.
     BlankPageComponent,
     ShowSessionsComponent,
     AddSessionComponent,
+    
     DetailsSessionComponent,
     EditSessionComponent,
     DeleteSessionComponent
@@ -40,6 +41,7 @@ import { DeleteSessionComponent } from './session/delete-session/delete-session.
     ReactiveFormsModule,
     HttpClientModule,
     BackofficeRoutingModule
+  
   ],
   exports: [
     BackofficeComponent

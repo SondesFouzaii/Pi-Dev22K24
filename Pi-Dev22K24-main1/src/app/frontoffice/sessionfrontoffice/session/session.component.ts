@@ -5,11 +5,11 @@ import { Session } from 'src/app/models/session';
 import { SessionService } from 'src/app/services/session.service';
 
 @Component({
-  selector: 'app-show-sessions',
-  templateUrl: './show-sessions.component.html',
-  styleUrls: ['./show-sessions.component.scss']
+  selector: 'app-session',
+  templateUrl: './session.component.html',
+  styleUrls: ['./session.component.scss']
 })
-export class ShowSessionsComponent  implements OnInit {
+export class SessionComponent implements OnInit {
   sessions: any[] = [];
   searchTerm: string = '';
   session: any | null = null;         
@@ -130,3 +130,4 @@ export class ShowSessionsComponent  implements OnInit {
       location.reload();
   }
 }
+

@@ -1,0 +1,126 @@
+/* update-product.component.css */
+
+/* Center the form vertically and horizontally */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0; /* Optional: Add background color to the container */
+}
+
+form {
+  width: 400px; /* Increased width to make the form wider */
+  height: 450px; /* Increased height to make the form taller */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Increased border radius for rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: auto; /* Center the form horizontally */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Vertically space the form elements */
+  transition: background-color 0.3s; /* Add transition effect for hover */
+}
+
+form:hover {
+  background-color: #f7f7f7; /* Hover color (near white) */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px; /* Increased margin between form groups */
+}
+
+label {
+  font-weight: bold;
+  width: 120px; /* Fixed width for labels */
+}
+
+input {
+  flex: 1; /* Take up the remaining space in the form group */
+  padding: 12px; /* Increased padding to make the input fields taller */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.alert {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 15px; /* Increased margin between alert messages */
+}
+
+/* New CSS for the center button */
+.center-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Add some spacing between the last form element and the button */
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 25px; /* Increased padding to make the button taller */
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Add some spacing between the last form element and the button */
+}
+
+.btn-success {
+  background-color: #28a745; /* Green color for the button */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 25px; /* Increased padding to make the button taller */
+  cursor: pointer;
+}
+
+.btn-success:hover {
+  background-color: #218838; /* Darker green color on hover */
+}
+
+/* Style de la liste déroulante */
+.select-style {
+flex: 1; /* Take up the remaining space in the form group */
+padding: 12px; /* Increased padding to make the input fields taller */
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+
+/* Style des options */
+.select-style option {
+padding: 8px; /* Remplissage intérieur */
+background-color: #fff; /* Couleur de fond */
+color: #333; /* Couleur du texte */
+}
+
+/* Style au survol de la souris */
+.select-style:hover {
+border-color: #aaa; /* Changement de couleur de bordure au survol */
+}
+
+/* Style lorsqu'il est focus */
+.select-style:focus {
+outline: none; /* Supprimer le contour par défaut */
+border-color: #4CAF50; /* Changement de couleur de bordure lorsqu'il est focus */
+box-shadow: 0 0 5px rgba(81, 203, 238, 1); /* Ajouter une ombre lorsqu'il est focus */
+}

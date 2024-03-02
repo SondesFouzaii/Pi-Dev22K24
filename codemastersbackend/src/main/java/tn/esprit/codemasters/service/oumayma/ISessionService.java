@@ -14,9 +14,11 @@ public interface ISessionService {
     public Session addSession(Session c,long idProject,long idCard);
 
     public List<Session> PlayMySessions(long idProject);
+
+    public Session findSessionById(long idSession);
     public List<Session> AllSession();
     public void removeSession(Long sessionId);
-    public Session updateSession(long idSession,long idProject,long idCard,Session updatedSession) ;
+    public Session updateSession(Session updatedSession) ;
 
     public String getSessionState(long idSession);
 
@@ -27,7 +29,9 @@ public interface ISessionService {
 
     public void quitSession(Session session, User user);
 
-     //   public void seeTheSessionImInvitedInMyaclendar();
+    List<Session> getMySessions(Long userId);
+
+    //   public void seeTheSessionImInvitedInMyaclendar();
     //    public void reserveSession();
 
 }

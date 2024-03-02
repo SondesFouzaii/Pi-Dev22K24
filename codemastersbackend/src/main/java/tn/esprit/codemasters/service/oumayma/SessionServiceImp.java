@@ -2,10 +2,8 @@ package tn.esprit.codemasters.service.oumayma;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.codemasters.entity.*;
-import tn.esprit.codemasters.repository.CardRepository;
-import tn.esprit.codemasters.repository.ProjectRepository;
-import tn.esprit.codemasters.repository.SessionRepository;
-import tn.esprit.codemasters.repository.UserRepository;
+import tn.esprit.codemasters.repository.*;
+
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +17,7 @@ public class SessionServiceImp implements ISessionService {
     SessionRepository sessionRepository;
     ProjectRepository projectRepository;
     CardRepository cardRepository;
+    private final TeamRepository teamRepository;
     private int generateRandomCode() {
         return (int) ((Math.random() * (99999999 - 10000000 + 1)) + 10000000);
     }
@@ -51,6 +50,13 @@ public class SessionServiceImp implements ISessionService {
     }
 
     @Override
+    public Session findSessionById(long idSession) {
+        Optional<Session> sessionOptional = sessionRepository.findById(idSession);
+        return sessionOptional.isPresent() ? sessionOptional.get() : null; // Or handle the absence of session as needed
+    }
+
+
+    @Override
     public void removeSession(Long sessionId) {
         Session session=sessionRepository.findById(sessionId).get();
         session.setCard(null);
@@ -61,28 +67,17 @@ public class SessionServiceImp implements ISessionService {
     }
 
     @Override
-    public Session updateSession(long idSession,long idProject,long idCard, Session updatedSession) {
-        Optional<Session> optionalSession = sessionRepository.findById(idSession);
+    public Session updateSession( Session updatedSession) {
+        Optional<Session> optionalSession = sessionRepository.findById(updatedSession.getId());
         if (optionalSession.isPresent()) {
             Session session = optionalSession.get();
-            Project project = projectRepository.findById(idProject).orElse(null);
-            Card card = cardRepository.findById(idCard).orElse(null);
 
-            if (project == null || card == null) {
-                // Si le projet ou la carte n'existe pas, on ne peut pas mettre à jour la session
-                return null;
-            }
-
-            session.setName("Session of " + project.getName());
             session.setDateSession(updatedSession.getDateSession());
             session.setTimeSession(updatedSession.getTimeSession());
-            session.setEtat(updatedSession.getEtat());
-            session.setCode(generateRandomCode());
-            session.setUrl(generateValidUrl(session.getName(), session.getCode()));
+            session.setCard(updatedSession.getCard());
 
-            // Mise à jour des relations avec le projet et la carte
-            session.setProject(project);
-            session.setCard(card);
+
+
 
             return sessionRepository.save(session);
         } else {
@@ -176,6 +171,14 @@ public class SessionServiceImp implements ISessionService {
             // Traiter le cas où l'utilisateur n'est pas membre de l'équipe
             System.out.println("L'utilisateur n'est pas membre de l'équipe du projet associé à la session.");
         }
+    }
+
+    @Override
+    public List<Session> getMySessions(Long userId) {
+//        User user = userRepository.findById(userId);
+//        List<Team> teams = user.getTeams().stream().toList();
+        return null;
+
     }
 
 

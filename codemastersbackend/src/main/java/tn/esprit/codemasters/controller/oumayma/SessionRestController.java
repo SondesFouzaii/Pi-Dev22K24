@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.codemasters.entity.Session;
+import tn.esprit.codemasters.entity.User;
 import tn.esprit.codemasters.service.oumayma.ISessionService;
 
 import java.time.Instant;
@@ -30,23 +31,24 @@ public class SessionRestController {
         return iSessionService.AllSession();
     }
 
+
+
     @GetMapping("/sessions-state/{idSession}")
     public String getSessionState(@PathVariable("idSession") long idSession) {
             return iSessionService.getSessionState(idSession) ;
     }
 
-    @GetMapping("/find-my-sessions")
-    public List<Session> getMySessions( long projectId ,long userId) {
-        return iSessionService.PlayMySessions(projectId);
+
+    @GetMapping("/find-session-by-id/{sessionId}") // Assuming sessionId is part of the path
+    public Session getSessionById(@PathVariable Long sessionId) {
+        return iSessionService.findSessionById(sessionId);
     }
 
-    @PutMapping("/update-sessions/{idsession}/{idproject}/{idcard}")
-    public Session updateSession(@PathVariable Long idsession,
-                                 @PathVariable Long idproject,
-                                 @PathVariable Long idcard,
+    @PutMapping("/update-sessions")
+    public Session updateSession(
                                  @RequestBody Session updatedSession) {
 
-        return iSessionService.updateSession(idsession, idproject,idcard,updatedSession);
+        return iSessionService.updateSession(updatedSession);
     }
     @DeleteMapping("/remove-session/{session-id}")
     public void removeSession(@PathVariable("session-id") Long id) {
@@ -66,6 +68,19 @@ public class SessionRestController {
         TimeZone.setDefault(TimeZone.getTimeZone("Europe/Paris")); // Adjust if needed
         iSessionService.endSession(idSession); // Pass startTime as an argument
     }
+
+
+
+
+    @PutMapping("/quit-session")
+    public void quitSession(@RequestBody Session session, @RequestBody User user) {
+        iSessionService.quitSession(session, user);
+    }
+
+//    @GetMapping(path = "/my-Sessions/{userId}")
+//    public List<Session> getMySessions(@PathVariable(name = "userId") Long userId){
+//        List<Session> mySessions =  iSessionService.getMySessions(userId);
+//    }
 
 
 

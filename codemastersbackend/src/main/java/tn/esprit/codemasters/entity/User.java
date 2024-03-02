@@ -18,29 +18,31 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-        long id;
-        //String name;
-        String first_name;
-        String last_name;
-        @Temporal(TemporalType.DATE)
-        Date birth_date;
-        @Enumerated(EnumType.STRING)
-        Gender gender;
-        String address;
-        String phone_number;
-        @Column(unique = true)
-        String email;
-        String password;
-        String image;
-        String status;
-        @Enumerated(EnumType.STRING)
-        Role role;
-        String barrcode;
-        boolean enabled;
-        boolean non_locked;
-        boolean using_mfa;
-        @Temporal(TemporalType.DATE)
-        Date created_date;
+    long id;
+    //String name;
+    String first_name;
+    String last_name;
+    @Column(unique = true)
+    String email;
+    String password;
+
+    String image;
+
+    @Enumerated(EnumType.STRING)
+    Role role;
+    @Temporal(TemporalType.DATE)
+    Date birth_date;
+    @Enumerated(EnumType.STRING)
+    Gender gender;
+    String address;
+    String phone_number;
+    String status;
+    String barrcode;
+    boolean enabled;//only the admin can update that
+    boolean non_locked;//on creation by a simple user the account need to be verified
+    boolean using_mfa;// inder construction
+    @Temporal(TemporalType.DATE)
+    Date created_date;
 
 
     public enum Gender{

@@ -24,8 +24,7 @@ public class Session {
     @Temporal(TemporalType.DATE)
     private Date dateSession;
 
-    @Temporal(TemporalType.TIME)
-    private Date timeSession;
+    private String timeSession;
 
     @Enumerated(EnumType.STRING)
     Etat etat;
@@ -49,7 +48,6 @@ public class Session {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Message> messages;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     Card card;
 

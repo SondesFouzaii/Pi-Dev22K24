@@ -10,22 +10,65 @@ import { FrontofficeModule } from './frontoffice/frontoffice.module';
 import { FrontofficeRoutingModule } from './frontoffice/frontoffice-routing.module';
 import { BackofficeRoutingModule } from './backoffice/backoffice-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
+
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BackofficeModule,
-    FrontofficeModule,
     FrontofficeRoutingModule,
     BackofficeRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatRadioModule,
+    MatSelectModule,
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSnackBarModule,
+
+    
+
+
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    DatePipe,  
+  ],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
