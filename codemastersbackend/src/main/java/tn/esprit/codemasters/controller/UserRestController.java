@@ -41,14 +41,20 @@ public class UserRestController {
         return userService.updatepersonalinformations(user);
     }
 
-    @GetMapping("/getpassword")
-    public String resetpwd(String email) {
+    @GetMapping("/getpassword/{email}")
+    public String resetpwd(@PathVariable String email) {
         return userService.resetpwd(email);
     }
 
     @PutMapping("/modify-role/{UserId}/{role}")
     public void modifyRole(@PathVariable("UserId") Long UserId,@PathVariable("role") User.Role role) {
          userService.modifyRole(UserId, role);
+    }
+
+    @PutMapping("/modify-img/{UserId}/{img}")
+    public String modifyimg(@PathVariable("UserId") Long UserId,@PathVariable("img") String img) {
+        String image= "assets/img/"+img;
+        return userService.updateImgUser(UserId, image);
     }
 
     @PutMapping("/bloquer-debloquer/{UserId}")

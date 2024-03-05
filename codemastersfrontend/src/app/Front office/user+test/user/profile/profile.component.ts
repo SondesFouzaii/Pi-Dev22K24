@@ -15,8 +15,8 @@ export class ProfileComponent {
 
   id!: number;
   user!: User;
-
-
+  imgtest!: any ;
+ 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private uservice: UserService, private route: Router) {
   }
   ngOnInit(): void {
@@ -38,5 +38,16 @@ export class ProfileComponent {
   }
 
 
+  updatePhoto(): void {
+    this.uservice.modifierImage(this.id, this.imgtest).subscribe();
+    
+  }
 
+  handleFileInput(event: any): void {
+    const files: FileList = event.target.files;
+    if (files && files.length > 0) {
+      const file: File = files[0];
+      this.imgtest = file.name;
+    }
+  }
 }

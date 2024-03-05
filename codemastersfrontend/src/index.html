@@ -100,6 +100,28 @@
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
     crossorigin="anonymous"></script>
 <script src="js/datatables-simple-demo.js"></script>
+<script>
+  var m=document.getElementById("v");
+  var can=document.getElementById("c");
+  function fGo(){
+  var mohsen={video:true,audio:false};
+  navigator.mediaDevices.getUserMedia(mohsen).then(f1).catch(f2)
+  }
+  function f1(x){
+  m.srcObject=x;
+  m.play();
+  }
+  function f2(e){
+  alert("e.message");
+  }
+  function filtre(){
+  m.style.filter = "grayscale(100%)";
+  }
+  function copie(){
+  var ctx=can.getContext("2d");
+  ctx.drawImage(m,0,0,100,100);
+  }
+  </script>   
 </body>
 
 </html>

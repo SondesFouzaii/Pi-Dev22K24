@@ -74,7 +74,7 @@ QuestionOptionRepository questionOptionRepository;
      */
     @Override
     public List<Test> retrieveAllTests() {
-        return null;
+        return testRepository.findAll();
     }
 
     /**

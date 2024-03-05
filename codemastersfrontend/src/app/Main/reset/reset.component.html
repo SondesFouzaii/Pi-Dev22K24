@@ -20,10 +20,10 @@
                 <div class="card-body p-0">
                     <form class="form-horizontal" method="post">
                         <div class="form-group">
-                            <input type="email" class="form-control" name="email" value="" placeholder="Email" required>
+                            <input type="email" class="form-control" name="email" value="" placeholder="Email" required [(ngModel)]="email">
                         </div>
-        
-                        <button type="submit" class="btn btn-primary w-100 text-uppercase text-white rounded-2 lh-34 ff-heading fw-bold shadow">Send Request</button>
+        {{email}}
+                        <button (click)="gogo()" type="submit" class="btn btn-primary w-100 text-uppercase text-white rounded-2 lh-34 ff-heading fw-bold shadow">Send Request</button>
                     </form>
                 </div>
             </div>

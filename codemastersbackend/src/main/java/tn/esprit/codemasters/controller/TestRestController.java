@@ -20,6 +20,9 @@ public class TestRestController {
         return testService.addTest(test);
     }
 
-
+    @GetMapping("/retrieve-all-users")
+    public List<Test> getusers() {
+        return testService.retrieveAllTests();
+    }
 
 }

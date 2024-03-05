@@ -45,6 +45,10 @@ export class UserService {
   public modifierRole(userId: number,role:string):Observable<void>{
     return this.http.put<void>(`${this.apiServerUrl}/modify-role/${userId}/${role}`, {});
   }
+
+  public modifierImage(userId: number,img:string):Observable<void>{
+    return this.http.put<void>(`${this.apiServerUrl}/modify-img/${userId}/${img}`, {});
+  }
   
   public getRoles(): Observable<string[]> {
     return this.http.get<string[]>(`${this.apiServerUrl}/roles`);
@@ -52,4 +56,9 @@ export class UserService {
   public getGenders(): Observable<string[]> {
     return this.http.get<string[]>(`${this.apiServerUrl}/genders`);
   }
+
+  public restPasswd(mail:string): Observable<string> {
+    return this.http.get<string>(`${this.apiServerUrl}/getpassword/${mail}`);
+  }
+  
 }

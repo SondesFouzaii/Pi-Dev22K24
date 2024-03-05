@@ -188,6 +188,7 @@ public class UserServiceImp implements IUserService{
     public String updateImgUser(Long userid, String image) {
         User user=userRepository.findById(userid).orElse(null);
         user.setImage(image);
+        userRepository.save(user);
         return "your profile picture is updated succesfuly";
     }
 

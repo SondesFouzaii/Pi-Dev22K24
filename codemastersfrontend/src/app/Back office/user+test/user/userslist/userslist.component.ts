@@ -9,7 +9,8 @@ import { UserService } from 'src/app/services/test+user/user.service';
   styleUrls: ['./userslist.component.scss']
 })
 export class UserslistComponent implements OnInit{
-  emailsearch!: string;
+  emailsearch: string='.';
+  isempty:boolean=this.emailsearch!=='';
   @Output() getAllUsersEvent = new EventEmitter<void>();
   selectedRole!:string;
   Rolelist:String[]=[]
