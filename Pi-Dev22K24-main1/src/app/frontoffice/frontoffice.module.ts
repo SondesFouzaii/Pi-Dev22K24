@@ -10,6 +10,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SessionComponent } from './sessionfrontoffice/session/session.component';
 import { RouterModule } from '@angular/router';
+import { OpenSessionComponent } from './sessionfrontoffice/open-session/open-session.component';
+import { MyDialogComponent } from './sessionfrontoffice/open-session/my-dialog/my-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CalendarComponent } from './sessionfrontoffice/calendar/calendar.component'; // Import MatDialogModule
 
 
 
@@ -20,7 +24,9 @@ import { RouterModule } from '@angular/router';
     FrontofficeHeaderComponent,
     FrontofficeSidebarComponent,
     FrontofficeFooterComponent,
-    SessionComponent
+    SessionComponent,
+    OpenSessionComponent,
+    CalendarComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +35,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     HttpClientModule, 
     RouterModule,
+    
 
   ]
 })

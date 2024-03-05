@@ -149,8 +149,8 @@ body{
     flex-direction: column;
     justify-content: space-between; /* Vertically space the form elements */
     background-color: #f7f7f7;
-    bottom: 200px;
-    left: 400px;
+    bottom: 300px;
+    left: 600px;
   }
   
   h2 {
@@ -271,4 +271,18 @@ body{
   }
   
   
-  
+  .link_url{
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .buttons-container{
+    display: flex;
+    flex-wrap: nowrap;
+  }

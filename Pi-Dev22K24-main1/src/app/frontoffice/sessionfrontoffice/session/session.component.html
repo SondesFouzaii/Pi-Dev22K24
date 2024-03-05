@@ -4,9 +4,8 @@
     <title></title>
 </head>
 <body> 
-    
-    <main>
-        <div class="container-fluid px-4">
+  <main>
+      <div class="container-fluid px-4">
           <h1 class="mt-4" align="center">List of Sessions</h1>
           <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active"></li>
@@ -15,105 +14,98 @@
             <div class="search-hero" class="col-md-3">
               <!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a session"> -->
             </div>
-    <table>
-        <thead>
-            <tr>
-                <th>Session Name</th>
-                <th>Date Session</th>
-                <th>Time Session</th>
-                <th>Status</th>
-                <th>Code</th>
-                <th>URL</th>
-                <th>EDIT</th>
-                <th>DELETE</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let sess of sessions">
-                <td>{{ sess.name }}</td>
+            <div class="main-container">
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Session Name</th>
+                          <th>Date Session</th>
+                          <th>Time Session</th>
+                          <th>Status</th>
+                          <th>Code</th>
+                          <th>URL</th>
+                          <th>EDIT</th>
+                          <th>DELETE</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let sess of sessions">
+                          <td>{{ sess.name }}</td>
 
-                <td>{{ sess.dateSession | date:'yyyy-MM-dd' }}</td>
+                          <td>{{ sess.dateSession | date:'yyyy-MM-dd' }}</td>
 
-                <td>{{ sess.timeSession }}</td>
+                          <td>{{ sess.timeSession }}</td>
 
-                <td>{{ sess.etat }}</td>
-                <td>{{ sess.code }}</td>
-                <td><a href="{{ sess.url }}" target="_blank">{{ sess.url }}</a></td>
-                <td><button class="btn btn-primary" (click)="updateSession(sess)">
-                  <i class="fas fa-edit"></i> 
-                </button></td>
-                <td><button class="btn btn-primary" (click)="deleteSession(sess)">
-                  <i class="fas fa-trash-alt"></i> 
-                </button></td>
-            </tr>
-        </tbody>
-    </table>
-    <button class="btn btn-primary" (click)="addthisSession()">Add Session</button>
-    
- 
+                          <td>{{ sess.etat }}</td>
+                          <td>{{ sess.code }}</td>
+                          <td><a (click)="navigateToSession(sess)" class="link_url" target="_blank">{{ sess.url }}</a></td>
+                          <td><button class="btn btn-primary" (click)="updateSession(sess)">
+                            <i class="fas fa-edit"></i> 
+                          </button></td>
+                          <td><button class="btn btn-primary" (click)="deleteSession(sess)">
+                            <i class="fas fa-trash-alt"></i> 
+                          </button></td>
+                      </tr>
+                  </tbody>
+              </table>
+              <div class="buttons-container">
+                <button class="btn btn-primary" (click)="addthisSession()">Add Session</button>
+                <button class="btn btn-primary" (click)="goToCalendar()">Calendar Sessions</button>
 
-    </div>
+              </div>
+            </div>
+            </div>
+      </div>
+      <div class="card" *ngIf="showAdd">
+            <form [formGroup]="myform" (submit)="addSession()">
+              <h1 class="X-style" (click)="disShow()">X</h1>
+                <br>
 
-  </div>
+                <div class="form-group">
+                    <label for="dateSession">Date:</label><br>
+                    <input type="date" id="dateSession" name="dateSession" formControlName="dateSession" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="time">Time:</label><br>
+                    <input type="time" id="time" name="time" formControlName="timeSession" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="cardName">Card:</label>
+                    <select class="select-style" formControlName="cardId" name="card" >
+                      <option *ngFor="let item of cards" class="option-style" [value]="item.id" >{{item.name}}</option>
+                    </select>
+                </div>
+                <br>
+                <button class="btn btn-success" type="submit">Create</button>
+            </form>
+      </div>
+      <div class="card" *ngIf="showUpdate">
+            <form (submit)="editSession()">
+              <h1 class="X-style" (click)="disShowUpdate()">X</h1>
+                <br>
 
-
-<div class="card" *ngIf="showAdd">
-    <form [formGroup]="myform" (submit)="addSession()">
-      <h1 class="X-style" (click)="disShow()">X</h1>
-        <br>
-
-        <div class="form-group">
-            <label for="dateSession">Date:</label><br>
-            <input type="date" id="dateSession" name="dateSession" formControlName="dateSession" required>
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="time">Time:</label><br>
-            <input type="time" id="time" name="time" formControlName="timeSession" required>
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="cardName">Card:</label>
-            <select class="select-style" formControlName="cardId" name="card" >
-              <option *ngFor="let item of cards" class="option-style" [value]="item.id" >{{item.name}}</option>
-            </select>
-        </div>
-        <br>
-        <button class="btn btn-success" type="submit">Create</button>
-    </form>
-</div>
-
-
-
-<div class="card" *ngIf="showUpdate">
-    <form (submit)="editSession()">
-      <h1 class="X-style" (click)="disShowUpdate()">X</h1>
-        <br>
-
-        <div class="form-group">
-            <label for="dateSession">Date:</label><br>
-            <input type="date" id="dateSession" name="dateSession" [(ngModel)]="session.dateSession" required>
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="time">Time:</label><br>
-            <input type="time" id="time" name="time" [(ngModel)]="session.timeSession" required>
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="cardName">Card:</label>
-            <select class="select-style" [(ngModel)]="session.card.id" name="card" >
-              <option *ngFor="let item of cards" class="option-style" [value]="item.id" >{{item.name}}</option>
-            </select>
-        </div>
-        <br>
-        <button class="btn btn-success" type="submit">Update</button>
-    </form>
-</div>
-
-
-
-</main>
-
+                <div class="form-group">
+                    <label for="dateSession">Date:</label><br>
+                    <input type="date" id="dateSession" name="dateSession" [(ngModel)]="session.dateSession" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="time">Time:</label><br>
+                    <input type="time" id="time" name="time" [(ngModel)]="session.timeSession" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="cardName">Card:</label>
+                    <select class="select-style" [(ngModel)]="session.card.id" name="card" >
+                      <option *ngFor="let item of cards" class="option-style" [value]="item.id" >{{item.name}}</option>
+                    </select>
+                </div>
+                <br>
+                <button class="btn btn-success" type="submit">Update</button>
+            </form>
+      </div>
+  </main>
 </body>
 </html>

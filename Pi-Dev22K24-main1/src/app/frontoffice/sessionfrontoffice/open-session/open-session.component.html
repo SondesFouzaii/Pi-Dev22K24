@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="card">
+    <div class="card-header">
+        <h5>{{sessionData.timeSession}} - {{sessionData.dateSession}}</h5>
+    </div>
+    <div class="card-body">
+        <h1>{{sessionData.name}}</h1>
+        <h2>ayant le statut {{sessionData.etat}}</h2>
+        <h5 *ngIf="sessionData.etat == 'ACTIVE' || sessionData.etat == 'EXPIRED'"> Ouverte à {{sessionData.startSessionDate}}</h5>
+        <h5 *ngIf="sessionData.etat == 'EXPIRED'"> Fermée à {{sessionData.endSessionDate}}</h5>
+    </div>
+
+    <button *ngIf="sessionData.etat == 'CLOSED'" type="button" (click)="openSession()" class="btn btn-outline-success">Open Session</button>
+    <button *ngIf="sessionData.etat == 'ACTIVE'" type="button" (click)="finishSession()" class="btn btn-outline-danger">Close Session</button>
+    <button *ngIf="sessionData.etat == 'EXPIRED'" type="button" (click)="returnFromSession()" class="btn btn-outline-secondary"> Retour</button>
+    </div>
+</div>
