@@ -23,7 +23,7 @@ public class SessionServiceImp implements ISessionService {
     }
     private String generateValidUrl(String name, int code) {
         String formattedName = name.replaceAll("\\s+", "-");
-        return "http://localhost:4200/codemasters/session/" + code + "/" + formattedName;
+        return "http://localhost:4200/open-session/" + code + "/" + formattedName;
     }
     @Override
     public Session addSession(Session session, long idProject,long idCard) {
@@ -100,27 +100,29 @@ public class SessionServiceImp implements ISessionService {
     }
 
     @Override
-    public void startSession(long idSession ) {
+    public Session startSession(long idSession ) {
         Session session = sessionRepository.findById(idSession).orElse(null);
         if (session != null) {
             session.setEtat(Session.Etat.ACTIVE);
-            // Set startDate to the current time in UTC using Instant.now()
-            Date startDate = Date.from(Instant.now());
+            Date startDate = new Date();
             session.setStartSessionDate(startDate);
-            sessionRepository.save(session);
+            Session session1 = sessionRepository.save(session);
+            return session1;
         }
+        return null;
     }
 
     @Override
-    public void endSession(long idSession) {
+    public Session endSession(long idSession) {
         Session session = sessionRepository.findById(idSession).orElse(null);
         if (session != null) {
             session.setEtat(Session.Etat.EXPIRED);
-            // Set startDate to the current time in UTC using Instant.now()
             Date EndDate = Date.from(Instant.now());
             session.setEndSessionDate(EndDate);
-            sessionRepository.save(session);
+            Session session1 = sessionRepository.save(session);
+            return session1;
         }
+        return null;
 
     }
 
@@ -179,6 +181,12 @@ public class SessionServiceImp implements ISessionService {
 //        List<Team> teams = user.getTeams().stream().toList();
         return null;
 
+    }
+
+    @Override
+    public Session findSessionByCode(Integer code) {
+        Session session = sessionRepository.findByCode(code);
+        return session;
     }
 
 

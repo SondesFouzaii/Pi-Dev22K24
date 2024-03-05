@@ -22,14 +22,17 @@ public interface ISessionService {
 
     public String getSessionState(long idSession);
 
-    public void startSession(long idSession);
-    public void endSession(long idSession);
+    public Session startSession(long idSession);
+    public Session endSession(long idSession);
 
     public void inviteTeamToSession(Session session);
 
     public void quitSession(Session session, User user);
 
     List<Session> getMySessions(Long userId);
+
+    Session findSessionByCode(Integer code);
+
 
     //   public void seeTheSessionImInvitedInMyaclendar();
     //    public void reserveSession();

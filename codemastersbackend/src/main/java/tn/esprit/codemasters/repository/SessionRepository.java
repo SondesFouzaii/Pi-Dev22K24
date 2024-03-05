@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface SessionRepository extends JpaRepository<Session,Long> {
     List<Session> findByProjectId(long idProject);
+
+    Session findByCode(Integer code);
 }

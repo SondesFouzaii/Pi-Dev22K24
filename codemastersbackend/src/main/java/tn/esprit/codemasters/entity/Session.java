@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -32,7 +34,8 @@ public class Session {
     int code;
     String url;
 
-    @Temporal(TemporalType.TIME)
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startSessionDate;
 
     @Temporal(TemporalType.TIME)
