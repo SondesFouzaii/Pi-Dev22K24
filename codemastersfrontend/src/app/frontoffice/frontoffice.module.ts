@@ -9,6 +9,8 @@ import { FrontofficeFooterComponent } from './frontoffice-footer/frontoffice-foo
 import { TaskListComponent } from './Task/task-list/task-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SprintListComponent } from './Sprint/sprint-list/sprint-list.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { SprintDetailsComponent } from './sprint/sprint-details/sprint-details.component';
 
 
 
@@ -20,13 +22,15 @@ import { SprintListComponent } from './Sprint/sprint-list/sprint-list.component'
     FrontofficeSidebarComponent,
     FrontofficeFooterComponent,
     TaskListComponent,
-    SprintListComponent
+    SprintListComponent,
+    SprintDetailsComponent
   ],
   imports: [
     CommonModule,
     FrontofficeRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ]
 })
 export class FrontofficeModule { }

@@ -32,8 +32,8 @@
                 </div>
             </div>
 
-            <div class='row'>
-                <div class="col-xxl-3 col-xl-6 col-md-6">
+            <div class='row' >
+                <div class="col-xxl-3 col-xl-6 col-md-6" cdkDropListGroup>
 
                     <div class="card border-0 card--task-header bg-primary text-white px-5 py-4 mb-3">
                         <div class="card-header p-0 border-0 d-flex align-items-center justify-content-between gap-2">
@@ -43,13 +43,14 @@
                         </div>
                     </div>
 
-                    <div id="todo-list" class="draggable-column" cdkDropList (cdkDropListDropped)="onDrop($event)">
+                   
 
 
 
+                    <div id="todo-list" class="draggable-column" cdkDropList [cdkDropListData]="todoTasks" [cdkDropListConnectedTo]="['in-progress-list', 'done-list']" (cdkDropListDropped)="drop($event, todoTasks)">
 
                         <!-- Card One  -->
-                        <div class="card border-0" *ngFor="let task of todoTasks" cdkDrag>
+                        <div *ngFor="let task of todoTasks" class="card border-0 " cdkDrag [cdkDragData]="task">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-0">
                                     <h6 *ngIf="task.priority==='HIGH'" class="fw-semibold text-red mb-0"><span class="indicator bg-danger"></span> High Priority</h6>
@@ -80,6 +81,7 @@
                                 </div>
                             </div>
                         </div>
+                    
                         
 
                     
@@ -91,7 +93,7 @@
 
                 </div>
 
-                <div class="col-xxl-3 col-xl-6 col-md-6">
+                <div class="col-xxl-3 col-xl-6 col-md-6" >
 
                     <div class="card border-0 card--task-header bg-info text-white px-5 py-4 mb-3">
                         <div class="card-header p-0 border-0 d-flex align-items-center justify-content-between gap-2">
@@ -101,9 +103,9 @@
                         </div>
                     </div>
 
-                    <div id="in-progress-list" class="draggable-column" cdkDropList (cdkDropListDropped)="onDrop($event)">
+                    <div id="in-progress-list" class="draggable-column" cdkDropList [cdkDropListData]="inProgressTasks" [cdkDropListConnectedTo]="['todo-list', 'done-list']" (cdkDropListDropped)="drop($event, inProgressTasks)">
                         <!-- Card One  -->
-                        <div class="card border-0 " *ngFor="let task of inProgressTasks" cdkDrag>
+                        <div class="card border-0 " *ngFor="let task of inProgressTasks" cdkDrag [cdkDragData]="task">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-0">
                                     <h6 *ngIf="task.priority==='HIGH'" class="fw-semibold text-red mb-0"><span class="indicator bg-danger"></span> High Priority</h6>
@@ -153,10 +155,10 @@
                         </div>
                     </div>
 
-                    <div id="done-list" class="draggable-column" cdkDropList (cdkDropListDropped)="onDrop($event)">
+                    <div id="done-list" class="draggable-column" class="draggable-column" cdkDropList [cdkDropListData]="doneTasks" [cdkDropListConnectedTo]="['todo-list', 'in-progress-list']" (cdkDropListDropped)="drop($event, doneTasks)">
 
                         <!-- Card One  -->
-                        <div class="card border-0" *ngFor="let task of doneTasks" cdkDrag>
+                        <div class="card border-0" *ngFor="let task of doneTasks" cdkDrag [cdkDragData]="task">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between mb-0">
                                     <h6 *ngIf="task.priority==='HIGH'" class="fw-semibold text-red mb-0"><span class="indicator bg-danger"></span> High Priority</h6>

@@ -2,6 +2,7 @@ package tn.esprit.codemasters.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.codemasters.entity.Sprint;
 import tn.esprit.codemasters.entity.Task;
 import tn.esprit.codemasters.entity.User;
 import tn.esprit.codemasters.service.ITaskService;
@@ -48,5 +49,15 @@ public class TaskRestController {
     @GetMapping("/retrieve-tasks-by-status")
     public List<Task> getTasksByStatus(@RequestParam Task.TaskStat status,@RequestParam long userstory_id) {
         return taskService.retrieveTasksByStatusAndUserStory(status,userstory_id);
+    }
+
+    @GetMapping("/get-tasks-SprintNull")
+    public List<Task> getTasksBySprintNull() {
+        return taskService.getTasksBySprintNull();
+    }
+
+    @GetMapping("/get-tasks-by-sprint/{sprint-id}")
+    public List<Task> getTasksBySprint(@PathVariable("sprint-id") long sprintId) {
+        return taskService.getTasksBySprint(sprintId);
     }
 }

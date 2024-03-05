@@ -2,6 +2,7 @@ package tn.esprit.codemasters.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.codemasters.entity.Sprint;
 import tn.esprit.codemasters.entity.Task;
 import tn.esprit.codemasters.entity.UserStory;
 import tn.esprit.codemasters.repository.TaskRepository;
@@ -69,5 +70,15 @@ public class TaskServiceImpl implements ITaskService{
     @Override
     public List<Task> retrieveTasksByStatusAndUserStory(Task.TaskStat status,long userstory_id) {
         return taskRepository.findByStatusAndUserstoryId(status,userstory_id);
+    }
+
+    @Override
+    public List<Task> getTasksBySprintNull() {
+        return taskRepository.findBySprintIsNull();
+    }
+
+    @Override
+    public List<Task> getTasksBySprint(long sprintId) {
+        return taskRepository.findBySprintId(sprintId);
     }
 }

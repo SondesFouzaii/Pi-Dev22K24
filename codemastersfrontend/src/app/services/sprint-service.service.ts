@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Sprint, StatSprint } from '../models/sprint';
+import { Task } from '../models/task';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,10 @@ export class SprintService {
   private apiUrl = 'http://localhost:8089/codemasters/sprint'; 
 
   constructor(private http: HttpClient) { }
+
+  getSprint(sprintId : number): Observable<Sprint> {
+    return this.http.get<Sprint>(`${this.apiUrl}/get-sprint/${sprintId}`);
+  }
 
 
   getSprints(): Observable<Sprint[]> {
@@ -45,4 +50,10 @@ export class SprintService {
   searchSprintsByTitle(title: string): Observable<Sprint[]> {
     return this.http.get<Sprint[]>(`${this.apiUrl}/get-sprints-by-title/${title}`);
   }
+
+  getTasksOfSprint(sprintId : number): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.apiUrl}/get-tasks-of-sprint/${sprintId}`);
+  }
+
+  
 }

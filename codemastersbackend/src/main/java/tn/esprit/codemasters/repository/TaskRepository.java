@@ -2,6 +2,7 @@ package tn.esprit.codemasters.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import tn.esprit.codemasters.entity.Sprint;
 import tn.esprit.codemasters.entity.Task;
 
 import java.util.List;
@@ -10,5 +11,7 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task,Long> {
     //List<Task> findByStatus(Task.TaskStat status);
     List<Task> findByStatusAndUserstoryId(Task.TaskStat status,long UserStoryId);
+    List <Task> findBySprintIsNull();
+    List <Task> findBySprintId(long sprintId);
 
 }

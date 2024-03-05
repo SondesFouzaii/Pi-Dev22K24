@@ -11,7 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^15.2.10",
-    "@angular/cdk": "^15.2.5",
+    "@angular/cdk": "^15.2.9",
     "@angular/common": "^15.2.0",
     "@angular/compiler": "^15.2.0",
     "@angular/core": "^15.2.0",
@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
+    "angular-ui-sortable": "^0.19.0",
     "apex": "^0.1.2",
     "apexcharts": "^3.46.0",
     "chart": "^0.1.2",

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Task } from '../models/task';
 import { TaskStatus } from '../models/task'; // Importez TaskStatus depuis votre modèle
+import { Sprint } from '../models/sprint';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class TaskService {
   }
   updateTaskStatus(task: Task): Observable<Task> {
     const url = `${this.apiUrl}/modify-task`;
+    console.log("updated !!!!!");
     return this.http.put<Task>(url, task);
   }
 
@@ -39,5 +41,14 @@ export class TaskService {
   deleteTask(taskId: number): Observable<void> {
     const url = `${this.apiUrl}/delete-task/${taskId}`;
     return this.http.delete<void>(url);
+  }
+
+
+  getTasksBySprintNull(): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.apiUrl}/get-tasks-SprintNull`);
+  }
+
+  getTasksBySprint(sprintId : number): Observable<Task[]> {
+    return this.http.get<Task[]>(`${this.apiUrl}/get-tasks-by-sprint/${sprintId}`);
   }
 }

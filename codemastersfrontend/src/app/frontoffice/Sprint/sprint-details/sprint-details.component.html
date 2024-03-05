@@ -1,0 +1,115 @@
+<main class="main-wrapper">
+    <div class="container-fluid">
+        <div class="inner-contents">
+            <div class="page-header d-flex align-items-center justify-content-between mr-bottom-30">
+                <div class="left-part">
+                    <h2 class="text-dark">{{this.sprint.title}}</h2>
+                </div>
+                <div class="right-part">
+                    <form class="search-form w-auto" action="https://wpthemebooster.com/demo/themeforest/html/kleon/search.php">
+                        <input type="text" name="search" class=" bg-white form-control" placeholder="Search">
+                        <button type="submit" class="btn"><img src="assets/img/svg/search.svg" alt=""></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card border-0 p-5">
+                <div class="card-header pb-5 bg-transparent border-0 d-flex align-items-center justify-content-between gap-3">
+                    <h4 class="mb-0">List of {{this.sprint.title}} Tasks</h4>
+                </div>
+
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" class="form-check-input" id="checkbox1" value=""></th>
+                                    <th>Task</th>  
+                                    <th>Complexity</th>
+                                    <th>Priority</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let task of this.SprintTasks">
+                                <tr>
+                                    <td><input type="checkbox" class="form-check-input" id="checkbox1" value=""></td>
+                                    <td>
+                                        <div class="employee d-flex gap-2 flex-wrap">
+                                            <div class="description">
+                                                <h6 class="mb-0">{{task.title}}</h6>
+                                                <small>{{task.userstory?.User?.first_name}}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="description">
+                                            <h6 class="mb-0">{{task.complexity}}</h6>
+                                        </div>
+                                    </td>
+                                    <td>{{task.priority}}</td>
+                                    <td>{{task.description}}</td>                                 
+                                    <td>
+                                        <span class="btn btn-outline-danger"> Remove From {{this.sprint.title}}</span>
+                                    </td>
+                                    
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <div class="card-header pb-5 bg-transparent border-0 d-flex align-items-center justify-content-between gap-3">
+                    <h4 class="mb-0">List Of Available Tasks</h4>
+                </div>
+
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" class="form-check-input" id="checkbox1" value=""></th>
+                                    <th>Task</th>  
+                                    <th>Complexity</th>
+                                    <th>Priority</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let task of this.AllTasks">
+                                <tr>
+                                    <td><input type="checkbox" class="form-check-input" id="checkbox1" value=""></td>
+                                    <td>
+                                        <div class="employee d-flex gap-2 flex-wrap">
+                                            <div class="description">
+                                                <h6 class="mb-0">{{task.title}}</h6>
+                                                <small>{{task.userstory?.name}}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="description">
+                                            <h6 class="mb-0">{{task.complexity}}</h6>
+                                        </div>
+                                    </td>
+                                    <td>{{task.priority}}</td>
+                                    <td>{{task.description}}</td>                                 
+                                    <td>
+                                        <span class="btn btn-primary"> Add to {{this.sprint.title}}</span>
+                                    </td>
+                                    
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

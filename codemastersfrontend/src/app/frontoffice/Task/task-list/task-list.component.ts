@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task, TaskStatus, complexity, priority } from '../../../models/task';
 import { TaskService } from '../../../services/task-service.service';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { Userstory } from 'src/app/models/userstory';
 import { User } from 'src/app/models/user';
+import {CdkDrag,CdkDragDrop,CdkDropList,CdkDropListGroup, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+
 
 
 @Component({
@@ -67,9 +67,9 @@ export class TaskListComponent implements OnInit {
 
   submitted = false;
   tasks: Task[] | null = null;
-  todoTasks: Task[] | null = null;
-  inProgressTasks: Task[] | null = null;
-  doneTasks: Task[] | null = null;
+  todoTasks: Task[] = []; 
+  inProgressTasks: Task[] = [];
+  doneTasks: Task[] = [];
   todoTasksCount: number | null = null;
   inProgressTasksCount: number | null = null;
   doneTasksCount: number | null = null;
@@ -155,31 +155,7 @@ export class TaskListComponent implements OnInit {
       });
   }
 
-  onDrop(event:any) {
-    const taskToMove = event.item.data;
-    let newStatus: TaskStatus;
-  
-    // Determine the new status based on the ID of the destination list
-    switch (event.container.id) {
-      case 'todo-list':
-        newStatus = TaskStatus.TO_DO;
-        break;
-      case 'in-progress-list':
-        newStatus = TaskStatus.IN_PROGRESS;
-        break;
-      case 'done-list':
-        newStatus = TaskStatus.DONE;
-        break;
-      default:
-        return; // Do nothing if the list ID is not recognized
-    }
-  
-    taskToMove.status = newStatus;
-  
-    this.taskService.updateTaskStatus(taskToMove).subscribe(updatedTask => {
-      this.updateTaskList(updatedTask);
-    });
-  }
+ 
 
   updateTaskList(updatedTask: Task): void {
     if (updatedTask.status === TaskStatus.TO_DO) {
@@ -281,6 +257,47 @@ onDeleteTask(taskId: number): void {
   window.location.reload();
 }
 
+drop(event: CdkDragDrop<any[]>, targetList: Task[]) {
+  let taskToMove = event.item.data;
+  let newStatus: TaskStatus;
+  
+  if (!taskToMove) {
+    console.error("Task to move is undefined.");
+    return;
+  }
+
+  // Determine the new status based on the ID of the destination list
+  switch (event.container.id) {
+    case 'todo-list':
+      newStatus = TaskStatus.TO_DO;
+      break;
+    case 'in-progress-list':
+      newStatus = TaskStatus.IN_PROGRESS;
+      break;
+    case 'done-list':
+      newStatus = TaskStatus.DONE;
+      break;
+    default:
+      return; // Do nothing if the list ID is not recognized
+  }
+
+
+  taskToMove.status = newStatus;
+
+  this.taskService.updateTaskStatus(taskToMove).subscribe(updatedTask => {
+    this.getDoneTasks();
+    this.getInProgressTasks();
+    this.getToDoTasks();
+  });
+}
+
+
+
+
+
+
+
 
 
 }
+
