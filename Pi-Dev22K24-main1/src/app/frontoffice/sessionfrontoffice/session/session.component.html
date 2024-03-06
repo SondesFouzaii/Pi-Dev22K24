@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body> 
+<main class="main-wrapper">
+  <div class="container-fluid">
+
+
   <main>
       <div class="container-fluid px-4">
           <h1 class="mt-4" align="center">List of Sessions</h1>
@@ -23,6 +22,7 @@
                           <th>Time Session</th>
                           <th>Status</th>
                           <th>Code</th>
+                          <th>USED CARDS</th>
                           <th>URL</th>
                           <th>EDIT</th>
                           <th>DELETE</th>
@@ -38,7 +38,14 @@
 
                           <td>{{ sess.etat }}</td>
                           <td>{{ sess.code }}</td>
+                          <td>{{ sess.card.name }}</td>
+
+                          <!-- <td>{{ getCardName(sess.cardId) }}</td> -->
                           <td><a (click)="navigateToSession(sess)" class="link_url" target="_blank">{{ sess.url }}</a></td>
+                         
+                         
+                          
+                          
                           <td><button class="btn btn-primary" (click)="updateSession(sess)">
                             <i class="fas fa-edit"></i> 
                           </button></td>
@@ -107,5 +114,20 @@
             </form>
       </div>
   </main>
-</body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</main>

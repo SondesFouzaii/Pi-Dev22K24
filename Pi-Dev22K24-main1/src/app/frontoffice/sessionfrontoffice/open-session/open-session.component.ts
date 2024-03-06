@@ -1,11 +1,11 @@
 import { query } from '@angular/animations';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SessionService } from 'src/app/services/session.service';
 import { SharingService } from 'src/app/services/sharing.service';
-import Swal from 'sweetalert2';
 import { MyDialogComponent } from './my-dialog/my-dialog.component';
+import { Subject, Subscription, interval, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -18,13 +18,18 @@ export class OpenSessionComponent {
   name: string |null = null;
   sessionData: any;
   selectedRating: number=0;
+    //hethi
+    elapsedTime: string | undefined;
+    private onDestroy = new Subject<void>();
+    private timerSubscription!: Subscription;
 
   constructor(private route: ActivatedRoute,
     private dataSharingService: SharingService,
     private sessionsService: SessionService,
     private router: Router,
-    public dialog: MatDialog
-    ) { }
+    public dialog: MatDialog,
+    private cdRef: ChangeDetectorRef 
+    ) {       this.timerSubscription = new Subscription(); }
 
     openDialog(session: any): void {
       const dialogRef = this.dialog.open(MyDialogComponent, {
@@ -54,21 +59,66 @@ export class OpenSessionComponent {
       });
     }
 
+    interval(1000).pipe(
+      takeUntil(this.onDestroy)
+    ).subscribe(() => {
+      this.elapsedTime = this.getElapsedTime();
+      this.cdRef.detectChanges(); // Trigger change detection
+    });
+
+    this.timerSubscription = interval(1000).pipe(
+      takeUntil(this.onDestroy)
+    ).subscribe(() => {
+      this.elapsedTime = this.getElapsedTime();
+      this.cdRef.detectChanges(); // Trigger change detection
+    });
+
+
     
 
+  }
+
+  ngOnDestroy() {
+    this.onDestroy.next();
+    this.onDestroy.complete();
   }
   openSession(){
     this.sessionsService.startSession(this.sessionData).subscribe();
     location.reload();
   }
+
+
   finishSession(){
     this.openDialog(this.sessionData);
-
-    // this.sessionsService.endSession(this.sessionData).subscribe();
-    // location.reload();
+    if (this.timerSubscription) {
+      this.timerSubscription.unsubscribe(); // Unsubscribe from the timer when the session is finished
+    }
+    this.elapsedTime = undefined;
+    this.sessionData.etat = 'EXPIRED'; // Mise à jour de l'état de la session
+   // this.sessionsService.endSession(this.sessionData).subscribe();
+   // location.reload();
   }
 
   returnFromSession(){
     this.router.navigate(['/front/front-session']);
+  }
+
+
+  getElapsedTime(): string {
+    // Vérifie si la session est active
+    if (this.sessionData && this.sessionData.etat === 'ACTIVE') {
+      const startDate = new Date(this.sessionData.dateSession);
+      const currentDate = new Date();
+      const elapsedTime = startDate.getTime() + currentDate.getTime();
+  
+      // Convertit les millisecondes en format HH:mm:ss
+      const hours = Math.floor((elapsedTime / (1000 * 60 * 60)) % 24) + 1;
+      const minutes = Math.floor((elapsedTime / 1000 / 60) % 60);
+      const seconds = Math.floor((elapsedTime / 1000) % 60);
+  
+      return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    } else {
+      return ''; // Si la session n'est pas active, retourne une chaîne vide
+    }
   }
 }
