@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Session } from '../models/session';
+import { Feedback } from '../models/feedback';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class SessionService {
 
   private url: String = 'http://localhost:8089/codemasters/session';
   private urlCard: String = 'http://localhost:8089/codemasters/card';
+  private feedbackurl: String = 'http://localhost:8089/codemasters/feedback';
   //http://localhost:8089/codemasters/session/remove-session/{{session-id}}
   //http://localhost:8089/codemasters/session/update-sessions/{{idsession}}/{{idproject}}/{{idcard}}
   //http://localhost:8089/codemasters/session/find-session-by-id/{{sessionId}}
@@ -53,4 +55,20 @@ export class SessionService {
     const url = `${this.url}/remove-session/${sessionId}`;
     return this.http.delete<void>(url);
   }
+  // getSessionByCode(code: string): Observable<void>{
+  //   return this.http.get(this.url)
+  // }
+
+  startSession(session: Session): Observable<any> {
+    return this.http.put<Session>(`${this.url}/start`,session);
+  }
+  endSession(session: Session): Observable<any> {
+    return this.http.put<Session>(`${this.url}/end`,session);
+  }
+  getSessionByCode(code: string|null): Observable<any>{
+    return this.http.get(this.url+'/find-session-by-code/' + code);
+  }
+  saveFeedback(feedback: any, sessionsId: bigint): Observable<any>{
+    return this.http.post<any>(this.feedbackurl + '/add/' + sessionsId, feedback);
+  } 
 }

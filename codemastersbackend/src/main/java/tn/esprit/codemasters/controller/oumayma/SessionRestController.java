@@ -39,7 +39,7 @@ public class SessionRestController {
     }
 
 
-    @GetMapping("/find-session-by-id/{sessionId}") // Assuming sessionId is part of the path
+    @GetMapping("/find-session-by-id/{sessionId}")
     public Session getSessionById(@PathVariable Long sessionId) {
         return iSessionService.findSessionById(sessionId);
     }
@@ -55,19 +55,19 @@ public class SessionRestController {
         iSessionService.removeSession(id);
     }
 
-    @PutMapping("/start/{idSession}")
-    public void startSession(@PathVariable("idSession") long idSession) {
-        // Set the time zone to your PC's time zone (UTC+01:00)
-        TimeZone.setDefault(TimeZone.getTimeZone("Europe/Paris")); // Adjust if needed
-        iSessionService.startSession(idSession); // Pass startTime as an argument
+    @PutMapping("/start")
+    public Session startSession(@RequestBody Session session ) {
+        Session session1 = iSessionService.startSession(session.getId());
+        return session1;
     }
 
-    @PutMapping("/end/{idSession}")
-    public void endSession(@PathVariable("idSession") long idSession) {
-        // Set the time zone to your PC's time zone (UTC+01:00)
-        TimeZone.setDefault(TimeZone.getTimeZone("Europe/Paris")); // Adjust if needed
-        iSessionService.endSession(idSession); // Pass startTime as an argument
+    @PutMapping("/end")
+    public Session endSession(@RequestBody Session session) {
+        Session session1 = iSessionService.endSession(session.getId());
+        return session1; // Pass startTime as an argument
     }
+
+
 
 
 
@@ -82,17 +82,22 @@ public class SessionRestController {
 //        List<Session> mySessions =  iSessionService.getMySessions(userId);
 //    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    @GetMapping("/find-session-by-code/{code}")
+    public Session getSessionByCode(@PathVariable(name = "code") Integer code) {
+        return iSessionService.findSessionByCode(code);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 

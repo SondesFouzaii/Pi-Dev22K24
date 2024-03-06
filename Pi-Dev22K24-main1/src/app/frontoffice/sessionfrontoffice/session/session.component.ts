@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { timeout } from 'rxjs';
 import { Session } from 'src/app/models/session';
 import { SessionService } from 'src/app/services/session.service';
+import { SharingService } from 'src/app/services/sharing.service';
 
 @Component({
   selector: 'app-session',
@@ -10,6 +12,7 @@ import { SessionService } from 'src/app/services/session.service';
   styleUrls: ['./session.component.scss']
 })
 export class SessionComponent implements OnInit {
+  mySession: any | null =  null;
   sessions: any[] = [];
   searchTerm: string = '';
   session: any | null = null;         
@@ -27,6 +30,7 @@ export class SessionComponent implements OnInit {
     private fb: FormBuilder,
     private sessionService: SessionService,
     private router: Router,
+    private dataSharingService: SharingService
     // private location: Location
   ) {}
 
@@ -128,6 +132,18 @@ export class SessionComponent implements OnInit {
       });   
       this.showAdd = false; 
       location.reload();
+  }
+
+
+  navigateToSession(session: any) {
+    this.dataSharingService.setSessionData(session);
+    const sessionName = session.name.replaceAll(" ", "-");
+    const url = `/open-session/${session.code}/${sessionName}`;
+    this.router.navigateByUrl(url);
+
+  }
+  goToCalendar(){
+    this.router.navigate(['/calendar'])
   }
 }
 
