@@ -119,7 +119,7 @@ export class SessionComponent implements OnInit {
     
     // Extraire l'année, le mois et le jour de dateSession
     const [year, month, day] = this.dateSession.split('-').map(Number);
-    const projectId = 5; // Remplacez par l'ID du projet approprié
+    const projectId = 1; // Remplacez par l'ID du projet approprié
     const sessionDate = new Date(year, month - 1, day); // Remove time from date creation
     const [hours, minutes] = this.dateSession.split(':').map(Number);
 

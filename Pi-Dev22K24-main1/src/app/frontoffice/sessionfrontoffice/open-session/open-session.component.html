@@ -2,6 +2,8 @@
     <div class="card">
     <div class="card-header">
         <h5>{{sessionData.timeSession}} - {{sessionData.dateSession}}</h5>
+        <h5 *ngIf="sessionData.etat === 'ACTIVE'">{{ getElapsedTime() }}</h5>
+
     </div>
     <div class="card-body">
         <h1>{{sessionData.name}}</h1>
