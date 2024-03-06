@@ -31,8 +31,8 @@ export class ShowSessionsComponent  implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sessionService.getAllSessions().subscribe((data: any) => {
-      console.log(data);
+    
+    this.sessionService.getAllSessions().subscribe((data) => {
       this.sessions = data;
     });
     this.initTimeOptions(); 

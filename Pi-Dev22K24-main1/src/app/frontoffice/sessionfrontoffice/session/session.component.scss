@@ -286,3 +286,14 @@ body{
     display: flex;
     flex-wrap: nowrap;
   }
+
+  .custom-card {
+    background-color: lightblue;
+    border: 1px solid blue;
+  }
+  
+  .custom-card-header {
+    background-color: blue;
+    color: white;
+  }
+  

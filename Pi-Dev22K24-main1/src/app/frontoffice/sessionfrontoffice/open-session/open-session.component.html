@@ -7,9 +7,9 @@
     </div>
     <div class="card-body">
         <h1>{{sessionData.name}}</h1>
-        <h2>ayant le statut {{sessionData.etat}}</h2>
-        <h5 *ngIf="sessionData.etat == 'ACTIVE' || sessionData.etat == 'EXPIRED'"> Ouverte à {{sessionData.startSessionDate}}</h5>
-        <h5 *ngIf="sessionData.etat == 'EXPIRED'"> Fermée à {{sessionData.endSessionDate}}</h5>
+        <h2>Has statuts {{sessionData.etat}}</h2>
+        <h5 *ngIf="sessionData.etat == 'ACTIVE' || sessionData.etat == 'EXPIRED'"> opened at {{sessionData.startSessionDate| date:'HH:mm:ss' }}</h5>
+        <h5 *ngIf="sessionData.etat == 'EXPIRED'"> closed at {{sessionData.endSessionDate}}</h5>
     </div>
 
     <button *ngIf="sessionData.etat == 'CLOSED'" type="button" (click)="openSession()" class="btn btn-outline-success">Open Session</button>

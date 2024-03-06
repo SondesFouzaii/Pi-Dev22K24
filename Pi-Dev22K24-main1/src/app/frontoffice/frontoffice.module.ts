@@ -14,6 +14,8 @@ import { OpenSessionComponent } from './sessionfrontoffice/open-session/open-ses
 import { MyDialogComponent } from './sessionfrontoffice/open-session/my-dialog/my-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CalendarComponent } from './sessionfrontoffice/calendar/calendar.component'; // Import MatDialogModule
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -29,12 +31,13 @@ import { CalendarComponent } from './sessionfrontoffice/calendar/calendar.compon
     CalendarComponent,
   ],
   imports: [
-    CommonModule,
     FormsModule,
     FrontofficeRoutingModule,
     ReactiveFormsModule,
     HttpClientModule, 
     RouterModule,
+    DragDropModule, 
+    BrowserModule
     
 
   ]

@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <main class="main-wrapper">
   <div class="container-fluid">
-
-
   <main>
       <div class="container-fluid px-4">
           <h1 class="mt-4" align="center">List of Sessions</h1>
@@ -14,7 +12,31 @@
               <!-- <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a session"> -->
             </div>
             <div class="main-container">
-              <table>
+              <div class="row">
+                <div class="col-lg-4" *ngFor="let sess of sessions; let i = index">
+                  <div class="card {{ colors[i % colors.length] }} mb-3 p-3">
+                    <div class="card-header">{{ sess.name }}</div>
+                    <div class="card-body p-0 pt-3">
+                      <p>Date Session: {{ sess.dateSession | date:'yyyy-MM-dd' }}</p>
+                      <p>Time Session: {{ sess.timeSession }}</p>
+                      <p>Status: {{ sess.etat }}</p>
+                      <p>Code: {{ sess.code }}</p>
+                      <p>USED CARDS: {{ sess.card.name }}</p>
+                      <p>URL: <a (click)="navigateToSession(sess)" class="link_url" target="_blank">{{ sess.url }}</a></p>
+                      <button class="btn btn-primary" (click)="updateSession(sess)">
+                        <i class="fas fa-edit"></i> Edit
+                      </button>
+                      <button class="btn btn-primary" (click)="deleteSession(sess)">
+                        <i class="fas fa-trash-alt"></i> Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+
+              
+              <!-- <table>
                   <thead>
                       <tr>
                           <th>Session Name</th>
@@ -31,21 +53,12 @@
                   <tbody>
                       <tr *ngFor="let sess of sessions">
                           <td>{{ sess.name }}</td>
-
                           <td>{{ sess.dateSession | date:'yyyy-MM-dd' }}</td>
-
                           <td>{{ sess.timeSession }}</td>
-
                           <td>{{ sess.etat }}</td>
                           <td>{{ sess.code }}</td>
                           <td>{{ sess.card.name }}</td>
-
-                          <!-- <td>{{ getCardName(sess.cardId) }}</td> -->
                           <td><a (click)="navigateToSession(sess)" class="link_url" target="_blank">{{ sess.url }}</a></td>
-                         
-                         
-                          
-                          
                           <td><button class="btn btn-primary" (click)="updateSession(sess)">
                             <i class="fas fa-edit"></i> 
                           </button></td>
@@ -54,7 +67,43 @@
                           </button></td>
                       </tr>
                   </tbody>
-              </table>
+              </table> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               <div class="buttons-container">
                 <button class="btn btn-primary" (click)="addthisSession()">Add Session</button>
                 <button class="btn btn-primary" (click)="goToCalendar()">Calendar Sessions</button>
@@ -114,20 +163,5 @@
             </form>
       </div>
   </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 </main>

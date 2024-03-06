@@ -6,7 +6,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class SharingService {
   private sessionDataSubject = new BehaviorSubject<any>(null);
+  private allSession = new BehaviorSubject<any>(null);
   sessionData$: Observable<any> = this.sessionDataSubject.asObservable();
+  allSessions$: Observable<any> = this.allSession.asObservable();
 
   constructor() {}
 
@@ -16,5 +18,12 @@ export class SharingService {
 
   getSessionData(): Observable<any> {
     return this.sessionData$;
+  }
+  setAllSessions(data: any) {
+    this.allSession.next(data);
+  }
+
+  getAllSessions(): Observable<any> {
+    return this.allSessions$;
   }
 }
