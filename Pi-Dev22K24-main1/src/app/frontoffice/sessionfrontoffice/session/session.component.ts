@@ -25,6 +25,8 @@ export class SessionComponent implements OnInit {
   hours: number[] = [];
   minutes: number[] = [];
   cards: any[] | null = null;
+  colors = ['text-bg-primary', 'text-bg-secondary', 'text-bg-success', 'text-bg-danger', 'text-bg-warning', 'text-bg-info'];
+
 
   constructor(
     private fb: FormBuilder,
@@ -35,10 +37,12 @@ export class SessionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sessionService.getAllSessions().subscribe((data: any) => {
-      console.log(data);
+    // this.dataSharingService.setAllSessions(this.sessions);
+    this.sessionService.getAllSessions().subscribe((data) => {
       this.sessions = data;
-    });
+    })
+    console.log(this.sessions);
+         
     this.initTimeOptions(); 
     this.myform = this.fb.group({
       dateSession: ['', Validators.required],
@@ -119,7 +123,7 @@ export class SessionComponent implements OnInit {
     
     // Extraire l'année, le mois et le jour de dateSession
     const [year, month, day] = this.dateSession.split('-').map(Number);
-    const projectId = 1; // Remplacez par l'ID du projet approprié
+    const projectId = 6; // Remplacez par l'ID du projet approprié
     const sessionDate = new Date(year, month - 1, day); // Remove time from date creation
     const [hours, minutes] = this.dateSession.split(':').map(Number);
 

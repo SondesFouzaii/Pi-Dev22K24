@@ -10,7 +10,7 @@ import { FrontofficeModule } from './frontoffice/frontoffice.module';
 import { FrontofficeRoutingModule } from './frontoffice/frontoffice-routing.module';
 import { BackofficeRoutingModule } from './backoffice/backoffice-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -41,6 +41,7 @@ import { MyDialogComponent } from './frontoffice/sessionfrontoffice/open-session
     
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BackofficeModule,

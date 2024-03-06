@@ -18,7 +18,7 @@ export class SessionService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
-  
+
 
   constructor(private http: HttpClient) { }
   getAllCards(): Observable<any> {
@@ -26,32 +26,32 @@ export class SessionService {
   }
 
   getAllSessions(): Observable<any> {
-    return this.http.get(this.url + '/find-all-sessions');
+      return this.http.get(this.url + '/find-all-sessions');
   }
 
   // addSession(session:Session,idProject: number, idCard: number): Observable<string> {
   //   return this.http.post<string>(this.url + '/add-session/' + idProject + '/' + idCard, session);
   // }
-  addSession(session:any,idProject: number, idCard: number): Observable<Session> {
+  addSession(session: any, idProject: number, idCard: number): Observable<Session> {
     return this.http.post<Session>(this.url + '/add-session/' + idProject + '/' + idCard, session);
   }
 
-  deleteSession(sess:Session):Observable<Session>{
-    return this.http.delete<Session>(this.url+'/remove-session/'+sess.id );
+  deleteSession(sess: Session): Observable<Session> {
+    return this.http.delete<Session>(this.url + '/remove-session/' + sess.id);
   }
 
 
 
   updateSession(session: Session): Observable<Session> {
-    return this.http.put<Session>(this.url+'/update-sessions', session);
+    return this.http.put<Session>(this.url + '/update-sessions', session);
   }
 
-   getSessionById(id: any) {
-    return this.http.get(this.url+'/find-session-by-id/' + id);
-   }
+  getSessionById(id: any) {
+    return this.http.get(this.url + '/find-session-by-id/' + id);
+  }
 
-   //remove-session/{{session-id}
-   deleteSess(sessionId: number): Observable<void> {
+  //remove-session/{{session-id}
+  deleteSess(sessionId: number): Observable<void> {
     const url = `${this.url}/remove-session/${sessionId}`;
     return this.http.delete<void>(url);
   }
@@ -60,15 +60,15 @@ export class SessionService {
   // }
 
   startSession(session: Session): Observable<any> {
-    return this.http.put<Session>(`${this.url}/start`,session);
+    return this.http.put<Session>(`${this.url}/start`, session);
   }
   endSession(session: Session): Observable<any> {
-    return this.http.put<Session>(`${this.url}/end`,session);
+    return this.http.put<Session>(`${this.url}/end`, session);
   }
-  getSessionByCode(code: string|null): Observable<any>{
-    return this.http.get(this.url+'/find-session-by-code/' + code);
+  getSessionByCode(code: string | null): Observable<any> {
+    return this.http.get(this.url + '/find-session-by-code/' + code);
   }
-  saveFeedback(feedback: any, sessionsId: bigint): Observable<any>{
+  saveFeedback(feedback: any, sessionsId: bigint): Observable<any> {
     return this.http.post<any>(this.feedbackurl + '/add/' + sessionsId, feedback);
-  } 
+  }
 }

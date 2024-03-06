@@ -95,12 +95,12 @@ export class OpenSessionComponent {
     }
     this.elapsedTime = undefined;
     this.sessionData.etat = 'EXPIRED'; // Mise à jour de l'état de la session
-   // this.sessionsService.endSession(this.sessionData).subscribe();
-   // location.reload();
+    //this.sessionsService.endSession(this.sessionData).subscribe();
+    //location.reload();
   }
 
   returnFromSession(){
-    this.router.navigate(['/front/front-session']);
+    this.router.navigate(['/front-session']);
   }
 
 
