@@ -14,4 +14,5 @@ public interface ISprintService {
     public List<Sprint> getSprintsbyTitle(String title);
     public List <Task> getTasksOfSprint(Long SprintId);
     public void affectTaskToSprint(Long sprintId,Long taskId);
+    public void removeTaskFromSprint(Long sprintId,Long taskId);
 }

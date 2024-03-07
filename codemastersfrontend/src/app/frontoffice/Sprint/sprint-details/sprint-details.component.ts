@@ -15,7 +15,10 @@ export class SprintDetailsComponent implements OnInit {
   sprintId! :string;
   AllTasks: Task[]  = [];
   SprintTasks: Task[]  = [];
-
+  selectedComplexity: string = '';
+  selectedPriority: string = '';
+  searchTerm: string = '';
+  
   constructor(private route: ActivatedRoute, private sprintService: SprintService, private taskService :TaskService) { }
 
   ngOnInit(): void {
@@ -24,6 +27,7 @@ export class SprintDetailsComponent implements OnInit {
     this.taskService.getTasksBySprintNull().subscribe(tasks=>{
       this.AllTasks=tasks;
     })
+
     this.taskService.getTasksBySprint(parseInt(this.sprintId)).subscribe(tasks=>{
       this.SprintTasks=tasks;
 
@@ -42,6 +46,72 @@ export class SprintDetailsComponent implements OnInit {
       }
     );
   }
+
+
+  affectTaskToSprint(sprintId: number, taskId: number) {
+    this.sprintService.affectTaskToSprint(sprintId, taskId)
+      .subscribe(
+        () => {
+          // Traitement en cas de succès
+          console.log('Task Added');
+          this.taskService.getTasksBySprintNull().subscribe(tasks=>{
+            this.AllTasks=tasks;
+          })
+
+          this.taskService.getTasksBySprint(parseInt(this.sprintId)).subscribe(tasks=>{
+            this.SprintTasks=tasks;
+      
+          })
+          
+        },
+        error => {
+          // Traitement en cas d'erreur
+          console.error('Error while adding', error);
+        }
+      );
+  }
+
+
+  removeTaskFromSprint(sprintId: number, taskId: number) {
+    this.sprintService.removeTaskFromSprint(sprintId, taskId)
+      .subscribe(
+        () => {
+          // Traitement en cas de succès
+          console.log('Task Removed');
+          this.taskService.getTasksBySprintNull().subscribe(tasks=>{
+            this.AllTasks=tasks;
+          })
+
+
+          this.taskService.getTasksBySprint(parseInt(this.sprintId)).subscribe(tasks=>{
+            this.SprintTasks=tasks;
+      
+          })
+          
+        },
+        error => {
+          // Traitement en cas d'erreur
+          console.error('Error while removing ', error);
+        }
+      );
+  }
+
+
+  get filteredTasks(): Task[] {
+    let filteredTasks = this.AllTasks;
+
+    if (this.selectedComplexity) {
+        filteredTasks = filteredTasks.filter(task => task.complexity === this.selectedComplexity);
+    }
+
+    if (this.selectedPriority) {
+        filteredTasks = filteredTasks.filter(task => task.priority === this.selectedPriority);
+    }
+
+    return filteredTasks;
+}
+
+
 
 
 

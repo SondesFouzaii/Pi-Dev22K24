@@ -33,7 +33,7 @@ export class TaskListComponent implements OnInit {
   };
   Userstory: Userstory = { 
     id: 1,
-    name: 'UserStoryName',
+    name: 'Implementer l\'interface User',
     description: 'UserStoryDescr',
     priority: 2,
     estimation: 3
@@ -74,6 +74,8 @@ export class TaskListComponent implements OnInit {
   inProgressTasksCount: number | null = null;
   doneTasksCount: number | null = null;
   selectedTask: Task | null = null;
+  StatisticsTasks: Task[] = []; 
+  
   
 
 
@@ -257,39 +259,75 @@ onDeleteTask(taskId: number): void {
   window.location.reload();
 }
 
-drop(event: CdkDragDrop<any[]>, targetList: Task[]) {
-  let taskToMove = event.item.data;
-  let newStatus: TaskStatus;
-  
-  if (!taskToMove) {
-    console.error("Task to move is undefined.");
-    return;
+drop(event: CdkDragDrop<Task[]>, targetList: Task[]) {
+  if (event.previousContainer === event.container) {
+    // Si l'élément est déplacé dans la même liste
+    moveItemInArray(targetList, event.previousIndex, event.currentIndex);
+  } else {
+    let taskToMove = event.item.data;
+    let newStatus: TaskStatus;
+
+    if (!taskToMove) {
+      console.error("La tâche à déplacer n'est pas définie.");
+      return;
+    }
+
+    // Déterminez le nouveau statut en fonction de l'ID de la liste de destination
+    switch (event.container.id) {
+      case 'todo-list':
+        newStatus = TaskStatus.TO_DO;
+        break;
+      case 'in-progress-list':
+        newStatus = TaskStatus.IN_PROGRESS;
+        taskToMove.startTime = Date.now();
+        this.addOrUpdateTask(this.StatisticsTasks,taskToMove);
+        break;
+      case 'done-list':
+        newStatus = TaskStatus.DONE;
+        taskToMove.endTime = Date.now();
+        this.addOrUpdateTask(this.StatisticsTasks,taskToMove);
+        break;
+      default:
+        return; // Ne rien faire si l'ID de la liste n'est pas reconnu
+    }
+
+    // Mettre à jour le statut de la tâche déplacée
+    taskToMove.status = newStatus;
+
+    // Mettre à jour la liste des tâches sur le serveur
+    this.taskService.updateTaskStatus(taskToMove).subscribe(updatedTask => {
+      // Mettre à jour les listes de tâches
+      this.getDoneTasks();
+      this.getInProgressTasks();
+      this.getToDoTasks();
+    });
   }
-
-  // Determine the new status based on the ID of the destination list
-  switch (event.container.id) {
-    case 'todo-list':
-      newStatus = TaskStatus.TO_DO;
-      break;
-    case 'in-progress-list':
-      newStatus = TaskStatus.IN_PROGRESS;
-      break;
-    case 'done-list':
-      newStatus = TaskStatus.DONE;
-      break;
-    default:
-      return; // Do nothing if the list ID is not recognized
-  }
-
-
-  taskToMove.status = newStatus;
-
-  this.taskService.updateTaskStatus(taskToMove).subscribe(updatedTask => {
-    this.getDoneTasks();
-    this.getInProgressTasks();
-    this.getToDoTasks();
-  });
 }
+
+
+calculateElapsedTime(startTime: Date, endTime: Date): number {
+  const elapsedTime = endTime.getTime() - startTime.getTime();
+  // Convertir le temps en millisecondes en secondes
+  const elapsedSeconds = elapsedTime / 1000;
+  return elapsedSeconds;
+}
+
+
+addOrUpdateTask(taskList: Task[], taskToAddOrUpdate: Task): void {
+  const existingTaskIndex = taskList.findIndex(task => task.id === taskToAddOrUpdate.id);
+
+  if (existingTaskIndex !== -1) {
+    // La tâche existe déjà dans la liste, la remplacer
+    taskList[existingTaskIndex].endTime = taskToAddOrUpdate.endTime;
+  } else {
+    // La tâche n'existe pas dans la liste, l'ajouter
+    taskList.push(taskToAddOrUpdate);
+  }
+}
+
+
+
+
 
 
 

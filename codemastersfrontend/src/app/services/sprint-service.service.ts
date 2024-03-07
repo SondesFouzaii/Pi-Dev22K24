@@ -55,5 +55,14 @@ export class SprintService {
     return this.http.get<Task[]>(`${this.apiUrl}/get-tasks-of-sprint/${sprintId}`);
   }
 
+  affectTaskToSprint(sprintId: number, taskId: number) {
+    return this.http.put(`${this.apiUrl}/affect-task-to-sprint/${sprintId}/${taskId}`, {});
+  }
+
+
+  removeTaskFromSprint(sprintId: number, taskId: number) {
+    return this.http.put(`${this.apiUrl}/remove-task-from-sprint/${sprintId}/${taskId}`, {});
+  }
+
   
 }

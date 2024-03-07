@@ -29,4 +29,6 @@ export interface Task {
 
     userstory?: Userstory;
     sprint?: Sprint;
+    startTime?: Date; // Attribut pour enregistrer l'heure de début
+    endTime?: Date; // Attribut pour enregistrer l'heure de fin
   }

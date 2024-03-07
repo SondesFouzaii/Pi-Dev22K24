@@ -57,4 +57,9 @@ public class SprintRestController {
     public void affectTaskToSprint(@PathVariable("sprint-id") Long sprintId,@PathVariable("task-id") Long taskId) {
         sprintService.affectTaskToSprint(sprintId, taskId);
     }
+
+    @PutMapping("/remove-task-from-sprint/{sprint-id}/{task-id}")
+    public void removeTaskFromSprint(@PathVariable("sprint-id") Long sprintId,@PathVariable("task-id") Long taskId) {
+        sprintService.removeTaskFromSprint(sprintId, taskId);
+    }
 }

@@ -70,4 +70,18 @@ public class SprintServiceImpl implements ISprintService{
 
 
     }
+
+    @Override
+    public void removeTaskFromSprint(Long sprintId, Long taskId) {
+        Task task= taskRepository.findById(taskId).orElse(null);
+        Sprint sprint=sprintRepository.findById(sprintId).orElse(null);
+        if (sprint!=null)
+        {
+            sprint.getTasks().remove(task);
+            task.setSprint(null);
+            taskRepository.save(task);
+            sprintRepository.save(sprint);
+
+        }
+    }
 }
