@@ -1,0 +1,276 @@
+<main class="main-wrapper">
+    <div class="container-fluid">
+        <div class="inner-contents">
+            <div class="page-header d-flex align-items-center justify-content-between mr-bottom-30">
+                <div class="left-part">
+                    <h2 class="text-dark">card Tables</h2>
+                    <p class="text-gray mb-0">List of cards </p>
+                </div>
+
+            </div>
+            <div class="card border-0 card--task-header bg-info text-white px-5 py-4 mb-3">
+                <div class="card-header p-0 border-0 d-flex align-items-center justify-content-between gap-2">
+                    <h4 class="fs-20 text-white">Add card</h4>
+                    <a href="#" class="add-task bg-white text-primary fs-42 rounded-2" data-bs-toggle="modal"
+                        data-bs-target="#newcard"><i class="bi bi-plus"></i></a>
+
+                </div>
+            </div>
+
+
+
+            <!-- Table 3 -->
+            <div class="card border-0 overflow-auto">
+                <div
+                    class="card-header p-5 pb-0 bg-transparent border-0 d-flex align-items-center justify-content-between gap-3 flex-wrap">
+                    <h4 class="mb-0">Sprints</h4>
+                    <div class="ms-auto d-flex align-items-center gap-3">
+                        <form class="search-form card-search w-auto flex-shrink-0"
+                            action="https://wpthemebooster.com/demo/themeforest/html/kleon/search.php">
+                            <input type="text" name="search" class="bg-white form-control" placeholder="Search"
+                                [(ngModel)]="searchTerm" (keyup)="searchCards()">
+                            <button type="submit" class="btn"><img
+                                    src="../../../../assets/assets_FrontOffice/assets/img/svg/search.svg"
+                                    alt=""></button>
+                        </form>
+
+
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="defaultTable text-center w-100">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" class="form-check-input" id="checkbox1" value=""></th>
+                                    <th>name</th>
+                                    <th>image</th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let card of cards">
+                                <tr>
+                                    <td><input type="checkbox" class="form-check-input" id="checkbox1" value=""></td>
+                                    <td>
+                                        <div class="employee d-flex gap-3">
+                                            <div class="description">
+                                                <h5 class="mb-0">{{card.name}}</h5>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5>{{card.image}}</h5>
+                                    </td>
+
+
+                                    <td>
+                                        <div class="dropdown text-end">
+                                            <a href="#" data-bs-toggle="dropdown" class="fs-24 text-gray">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </a>
+                                            <div class="dropdown-menu p-0">
+                                                <a class="dropdown-item" href="">View</a>
+                                                <a class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#editcard" (click)="openCardEdit(card)">Edit</a>
+                                                <a class="dropdown-item text-danger"
+                                                    (click)="onDeleteCard(card.id)">Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div
+                        class="mt-5 d-flex justify-content-center justify-content-md-between align-items-center flex-wrap">
+                        <p class="mb-0">Showing <span class="fw-bold">1-10</span> from <span class="fw-bold">46</span>
+                            data</p>
+
+                        <nav>
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">«</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link">1</a></li>
+                                <li class="page-item"><a class="page-link">2</a></li>
+                                <li class="page-item"><a class="page-link">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">»</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="newcard" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="card border-0 m-0">
+                            <div class="card-header bg-transparent border-0 p-5 pb-0">
+                                <h4>Add card</h4>
+                            </div>
+
+                            <div class="card-body pt-3">
+                                <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">name</label>
+                                                <input type="text" class="form-control" name="name"
+                                                    formControlName="name" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">image</label>
+                                                <textarea class="form-control" name="image"
+                                                    formControlName="image"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <label class="form-label">Select session:</label>
+                                        <select class="form-control" formControlName="sessionId">
+                                            <option *ngFor="let session of sessions" [value]="session.id">{{
+                                                session.name }}<button class="btn btn-primary"
+                                                    (click)="selectSession(session.id)"></button></option>
+
+                                        </select>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Theme</label>
+                                                <textarea class="form-control" name="Theme"
+                                                    formControlName="Theme"></textarea>
+                                            </div>
+                                            <a routerLink="viewtheme" target="_blank">View themes to choose</a>
+
+                                        </div>
+                                        <!-- <div class="container row">
+                                            <div class="col-md-6">
+
+                                                <input type="file" (change)="onFileChanged($event)">
+
+                                            </div>
+
+                                            <div class="col-md-6">
+
+                                                <input type="button" (click)="onUpload()" value="upload">
+
+                                            </div>
+
+                                        </div>
+
+                                        <hr />
+
+                                        <div class="container row">
+
+                                            <div class="col-md-12">
+
+                                                <div *ngIf=message>{{message}}</div>
+
+                                            </div>
+
+                                        </div> -->
+
+                                        <!-- <div class="container row">
+
+                                            <div class="col-md-6">
+
+                                                <input type="text" class="form-control" id="name"
+                                                    placeholder="image name" [(ngModel)]="imageName" name="name" />
+
+                                            </div>
+
+                                            <div class="col-md-6">
+
+                                                <input type="button" (click)="getImage()" value="Get Image">
+
+                                            </div>
+
+                                        </div> -->
+
+                                        <!-- <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Default File Input</label>
+                                                <input type="file" class="form-control" name="fileUpload">
+                                            </div>
+                                        </div> -->
+
+
+
+
+
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <button type="submit" class="btn btn-primary m-0">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal fade" id="editcard" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="card border-0 m-0">
+                            <div class="card-header bg-transparent border-0 p-5 pb-0">
+                                <h4>Edit Task</h4>
+                            </div>
+
+                            <div class="card-body pt-3">
+                                <form [formGroup]="edit_cardForm" (ngSubmit)="onEdit()">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">name</label>
+                                                <input type="text" class="form-control" name="name"
+                                                    formControlName="name" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">image</label>
+                                                <textarea class="form-control" name="image"
+                                                    formControlName="image"></textarea>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <button type="submit" class="btn btn-primary m-0">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</main>

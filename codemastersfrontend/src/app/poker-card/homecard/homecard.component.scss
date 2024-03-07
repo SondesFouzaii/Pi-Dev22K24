@@ -1,0 +1,39 @@
+.image-container {
+    display: flex; /* Utiliser un conteneur flex pour aligner les images horizontalement */
+  }
+  
+  .image-container img {
+    margin-right: 4px; /* Ajouter une marge à droite entre chaque image */
+  }
+  
+
+.bg-image {
+    background-image: url("../../../assets/assets_card/img/jeuxcarte.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  aside {
+    height: 100vh;
+  }
+  
+  .none{
+    display: none;
+  }
+  .backblack{
+    background-color: black;
+  }
+  
+  .margin{
+    margin-bottom: 15em;
+  }
+  
+  .tableDeJeux {
+    width: 48em;
+  }
+  
+  .carte {
+    height: 160px;
+    width: 110px;
+    margin-top: 1em;
+    border-radius: 0.5em;
+  }

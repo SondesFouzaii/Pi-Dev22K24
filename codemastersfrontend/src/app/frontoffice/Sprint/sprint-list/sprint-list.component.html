@@ -1,0 +1,261 @@
+<main class="main-wrapper">
+    <div class="container-fluid">
+        <div class="inner-contents">
+            <div class="page-header d-flex align-items-center justify-content-between mr-bottom-30">
+                <div class="left-part">
+                    <h2 class="text-dark">Sprint Tables</h2>
+                    <p class="text-gray mb-0">List of sprints </p>
+                </div>
+                
+            </div>
+            <div class="card border-0 card--task-header bg-info text-white px-5 py-4 mb-3">
+                <div class="card-header p-0 border-0 d-flex align-items-center justify-content-between gap-2">
+                    <h4 class="fs-20 text-white">Add Sprint</h4>
+                    <a href="#" class="add-task bg-white text-primary fs-42 rounded-2" data-bs-toggle="modal" data-bs-target="#newcard" ><i class="bi bi-plus"></i></a>
+
+                </div>
+            </div>
+
+      
+
+            <!-- Table 3 -->
+            <div class="card border-0 overflow-auto">
+                <div class="card-header p-5 pb-0 bg-transparent border-0 d-flex align-items-center justify-content-between gap-3 flex-wrap">
+                    <h4 class="mb-0">Sprints</h4>
+                    <div class="ms-auto d-flex align-items-center gap-3">
+                        <form class="search-form card-search w-auto flex-shrink-0" action="https://wpthemebooster.com/demo/themeforest/html/kleon/search.php">
+                            <input type="text" name="search" class="bg-white form-control" placeholder="Search" [(ngModel)]="searchTerm" (keyup)="searchSprints()">
+                          <button type="submit" class="btn"><img src="../../../../assets/assets_FrontOffice/assets/img/svg/search.svg" alt=""></button>
+                        </form>
+
+                        
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="defaultTable text-center w-100">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" class="form-check-input" id="checkbox1"  value=""></th>
+                                    <th>Title</th>  
+                                    <th>Velocity</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Status</th>
+                                    <th>Retrospective</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let sprint of sprints">
+                                <tr>
+                                    <td><input type="checkbox" class="form-check-input" id="checkbox1"  value=""></td>
+                                    <td>
+                                        <div class="employee d-flex gap-3">
+                                            <div class="description">
+                                                <h5 class="mb-0">{{sprint.title}}</h5>
+                                                <small>note</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><h5>{{sprint.velocity}}</h5></td>
+                                    <td>{{sprint.startDate |date: 'dd/MM/yyyy'}}</td>
+                                    <td>{{sprint.endDate |date: 'dd/MM/yyyy'}}</td> 
+                                    <td>
+                                        <span *ngIf="sprint.status==='PLANNED'" class="p-2 rounded-1 badge-soft-danger"> <i class="indicator danger"></i> {{sprint.status}}</span>
+                                        <span *ngIf="sprint.status==='IN_PROGRESS'" class="p-2 rounded-1 badge-soft-warning"> <i class="indicator warning"></i> {{sprint.status}}</span>
+                                        <span *ngIf="sprint.status==='COMPLETED'" class="p-2 rounded-1 badge-soft-success"> <i class="indicator success"></i> {{sprint.status}}</span>
+                                    
+                                    </td>
+                                    <td><span class="donut-1" data-peity='{ "fill": ["#F5F5F5", "#924AEF"],  "innerRadius": 14, "radius": 24 }'>{{sprint.retrospective}}</span></td>
+                                    
+                                                                    
+                                    <td>
+                                        <div class="dropdown text-end">
+                                            <a href="#" data-bs-toggle="dropdown" class="fs-24 text-gray">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </a>
+                                            <div class="dropdown-menu p-0">
+                                                <a class="dropdown-item" href="">View</a>
+                                                <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editcard" (click)="openSprintEdit(sprint)">Edit</a>
+                                                <a class="dropdown-item text-danger" (click)="onDeleteSprint(sprint.id)">Delete</a>
+                                            </div>
+                                        </div>
+                                    </td> 
+                                </tr>
+
+                                
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-5 d-flex justify-content-center justify-content-md-between align-items-center flex-wrap">
+                        <p class="mb-0">Showing <span class="fw-bold">1-10</span> from <span class="fw-bold">46</span> data</p>
+
+                        <nav>
+                            <ul class="pagination mb-0">
+                                <li class="page-item">
+                                    <a class="page-link"  aria-label="Previous">
+                                        <span aria-hidden="true">«</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" >1</a></li>
+                                <li class="page-item"><a class="page-link" >2</a></li>
+                                <li class="page-item"><a class="page-link" >3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link"  aria-label="Next">
+                                        <span aria-hidden="true">»</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>                    
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="newcard" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="card border-0 m-0">
+                            <div class="card-header bg-transparent border-0 p-5 pb-0">
+                                <h4>Add Task</h4>
+                            </div>
+            
+                            <div class="card-body pt-3">
+                                <form [formGroup]="sprintForm" (ngSubmit)="onSubmit()">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Title</label>
+                                                <input type="text" class="form-control" name="title" formControlName="title" required>
+                                            </div>
+                                        </div>
+            
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Velocity</label>
+                                                <textarea class="form-control" name="velocity" formControlName="velocity"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                            <div class="form-group">
+                                                <label class="form-label">Start Date : </label>
+                                                <br>
+                                                <input type="date"  name="startDate" formControlName="startDate">
+                                            </div>
+                                        
+                                        
+                                            <div class="form-group">
+                                                <label class="form-label">End Date : </label>
+                                                <br>
+                                                <input type="date"  name="endDate" formControlName="endDate">
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Retrospective</label>
+                                                    <input type="text" class="form-control" name="retrospective" formControlName="retrospective" required>
+                                                </div>
+                                            </div>
+                                        
+                                        
+            
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Status</label>
+                                                <select class="form-control" name="status" formControlName="status">
+                                                    <option value="PLANNED">Planned</option>
+                                                    <option value="IN_PROGRESS">In progress</option>
+                                                    <option value="COMPLETED">Completed</option>
+                                                </select>
+                                            </div>
+                                        </div>
+            
+                                        
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <button type="submit" class="btn btn-primary m-0">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="modal fade" id="editcard" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="card border-0 m-0">
+                            <div class="card-header bg-transparent border-0 p-5 pb-0">
+                                <h4>Edit Task</h4>
+                            </div>
+            
+                            <div class="card-body pt-3">
+                                <form [formGroup]="edit_sprintForm" (ngSubmit)="onEdit()">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Title</label>
+                                                <input type="text" class="form-control" name="title" formControlName="title" required>
+                                            </div>
+                                        </div>
+            
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Velocity</label>
+                                                <textarea class="form-control" name="velocity" formControlName="velocity"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                            <div class="form-group">
+                                                <label class="form-label">Start Date : </label>
+                                                <br>
+                                                <input type="date"  name="startDate" formControlName="startDate">
+                                            </div>
+                                        
+                                        
+                                            <div class="form-group">
+                                                <label class="form-label">End Date : </label>
+                                                <br>
+                                                <input type="date"  name="endDate" formControlName="endDate">
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Retrospective</label>
+                                                    <input type="text" class="form-control" name="retrospective" formControlName="retrospective" required>
+                                                </div>
+                                            </div>
+                                        
+                                        
+            
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Status</label>
+                                                <select class="form-control" name="status" formControlName="status">
+                                                    <option value="PLANNED">Planned</option>
+                                                    <option value="IN_PROGRESS">In progress</option>
+                                                    <option value="COMPLETED">Completed</option>
+                                                </select>
+                                            </div>
+                                        </div>
+            
+                                        
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <button type="submit" class="btn btn-primary m-0">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+          </div>
+        </div>
+
+</main>

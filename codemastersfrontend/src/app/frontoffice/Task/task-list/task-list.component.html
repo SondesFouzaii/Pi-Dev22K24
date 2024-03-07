@@ -1,0 +1,446 @@
+<main class="main-wrapper">
+    <div class="container-fluid">
+        <div class="inner-contents">
+            <div class="page-header d-flex align-items-center justify-content-between flex-wrap mr-bottom-20 gap-4">
+                <div class="left-part">
+                    <h2 class="text-dark">Tasks</h2>
+                    <p class="text-gray mb-0">Your Task List </p>
+                </div>
+                <div class="right-part d-flex align-items-center">
+                    <form class="search-form w-auto" action="https://wpthemebooster.com/demo/themeforest/html/kleon/search.php">
+                        <input type="text" name="search" class=" bg-white form-control" placeholder="Search">
+                        <button type="submit" class="btn"><img src="../../../../assets/assets_FrontOffice/assets/img/svg/search.svg" alt=""></button>
+                    </form>
+                    <div class="filtering d-flex align-items-center gap-3 ms-3">
+                        <a href="#" class="btn list-view p-0 fs-30"><i class="bi bi-list"></i></a>
+                        <a href="#" class="btn grid-view p-0 fs-30 active"><i class="bi bi-grid"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 py-2">
+                <div class="card-body">
+                    <div class="card-content d-flex align-items-center justify-content-between gap-5 flex-wrap">
+                        <h4 class="fs-28 mb-0 flex-grow-1"><i class="bi bi-arrow-left-circle-fill text-gray me-1"></i> User Story : {{this.Userstory.name}}</h4>
+                        <div class="flex-grow-1 d-flex align-items-center justify-content-between gap-3 flex-wrap flex-lg-nowrap">
+                            <p class="mb-0 flex-shrink-0 fw-semibold">{{this.totalProgress}}%</p>
+                            <div class="progress rounded-1 bg-light-200 w-100" role="progressbar" aria-label="Storage" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar bg-primary rounded-1" [style.width.%]="totalProgress"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='row'>
+                <div class="col-xxl-3 col-xl-6 col-md-6">
+
+                    <div class="card border-0 card--task-header bg-primary text-white px-5 py-4 mb-3">
+                        <div class="card-header p-0 border-0 d-flex align-items-center justify-content-between gap-2">
+                            <h4 class="fs-20 text-white">To Do List ({{todoTasksCount}})</h4>
+                            <a href="#" class="add-task bg-white text-primary fs-42 rounded-2" data-bs-toggle="modal" data-bs-target="#newcard" (click)="openTaskForm('TO_DO')"><i class="bi bi-plus"></i></a>
+
+                        </div>
+                    </div>
+
+                    <div id="todo-list" class="draggable-column" cdkDropList (cdkDropListDropped)="onDrop($event)">
+
+
+
+
+                        <!-- Card One  -->
+                        <div class="card border-0" *ngFor="let task of todoTasks" cdkDrag>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-0">
+                                    <h6 *ngIf="task.priority==='HIGH'" class="fw-semibold text-red mb-0"><span class="indicator bg-danger"></span> High Priority</h6>
+                                    <h6 *ngIf="task.priority==='MEDIUM'" class="fw-semibold text-warning mb-0"><span class="indicator bg-warning"></span> Medium Priority</h6>
+                                    <h6 *ngIf="task.priority==='LOW'" class="fw-semibold text-success mb-0"><span class="indicator bg-success"></span> Low Priority</h6>
+                                    <div class="dropdown">
+                                        <a href="#" data-bs-toggle="dropdown" class="fs-24">
+                                            <i class="bi bi-three-dots"></i>
+                                        </a>
+                                        <div class="dropdown-menu p-0">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#taskdetails" (click)="openTaskDetails(task)">Details</a>
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editcard" (click)="openTaskEdit(task)">Edit</a>
+
+                                            <a class="dropdown-item text-danger" (click)="onDeleteTask(task.id)">Delete</a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card-content">
+                                    <h5>{{task.title}}</h5>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center gap-4 mt-4">
+                                    <div class="rounded-circle">
+                                        <img [src]="this.user.image" width="32" height="32" class="rounded-circle">
+                                    </div>
+                                    <p class="fs-14 fw-semibold text-gray mb-0"><i class="bi bi-clock me-1"></i> Due in 4 days</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                    
+                        
+
+                        
+                    
+                    </div>
+
+                </div>
+
+                <div class="col-xxl-3 col-xl-6 col-md-6">
+
+                    <div class="card border-0 card--task-header bg-info text-white px-5 py-4 mb-3">
+                        <div class="card-header p-0 border-0 d-flex align-items-center justify-content-between gap-2">
+                            <h4 class="fs-20 text-white">In Progress ({{inProgressTasksCount}})</h4>
+                            <a href="#" class="add-task bg-white text-primary fs-42 rounded-2" data-bs-toggle="modal" data-bs-target="#newcard" (click)="openTaskForm('IN_PROGRESS')"><i class="bi bi-plus"></i></a>
+
+                        </div>
+                    </div>
+
+                    <div id="in-progress-list" class="draggable-column" cdkDropList (cdkDropListDropped)="onDrop($event)">
+                        <!-- Card One  -->
+                        <div class="card border-0 " *ngFor="let task of inProgressTasks" cdkDrag>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-0">
+                                    <h6 *ngIf="task.priority==='HIGH'" class="fw-semibold text-red mb-0"><span class="indicator bg-danger"></span> High Priority</h6>
+                                    <h6 *ngIf="task.priority==='MEDIUM'" class="fw-semibold text-warning mb-0"><span class="indicator bg-warning"></span> Medium Priority</h6>
+                                    <h6 *ngIf="task.priority==='LOW'" class="fw-semibold text-success mb-0"><span class="indicator bg-success"></span> Low Priority</h6>
+                                    <div class="dropdown">
+                                        <a href="#" data-bs-toggle="dropdown" class="fs-24">
+                                            <i class="bi bi-three-dots"></i>
+                                        </a>
+                                        <div class="dropdown-menu p-0">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#taskdetails" (click)="openTaskDetails(task)">Details</a>
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editcard" (click)="openTaskEdit(task)">Edit</a>
+                                            <a class="dropdown-item text-danger" (click)="onDeleteTask(task.id)">Delete</a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card-content">
+                                    <h5>{{task.title}}</h5>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center gap-4 mt-4">
+                                    <div class="rounded-circle">
+                                        <img [src]="this.user.image" width="32" height="32" class="rounded-circle">
+                                    </div>
+                                    <p class="fs-14 fw-semibold text-gray mb-0"><i class="bi bi-clock me-1"></i> Due in 4 days</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    
+
+                        
+                    
+                    </div>
+
+                </div>
+
+                <div class="col-xxl-3 col-xl-6 col-md-6">
+
+                    <div class="card border-0 card--task-header bg-secondary text-white px-5 py-4 mb-3">
+                        <div class="card-header p-0 border-0 d-flex align-items-center justify-content-between gap-2">
+                            <h4 class="fs-20 text-white">Done ({{doneTasksCount}})</h4>
+                            <a href="#" class="add-task bg-white text-primary fs-42 rounded-2" data-bs-toggle="modal" data-bs-target="#newcard" (click)="openTaskForm('DONE')"><i class="bi bi-plus"></i></a>
+
+
+                        </div>
+                    </div>
+
+                    <div id="done-list" class="draggable-column" cdkDropList (cdkDropListDropped)="onDrop($event)">
+
+                        <!-- Card One  -->
+                        <div class="card border-0" *ngFor="let task of doneTasks" cdkDrag>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-0">
+                                    <h6 *ngIf="task.priority==='HIGH'" class="fw-semibold text-red mb-0"><span class="indicator bg-danger"></span> High Priority</h6>
+                                    <h6 *ngIf="task.priority==='MEDIUM'" class="fw-semibold text-warning mb-0"><span class="indicator bg-warning"></span> Medium Priority</h6>
+                                    <h6 *ngIf="task.priority==='LOW'" class="fw-semibold text-success mb-0"><span class="indicator bg-success"></span> Low Priority</h6>
+                                    <div class="dropdown">
+                                        <a href="#" data-bs-toggle="dropdown" class="fs-24">
+                                            <i class="bi bi-three-dots"></i>
+                                        </a>
+                                        <div class="dropdown-menu p-0">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#taskdetails" (click)="openTaskDetails(task)">Details</a>
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editcard" (click)="openTaskEdit(task)">Edit</a>
+                                            <a class="dropdown-item text-danger" (click)="onDeleteTask(task.id)">Delete</a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card-content">
+                                    <h5>{{task.title}}</h5>
+                                </div>
+                                
+
+                                <div class="d-flex justify-content-between align-items-center gap-4 mt-4">
+                                    <div class="rounded-circle">
+                                        <img [src]="this.user.image" width="32" height="32" class="rounded-circle">
+                                    </div>
+                                    <p class="fs-14 fw-semibold text-gray mb-0"><i class="bi bi-clock me-1"></i> Due in 4 days</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    
+                    </div>
+                </div>
+
+                <div class="col-xxl-3 col-xl-6 col-md-6">
+                    
+                    <div class="card border-0 card--task-header bg-warning text-white px-5 py-4 mb-3">
+                        <div class="card-header p-0 border-0 d-flex align-items-center justify-content-between gap-2">
+                            <h4 class="fs-20 text-white">Revised (2)</h4>
+                            <a href="#" class="add-task bg-white text-warning fs-42 rounded-2" data-bs-toggle="modal" data-bs-target="#newcard"><i class="bi bi-plus"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div id="draggable-col-four" class="draggable-column">
+                        <!-- Card Two  -->
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between mb-0">
+                                    <h6 class="fw-semibold text-secondary mb-0"><span class="indicator bg-secondary"></span> Design</h6>
+                                    <div class="dropdown">
+                                        <a href="#" data-bs-toggle="dropdown" class="fs-24">
+                                            <i class="bi bi-three-dots"></i>
+                                        </a>
+                                        <div class="dropdown-menu p-0">
+                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#taskdetails">Details</a>
+                                            <a class="dropdown-item" href="#">Edit</a>
+                                            <a class="dropdown-item text-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="card-content">
+                                    <h5>Create wireframe for landing page phase 1</h5>
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center gap-4 mt-4">
+                                    <div class="rounded-circle">
+                                        <img src="../../../../assets/assets_FrontOffice/assets/img/10.jpg" width="32" height="32" class="rounded-circle">
+                                    </div>
+                                    <p class="fs-14 fw-semibold text-gray mb-0"><i class="bi bi-clock me-1"></i> Due in 4 days</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    
+                    </div>
+                </div>
+            </div>
+            
+            
+<!-- Modal: New Card -->
+<div class="modal fade" id="newcard" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card border-0 m-0">
+                <div class="card-header bg-transparent border-0 p-5 pb-0">
+                    <h4>Add Task</h4>
+                </div>
+
+                <div class="card-body pt-3">
+                    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" class="form-control" name="title" formControlName="title" required>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" name="description" formControlName="description"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-label">Priority</label>
+                                    <select class="form-control" name="priority" formControlName="priority">
+                                        <option value="LOW">Low</option>
+                                        <option value="MEDIUM">Medium</option>
+                                        <option value="HIGH">High</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-label">Complexity</label>
+                                    <select class="form-control" name="complexity" formControlName="complexity">
+                                        <option value="LOW">Low</option>
+                                        <option value="MEDIUM">Medium</option>
+                                        <option value="HIGH">High</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-0">
+                            <button type="submit" class="btn btn-primary m-0">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="editcard" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="card border-0 m-0">
+                <div class="card-header bg-transparent border-0 p-5 pb-0">
+                    <h4>Edit Task</h4>
+                </div>
+
+                <div class="card-body pt-3">
+                    <form [formGroup]="edit_taskForm" (ngSubmit)="onEdit()">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" class="form-control" name="title" formControlName="title" required value="{{selectedTask?.title}}">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" name="description" formControlName="description" required value="{{selectedTask?.description}}"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-label">Priority</label>
+                                    <select class="form-control" name="priority" formControlName="priority" required>
+                                        <option value="LOW" [selected]="selectedTask?.priority === 'LOW'">Low</option>
+                                        <option value="MEDIUM" [selected]="selectedTask?.priority === 'MEDIUM'">Medium</option>
+                                        <option value="HIGH" [selected]="selectedTask?.priority === 'HIGH'">High</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-label">Complexity</label>
+                                    <select class="form-control" name="complexity" formControlName="complexity" required>
+                                        <option value="LOW" [selected]="selectedTask?.complexity === 'LOW'">Low</option>
+                                        <option value="MEDIUM" [selected]="selectedTask?.complexity === 'MEDIUM'">Medium</option>
+                                        <option value="HIGH" [selected]="selectedTask?.complexity === 'HIGH'">High</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-0">
+                            <button type="submit" class="btn btn-primary m-0">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+            <!-- Modal: Task Details -->
+            <div class="modal fade" id="taskdetails" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="card border-0">
+                            <div class="card-header p-5">
+                                <div class="card-upper d-flex align-items-center justify-content-between gap-5 flex-wrap mb-3">
+                                    <h5 class="fs-20 text-gray mb-0 flex-grow-1"><i class="bi bi-arrow-left-circle-fill text-gray me-1"></i> Task Detail</h5>
+                                    <div class="dropdown">
+                                        <a href="#" data-bs-toggle="dropdown" class="fs-24">
+                                            <i class="bi bi-three-dots-vertical"></i>
+                                        </a>
+                                        <div class="dropdown-menu p-0">
+                                            <a class="dropdown-item" href="#">Save as PDF</a>
+                                            <a class="dropdown-item" href="#">Edit</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h4 class="fs-28 mb-0 flex-grow-1"> Title : {{selectedTask?.title}}</h4>
+
+                                <h6 class="text-uppercase text-gray my-3">Member</h6>
+                                <div class="d-flex justify-content-between align-items-center gap-4 flex-wrap">
+                                    <!-- Avatar Group -->
+                                    <div class="avatar-group">
+                                        <span class="avatar avatar-sm rounded-circle bg-gray-200">
+                                            <img class="avatar-img rounded-circle" src={{selectedTask?.userstory?.User?.image}}>
+                                        </span>
+
+                                        <h5>{{selectedTask?.userstory?.User?.first_name}}   {{selectedTask?.userstory?.User?.last_name}}</h5>
+                                    </div>
+
+                                    <div class="d-flex gap-2">
+                                        <i class="bi bi-clock text-primary"></i> 
+                                        <div>
+                                            <p class="fw-semibold mb-1">Project Create</p>
+                                            <p class="fs-14 text-gray mb-0">Monday, October 31th, 2022</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex gap-2">
+                                        <i class="bi bi-clock text-warning"></i> 
+                                        <div>
+                                            <p class="fw-semibold mb-1">Due Date</p>
+                                            <p class="fs-14 text-gray mb-0">Sunday, October 31th, 2023</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="card-body">
+    
+                                <h6 class="text-uppercase text-gray mb-3">Task Description</h6>
+                                <p>{{selectedTask?.description}}</p>
+                                <br><br>
+                                <h6 class="text-uppercase text-gray mb-3">Task Status</h6>
+                                <h6 *ngIf="selectedTask?.status==='TO_DO'" class="fw-semibold text-red mb-0"><span class="indicator bg-danger"></span> To Do</h6>
+                                <h6 *ngIf="selectedTask?.status==='IN_PROGRESS'" class="fw-semibold text-warning mb-0"><span class="indicator bg-warning"></span> In Progress</h6>
+                                <h6 *ngIf="selectedTask?.status==='FINISHED'" class="fw-semibold text-success mb-0"><span class="indicator bg-success"></span> Done</h6>
+                                 
+                                <br><br>
+                                <h6 class="text-uppercase text-gray mb-3">Task Priority</h6>
+                                <h6 *ngIf="selectedTask?.priority==='HIGH'" class="fw-semibold text-red mb-0"><span class="indicator bg-danger"></span> High</h6>
+                                <h6 *ngIf="selectedTask?.priority==='MEDIUM'" class="fw-semibold text-warning mb-0"><span class="indicator bg-warning"></span> Medium</h6>
+                                <h6 *ngIf="selectedTask?.priority==='LOW'" class="fw-semibold text-success mb-0"><span class="indicator bg-success"></span> Low</h6>
+
+                                  <br><br>
+                                <h6 class="text-uppercase text-gray mb-3">Task Complexity</h6>
+                                <h6 *ngIf="selectedTask?.complexity==='HIGH'" class="fw-semibold text-red mb-0"><span class="indicator bg-danger"></span> High</h6>
+                                <h6 *ngIf="selectedTask?.complexity==='MEDIUM'" class="fw-semibold text-warning mb-0"><span class="indicator bg-warning"></span> Medium</h6>
+                                <h6 *ngIf="selectedTask?.complexity==='LOW'" class="fw-semibold text-success mb-0"><span class="indicator bg-success"></span> Low</h6>
+
+                                
+    
+                                
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

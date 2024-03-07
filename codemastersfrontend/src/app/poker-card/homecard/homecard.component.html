@@ -1,0 +1,125 @@
+<main id="bg.image" class="bg-image">
+    <aside class="d-flex align-items-center justify-content-center">
+        <div class="container-fluid flex-column justify-content-center align-items-center">
+
+            <div class="d-flex flex-column align-items-center justify-content-center mb-5">
+                <!-- <button type="button" class="btn btn-outline-warning col-5 button mb-2" onclick="start()">Commencer !</button> -->
+
+                <!-- <div>
+                        <a href="showcard" class="btn btn-outline-warning button"> Commencer</a>
+                    </div>
+                    <div>
+                        <a href="front" class="btn btn-outline-warning button"> Annuler</a>
+                    </div> -->
+
+                <!-- <div class="carte">
+                        <div *ngFor="let img of images">
+                          <img [src]="img.image" (click)="handleImageClick(img.valeur)">
+                        </div>
+                      </div> -->
+                <div class="card border-0 overflow-auto">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="defaultTable text-center w-100">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" class="form-check-input" id="checkbox1" value="">
+                                        </th>
+                                        <th>name</th>
+                                        <th>description</th>
+                                        <th>estimation</th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let task of tasks">
+                                    <tr>
+                                        <td><input type="checkbox" class="form-check-input" id="checkbox1" value="">
+                                        </td>
+                                        <td>
+                                            <div class="employee d-flex gap-3">
+                                                <div class="description">
+
+                                        <td>{{task.title}}</td>
+                        </div>
+                    </div>
+                    </td>
+                    <td>
+                        <div class="employee d-flex gap-3">
+                            <div class="description">
+                    <td>{{task.description}}</td>
+
+                </div>
+            </div>
+            <!-- <h5>{{task.description}}</h5> -->
+            </td>
+            <td> {{task.cardvalue}}</td>
+
+
+            <td>
+
+                <div>
+                    <!-- <a class="dropdown-item" href="">Modify estimation</a>
+                                                 
+                                                        <a class="dropdown-item" href="showcard">estimation</a> -->
+                    <button type="button" class="btn btn-primary btn-lg rounded-pill"
+                        (click)="navigateToshowcards(task.id)">
+                        modify estimation <i class="bi bi-arrow-up-right-square-fill ms-1"></i>
+                    </button>
+                </div>
+            </td>
+            <td>
+                <div>
+
+                    <button type="button" class="btn btn-primary btn-lg rounded-pill"
+                        (click)="navigateToshowcards(task.id)">
+                        add estimation <i class="bi bi-arrow-up-right-square-fill ms-1"></i>
+                    </button>
+                </div>
+
+            </td>
+            </tr>
+
+
+            </tbody>
+            </table>
+        </div>
+
+        <div class="mt-5 d-flex justify-content-center justify-content-md-between align-items-center flex-wrap">
+            <p class="mb-0">Showing <span class="fw-bold">1-10</span> from <span class="fw-bold">46</span>
+                data</p>
+
+            <nav>
+                <ul class="pagination mb-0">
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Previous">
+                            <span aria-hidden="true">«</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link">1</a></li>
+                    <li class="page-item"><a class="page-link">2</a></li>
+                    <li class="page-item"><a class="page-link">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" aria-label="Next">
+                            <span aria-hidden="true">»</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        </div>
+        </div>
+
+
+
+
+
+        </div>
+
+        </div>
+
+
+
+    </aside>
+
+</main>
