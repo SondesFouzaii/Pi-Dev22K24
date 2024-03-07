@@ -1,0 +1,96 @@
+<h1 class="mt-4">Users</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Users</li>
+</ol>
+<div class="row">
+    <div class="col-xl-8 col-md-12">
+        <mat-toolbar color="primary">
+            recherche par email: <input [(ngModel)]="emailsearch">
+            <span class="example-spacer"></span>
+            <button mat-fab extended color="accent">
+                <mat-icon>add_circle</mat-icon>
+                <a routerLink="/back/ut/user/add">Create a new account</a>
+            </button>
+        </mat-toolbar>
+        <table class="datatable-table" *ngIf="users?.length != 0">
+            <thead>
+                <tr>
+                    <!-- <th scope="col">id</th> -->
+                    <th scope="col">image</th>
+                    <!-- <th scope="col">first_name</th>
+                    <th scope="col">last_name</th> -->
+                    <!-- <th scope="col">birth_date</th>
+                <th scope="col">gender</th>
+                <th scope="col">address</th> -->
+                    <th scope="col">email</th>
+                    <!-- <th scope="col">password</th> -->
+                    <!-- <th scope="col">security_question</th>
+                <th scope="col">security_answer</th>
+                <th scope="col">status</th> -->
+                    <th scope="col">role</th>
+                    <!-- <th scope="col">theme_preferences</th> -->
+                    <th scope="col">accout status</th>
+                    <th scope="col">operations</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr *ngFor="let u of users,let i=index" [routerLink]="['details', u.id]" > -->
+                    <ng-container *ngFor="let u of users.reverse(); let i=index">
+                        <tr [routerLink]="['details', u.id]" *ngIf="u.email.includes(emailsearch) && isempty ">
+                    <!-- <th scope="row">{{u.id}}</th> -->
+                    <td><img src="{{u.image}}" width="40" alt=""> </td>
+                    <!-- <td>{{u.first_name}}</td>
+                    <td>{{u.last_name}}</td> -->
+                    <!-- <td>{{u.birth_date}}</td>
+                <td>{{u.gender}}</td>
+                <td>{{u.address}}</td> -->
+                    <td>{{u.email}}</td>
+                    <!-- <td>{{u.password}}</td> -->
+                    <!-- <td>{{u.security_question}}</td>
+                <td>{{u.security_answer}}</td>
+                <td>{{u.status}}</td> -->
+                    <td>{{u.role}}</td>
+                    <!-- <td>{{u.theme_preferences}}</td> -->
+                    <td *ngIf="u.enabled==true">active</td>
+                    <td *ngIf="u.enabled==false">blocked</td>
+
+                    <td><button style="background-color: rgb(62, 252, 119);" class="btn-primary"
+                            (click)="cr(i)">Modifier Role <br> </button>
+
+                        <div [hidden]="displayrole[i]">
+                            <select [(ngModel)]="newrole[i]">
+                                <option value="" *ngFor="let r of roleList" [ngValue]="r">{{r}}</option>
+                            </select>
+                            <!--input type="text" [(ngModel)]="newrole[i]" -->
+                            <button (click)="modifierrole(u.id,newrole[i],i)">appliquer</button>
+                        </div>
+
+                        <button style="background-color: rgb(248, 77, 77);" class="btn-danger" (click)="bd(u.id)">
+                            <div *ngIf="u.enabled==true">Block</div>
+                            <div *ngIf="u.enabled==false">Unblock</div>
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
+            </tbody>
+        </table>
+
+        <div *ngIf="users?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">NO USERSS!</h4>
+                <p>No Users were found.</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-xl-4 col-md-12" style="position: fixed; left: 70%;  width: 30%;">
+
+
+        <router-outlet></router-outlet>
+
+
+    </div>
+</div>
+
+<br><br><br><br><br><br><br>

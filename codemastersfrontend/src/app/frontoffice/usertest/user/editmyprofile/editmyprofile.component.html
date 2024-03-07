@@ -1,0 +1,66 @@
+<main class="main-wrapper">
+    <div class="container-fluid">
+
+        <h1 class="mt-4">Manage My account</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Users/add</li>
+        </ol>
+        <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+            <mat-card class="shipping-card">
+                <input matInput placeholder="id" formControlName="id" style="display: none;">
+                <mat-card-header>
+                    <mat-card-title>Account Information</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                
+                                <input matInput placeholder="First name" formControlName="first_name" value="{{connecteduser.first_name.toString()}}">
+                                <mat-error *ngIf="addressForm.controls['first_name'].hasError('required')">
+                                    First name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="Last name" formControlName="last_name">
+                                <mat-error *ngIf="addressForm.controls['last_name'].hasError('required')">
+                                    Last name is <strong>required</strong>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="Birth date" formControlName="birth_date">
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="Gender" formControlName="gender">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="Address" formControlName="address">
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <input matInput placeholder="Phone Number" formControlName="phone_number">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" type="submit">Submit</button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+
+    </div>
+</main>

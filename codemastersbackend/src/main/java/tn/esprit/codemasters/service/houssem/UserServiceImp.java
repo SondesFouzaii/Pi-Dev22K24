@@ -2,6 +2,7 @@ package tn.esprit.codemasters.service.houssem;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,11 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import tn.esprit.codemasters.entity.Activities;
 import tn.esprit.codemasters.entity.Comment;
 import tn.esprit.codemasters.entity.Session;
 import tn.esprit.codemasters.entity.User;
+import tn.esprit.codemasters.repository.ActivitiesRepository;
 import tn.esprit.codemasters.repository.CommentRepository;
 import tn.esprit.codemasters.repository.PostRepository;
 import tn.esprit.codemasters.repository.UserRepository;
@@ -33,12 +36,14 @@ public class UserServiceImp implements IUserService{
     UserRepository userRepository;
     CommentRepository commentRepository;
     PostRepository postRepository;
+    ActivitiesRepository activitiesRepository;
     private static final String key = "houssem";
     /**
      * @param simpleuser
      * @return
      */
     @Override
+    @Transactional
     public String addSimpleUser(User simpleuser) {
         try {
             if (userRepository.getUserByEmail(simpleuser.getEmail()) != null)
@@ -57,6 +62,12 @@ public class UserServiceImp implements IUserService{
 
             userRepository.save(simpleuser);
 
+            Activities activity=new Activities();
+            activity.setDate(new Date());
+            activity.setEmail(simpleuser.getEmail());
+            activity.setActivity("account creation");
+            activitiesRepository.save(activity);
+
             return "Account added successfully";
         } catch (Exception e) {
             log.error("Error occurred while adding a user: " + e.getMessage());
@@ -70,6 +81,7 @@ public class UserServiceImp implements IUserService{
      * @return
      */
     @Override
+    @Transactional
         public String addUser(User advanceduser) {
         try {
             // Check if the email already exists in the database
@@ -89,6 +101,12 @@ public class UserServiceImp implements IUserService{
 
             userRepository.save(advanceduser);
 
+            Activities activity=new Activities();
+            activity.setDate(new Date());
+            activity.setEmail(advanceduser.getEmail());
+            activity.setActivity("account creation");
+            activitiesRepository.save(activity);
+
             return "User added successfully";
         } catch (Exception e) {
             log.error("Error occurred while adding a user: " + e.getMessage());
@@ -104,18 +122,42 @@ public class UserServiceImp implements IUserService{
      */
 
     @Override
+    @Transactional
     public ResponseEntity<String> findbyemailandpassword(String email, String password) {
         User user = userRepository.getUserByEmail(email);
 
         if (user == null) {
+
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body("Email or password are wrong. Please try again.");
         }
 
         if (!user.getPassword().equals(encrypt(password))) {
+            if (user != null) {
+                Activities activity = new Activities();
+                activity.setDate(new Date());
+                activity.setEmail(user.getEmail());
+                activity.setActivity("login attempt");
+                activitiesRepository.save(activity);
+            }
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body("Email or password are wrong. Please try again.");
         }
+        if (!user.isEnabled()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Your account is blocked. Please contact an admin.");
+        }
+
+        if (!user.isNon_locked()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Your account needs to be verified.");
+        }
+        if (user != null){
+        Activities activity2=new Activities();
+        activity2.setDate(new Date());
+        activity2.setEmail(user.getEmail());
+        activity2.setActivity("login attempt success");
+        activitiesRepository.save(activity2);}
 
         if (user.getRole().equals(User.Role.ADMIN)) {
             return ResponseEntity.status(HttpStatus.OK).body("Welcome Admin");
@@ -253,6 +295,87 @@ public class UserServiceImp implements IUserService{
     @Override
     public void removeaccount(Long idtoremove) {
         userRepository.deleteById(idtoremove);
+    }
+
+    /**
+     * @param barrcode
+     * @return
+     */
+    @Override
+    @Transactional
+    public ResponseEntity<String> findbybarrcode(String barrcode) {
+        //begin the code
+        User user = userRepository.getUserByBarrcode(barrcode);
+
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("this card is not valide.");
+        }
+
+        if (!user.isEnabled()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Your account is blocked. Please contact an admin.");
+        }
+
+        if (!user.isNon_locked()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Your account needs to be verified.");
+        }
+        if (user != null){
+        Activities activity=new Activities();
+        activity.setDate(new Date());
+        activity.setEmail(user.getEmail());
+        activity.setActivity("login attempt success");
+        activitiesRepository.save(activity);}
+
+        if (user.getRole().equals(User.Role.ADMIN)) {
+            return ResponseEntity.status(HttpStatus.OK).body("Welcome Admin");
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body("Welcome User");
+        }
+        //end the code
+    }
+
+    /**
+     * @param email
+     * @return
+     */
+    @Override
+    public User retrieveUserbyemail(String email) {
+        return userRepository.getUserByEmail(email);
+    }
+
+    /**
+     * @param code
+     * @return
+     */
+    @Override
+    public String getmailbybarrcode(String code) {
+                //here i l do the transfer of mail to code to authentificate
+        User user =userRepository.getUserByBarrcode(code);
+        if (user == null) {
+            return "this card is not valide.";
+        }
+        return user.getEmail();
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public List<Activities> getallActivities() {
+        return activitiesRepository.findAll();
+    }
+
+    /**
+     * @param id
+     * @param Code
+     */
+    @Override
+    public void addcard(Long id, String Code) {
+        User user=userRepository.findById(id).orElse(null);
+        user.setBarrcode(Code);
+        userRepository.save(user);
     }
 
 

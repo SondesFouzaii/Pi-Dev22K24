@@ -18,8 +18,7 @@ public class Activities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String foradmin;
-    String foruser;
+    String activity;
     Date date;
-    long idaccount;
+    String email;
     }

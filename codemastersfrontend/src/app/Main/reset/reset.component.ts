@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/test+user/user.service';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-reset',
@@ -7,25 +8,30 @@ import { UserService } from 'src/app/services/test+user/user.service';
   styleUrls: ['./reset.component.scss']
 })
 export class ResetComponent implements OnInit{
-email!:string;
+  email!:string;
+  responseMessage: string = '';
+  responseerror: string = '';
 
-ngOnInit(): void {
+
+  ngOnInit(): void {
+   if(this.userser.isLoggedIn()){
+    this.router.navigate(['signin']);
+   }
+      
+  }
   
-}
+  constructor( private userser: UserService, private router: Router){}
+  
+  gogo() {
+    this.resetPassword(this.email);
+  }
 
-constructor( private userser: UserService){}
-
-gogo(){
-  this.resetPassword(this.email);
-}
-
-resetPassword(email: string) {
+  resetPassword(email: string) {
   this.userser.restPasswd(email).subscribe(
-    response => {
-      console.log(response); // Handle the response as needed
-    },
+    response => {},
     error => {
       console.log(error); // Handle the error as needed
+      this.responseerror = error.error.text;
     }
   );
 }

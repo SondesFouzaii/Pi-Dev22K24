@@ -1,0 +1,26 @@
+<h1 class="mt-4">Users</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Users/activities</li>
+</ol>
+<div class="row">
+    <div class="col-xl-8 col-md-12">
+
+<table class="table table-primary table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Type</th>
+            <th scope="col">Description</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let a of activities.reverse()">
+        <tr >
+            <th scope="row">{{a.date}}</th>
+            <td>{{a.activity}}</td>
+            <td *ngIf="a.activity=='login attempt success'">User successfully logged into the system</td>
+            <td *ngIf="a.activity=='login attempt'">User fail to log into the system</td>
+            <td *ngIf="a.activity=='account creation'">An account has been created</td>
+        </tr>
+        
+    </tbody>
+</table>

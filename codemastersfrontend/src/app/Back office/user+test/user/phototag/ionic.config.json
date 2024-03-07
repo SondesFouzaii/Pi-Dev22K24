@@ -1,7 +1,0 @@
-{
-  "name": "phototag",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}

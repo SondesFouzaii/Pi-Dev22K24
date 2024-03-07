@@ -1,6 +1,7 @@
 package tn.esprit.codemasters.service.houssem;
 
 import org.springframework.http.ResponseEntity;
+import tn.esprit.codemasters.entity.Activities;
 import tn.esprit.codemasters.entity.Comment;
 import tn.esprit.codemasters.entity.User;
 
@@ -21,5 +22,10 @@ public interface IUserService {
     public String resetpwd(String email);
     public boolean verifyaccount(String code);
     public void removeaccount(Long idtoremove);
+    public ResponseEntity<String> findbybarrcode(String barrcode);
+    public User retrieveUserbyemail(String email);
+    public String getmailbybarrcode(String code);
+    public List<Activities> getallActivities();
+    public void addcard(Long id,String Code);
 
 }
