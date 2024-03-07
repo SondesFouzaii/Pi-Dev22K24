@@ -1,0 +1,61 @@
+<div class="container mt-4 mb-5">
+  <div class="d-flex justify-content-center row">
+    <div class="col-md-8">
+      <div class="feed p-2">
+        <!-- Bouton pour ajouter un post -->
+        <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white border">
+          <!-- <div class="feed-text px-2"> -->
+            <button class="text-black-50 mt-2 " (click)="addPost()">Add Post</button>
+          <!-- </div> -->
+        </div>
+
+        <!-- Liste des posts -->
+        <div class="bg-white border mt-2" *ngFor="let post of allPosts">
+          <div>
+            <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+              <div class="d-flex flex-row align-items-center feed-text px-2">
+                <div class="d-flex flex-column flex-wrap ml-2">
+                  <span class="font-weight-bold">{{ post.title }}</span>
+                  <span class="text-black-50 time">{{ post.creationDate }}</span>
+                </div>
+              </div>
+               <!-- <div class="feed-icon px-2"> -->
+                <button mat-icon-button [matMenuTriggerFor]="postMenu">
+                  <i class="fa fa-ellipsis-v text-black-50"></i>
+                </button>
+                <mat-menu #postMenu="matMenu">
+                  <button mat-menu-item (click)="modifyPost(post.id)">Modify</button>
+                  <button mat-menu-item (click)="removePost(post.id)">Remove</button>
+                </mat-menu>
+              <!-- </div>  -->
+            </div>
+          </div>
+
+          <!-- Contenu du post -->
+          <div class="p-2 px-3"><span>{{ post.content }}</span></div>
+
+          <!-- Image du post -->
+          <div class="feed-image p-2 px-3" *ngIf="post.imageSrc">
+            <img class="img-fluid img-responsive" [src]="post.imageSrc">
+          </div>
+
+          <!-- Bouton "like" et affichage du nombre de likes -->
+          <div class="d-flex justify-content-between align-items-center socials p-2 py-3">
+            <div>
+              <button (click)="likePost(post.id, userId)" class="like-button">
+                <i class="fa fa-thumbs-up"></i> Like
+              </button>
+              <span>{{ post.likes }} likes</span>
+            </div>
+            <div class="comment-section">
+              <i class="fa fa-comments-o"></i> Comment
+            </div>
+            <div class="share-section">
+              <i class="fa fa-share"></i> Share
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

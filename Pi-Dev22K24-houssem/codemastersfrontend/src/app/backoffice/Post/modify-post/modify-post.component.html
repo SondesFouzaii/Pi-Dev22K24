@@ -1,0 +1,65 @@
+<!-- 
+<main>
+  <div class="row">
+      
+      <div class="col-md-9">
+          <div class="post-header">
+              <h2 class="post-title">Modify Post</h2>
+          </div>
+
+          <div class="container">
+              <form [formGroup]="myForm" (submit)="modifyPost()" class="post-form">
+                  <div class="form-group">
+                      <label for="postId">Post ID:</label>
+                      <input type="number" id="postId" class="form-control" formControlName="postId" required>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="userId">User ID:</label>
+                      <input type="number" id="userId" class="form-control" formControlName="userId" required>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="title">Title:</label>
+                      <input type="text" id="title" class="form-control" formControlName="title" required>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="content">Content:</label>
+                      <textarea id="content" class="form-control" formControlName="content" required></textarea>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="image">Image URL:</label>
+                      <input type="text" id="image" class="form-control" formControlName="image">
+                  </div>
+
+                  <button class="btn btn-primary" type="submit">Modify</button>
+              </form>
+              <div *ngIf="showMessage" class="notification success">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Post modified successfully!</span>
+              </div>
+          </div>
+      </div>
+  </div>
+</main> -->
+<div *ngIf="post">
+    <h2>Modifier le post</h2>
+    <form (ngSubmit)="saveChanges()">
+      <div>
+        <label for="title">Titre:</label>
+        <input type="text" id="title" name="title" [(ngModel)]="updatedPost.title" required>
+      </div>
+      <div>
+        <label for="content">Contenu:</label>
+        <textarea id="content" name="content" [(ngModel)]="updatedPost.content" required></textarea>
+      </div>
+      <div>
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image" (change)="onImageChange($event)">
+      </div>
+      <button type="submit">Enregistrer les modifications</button>
+    </form>
+  </div>
+  
