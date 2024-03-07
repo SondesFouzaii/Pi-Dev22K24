@@ -1,0 +1,58 @@
+.claim-list {
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+.card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #924AEF;
+  color: #ffffff;
+}
+
+.btn-outline-primary {
+  border-color: #924AEF;
+  color: #924AEF;
+}
+
+.btn-outline-primary:hover {
+  background-color: #924AEF;
+  color: #ffffff;
+}
+
+.pagination .page-link {
+  color: #924AEF;
+}
+
+.pagination .page-link:hover {
+  color: #924AEF;
+}
+
+.pagination .disabled .page-link {
+  color: #cccccc;
+}
+
+.pagination .active .page-link {
+  background-color: #924AEF;
+  border-color: #924AEF;
+}
+.container {
+  max-width: 800px; /* Ajustez selon la largeur souhaitée */
+}
+
+.card {
+  margin: 0 auto; /* Centrer les cartes dans la grille Flex */
+}
+
+.input-group.mb-3 {
+  justify-content: center; /* Centrer le groupe d'input */
+}
+
+.input-group .form-control {
+  margin-right: .5rem; /* Assurez-vous que l'input et le bouton sont espacés correctement */
+}
+.custom-search-width {
+  width: 500px; /* ou toute autre largeur selon votre besoin */
+}

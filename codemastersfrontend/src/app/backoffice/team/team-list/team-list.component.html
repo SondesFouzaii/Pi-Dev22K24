@@ -1,0 +1,60 @@
+<div class="team-list">
+  <!-- <input type="text" [(ngModel)]="searchTerm" (keyup)="searchTeams()" placeholder="Search teams...">-->
+  <div class="row"> 
+<!-- Main Content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-4">
+      <div class="container">
+        <div *ngFor="let team of teams" class="card mb-3">
+          <div class="card-header">{{ team.name }}</div>
+          <div class="card-body">
+            <h5>Users</h5>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Gender</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of team.users">
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.role }}</td>
+                  <td>{{ user.gender }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <h5>Projects</h5>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Date of creation</th>
+                  <th>Deadline</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let project of team.projects">
+                  <td>{{ project.name }}</td>
+                  <td>{{ project.creationdate | date }}</td>
+                  <td>{{ project.deadline | date }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="text-center">
+              <button class="btn btn-success" (click)="navigateToUpdateTeam(team.id)">Modifier</button>
+              <button class="btn btn-danger"(click)="deleteTeam(team.id)">Delete</button>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <button class="btn btn-success" (click)="navigateToCreateTeam()">Add Team</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+

@@ -1,0 +1,37 @@
+.card-header {
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  background-color: #c0c0c0; /* Exemple de couleur d'en-tête */
+  color: #924AEF; /* Couleur du texte */
+}
+
+.card-body {
+  background-color: #c0c0c0; /* Un bleu plus foncé pour le corps */
+}
+
+/* Pour des couleurs spécifiques non incluses dans Bootstrap */
+.custom-color {
+  background-color: #c0c0c0; /* Remplacez #hexcode par votre code couleur */
+}
+
+
+/* Boutons avec marges */
+.btn {
+  margin: 4pxpx;
+  border: #924AEF;
+ background-color: #924AEF;
+ color: #ffffff;
+}
+
+.card {
+  max-width: 540px; /* Ajustez cette valeur selon la largeur souhaitée */
+ margin: auto; /* Centre la carte horizontalement */
+  
+}
+.header-space {
+  margin-top: 70px; /* Ajustez cette valeur selon la hauteur de votre header */
+}
+.sidebar-adjusted {
+  padding-right: 0; /* Assure que la sidebar est bien collée à gauche sans padding inutile à droite */
+}

@@ -1,0 +1,47 @@
+<div class="claim-list">
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <h2 class="text-center mb-4">List Claim</h2>
+        <div class="input-group mb-3 justify-content-center">
+          <input class="form-control w-50" type="text" placeholder="Rechercher..." aria-label="Rechercher..." [(ngModel)]="searchTerm" (keyup)="searchClaims()">
+          <button class="btn btn-outline-primary" type="button" (click)="sortClaimsByTitle()">
+            <i [ngClass]="sortOrder ? 'fas fa-sort-alpha-down' : 'fas fa-sort-alpha-up-alt'"></i>
+          </button>
+        </div>
+        <div class="d-flex flex-wrap justify-content-center">
+          <div *ngFor="let claim of claims" class="card mb-3 mx-2" style="width: 18rem;">
+            <div class="card-header text-center">{{ claim.title }}</div>
+            <div class="card-body">
+              <p><strong>Content:</strong> {{ claim.content }}</p>
+              <p><strong>User :</strong> {{ claim.user.email }}</p>
+              <p><strong>User Story:</strong> {{ claim.userstory.name }}</p>
+              <div class="text-center">
+                <button class="btn btn-primary" (click)="editClaim(claim.id)">Edit</button>
+                <button class="btn btn-primary" (click)="deleteClaim(claim.id)">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <button class="btn btn-primary" (click)="addClaim()">Add Claim</button>
+        </div>
+        <div *ngIf="claims.length > 0" class="mt-4">
+          <nav aria-label="Navigation de pagination" class="d-flex justify-content-center">
+            <ul class="pagination">
+              <li class="page-item" [class.disabled]="currentPage === 0">
+                <a class="page-link" href="javascript:void(0)" aria-label="Précédent" (click)="previousPage()">&laquo;</a>
+              </li>
+              <li class="page-item disabled">
+                <span class="page-link">{{currentPage + 1}}/{{totalPages}}</span>
+              </li>
+              <li class="page-item" [class.disabled]="(currentPage + 1) * pageSize >= totalElements">
+                <a class="page-link" href="javascript:void(0)" aria-label="Suivant" (click)="nextPage()">&raquo;</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

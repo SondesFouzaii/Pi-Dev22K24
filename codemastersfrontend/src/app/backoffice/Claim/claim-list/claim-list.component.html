@@ -1,0 +1,41 @@
+<div class="claim-list">
+    <div class="row">
+        <h2>Claim List</h2> 
+      <!-- Main Content -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-4">
+        <div class="container">
+          <div class="d-flex justify-content-end">
+            <div class="input-group">
+              <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." [(ngModel)]="searchTerm" (keyup)="searchClaims()">
+              <button class="btn btn-outline-secondary" type="button" (click)="sortClaimsByTitle()">
+                <i [ngClass]="sortOrder ? 'fas fa-sort-alpha-down' : 'fas fa-sort-alpha-up-alt'"></i>
+              </button>
+            </div>
+          </div>          
+          <div *ngFor="let claim of claims" class="card mb-3">
+            <div class="card-header">{{ claim.title }}</div>
+            <div class="card-body">
+              <h5>Content</h5>
+              <p>{{ claim.content }}</p>
+              <h5>User</h5>
+              <p>Email: {{ claim.user.email }}</p>
+              
+              <h5>UserStory</h5>
+              <p>Name: {{ claim.userstory.name }}</p>
+              
+              <div class="text-center">
+              
+                <button class="btn btn-success" (click)="editClaim(claim.id)">Edit</button>
+                <button class="btn btn-danger" (click)="deleteClaim(claim.id)">Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <button class="btn btn-success" (click)="addClaim()">Add Claim</button>
+            <button class="btn btn-success" (click)="exportClaimsToPdf()">Exporter en PDF</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  

@@ -1,5 +1,6 @@
 package tn.esprit.codemasters.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -19,12 +20,13 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+    @Column(unique = true)
     String name;
 
 
-    @ManyToMany(mappedBy="teams", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy="teams")
     private Set<User> users;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="team")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy="team")
     private Set<Project> projects;
 }

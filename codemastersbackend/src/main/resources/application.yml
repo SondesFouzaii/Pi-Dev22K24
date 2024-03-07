@@ -1,6 +1,0 @@
-spring:
-  profiles:
-    active: @spring.profiles.active@
-application:
-  title: Poker Planning
-  version: v1.0.0

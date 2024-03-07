@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <title>Modification d'Équipe</title>
+    <style>
+        .card {
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .form-label {
+            font-weight: 600;
+        }
+        .btn-custom {
+            margin-right: 8px;
+        }
+        .list-group-item {
+            border: 0 none;
+            padding-left: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container py-5">
+  <div class="card">
+    <div class="card-header bg-primary text-white">Update Tzam</div>
+    <div class="card-body">
+      <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="teamName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="teamName" formControlName="name" placeholder="Entrez le nom de l'équipe">
+        </div>
+        
+        <div class="mb-3">
+          <label class="form-label">Users</label>
+          <ul class="list-group">
+            <li *ngFor="let user of teamUsers" class="list-group-item">
+              <i class="fas fa-user"></i> {{ user.email }}
+            </li>
+          </ul>
+          <button type="button" class="btn btn-primary mt-2" (click)="openAddUsers()">Add Users</button>
+        </div>
+        
+        <div class="mb-3">
+          <label class="form-label">Projects</label>
+          <ul class="list-group">
+            <li *ngFor="let project of teamProjects" class="list-group-item">
+              <i class="fas fa-folder-open"></i> {{ project.name }}
+            </li>
+          </ul>
+          <button type="button" class="btn btn-secondary mt-2" (click)="openAddProjects()">Add Projects</button>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>

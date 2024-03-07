@@ -32,13 +32,13 @@ public class Session {
 
     //h
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Message> messages;
+    private Set<Message> Messages;
 
     @ManyToOne(cascade = CascadeType.ALL)
     Card card;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="session")
-    private Set<FeedBack> feedBacks;
+    private Set<FeedBack> Evaluations;
 
     @OneToOne
     private Project project;

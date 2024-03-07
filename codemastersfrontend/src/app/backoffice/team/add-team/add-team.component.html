@@ -1,0 +1,37 @@
+
+<div class="container mt-3">
+  <div class="row"> <!-- Ajoute une rangée pour contenir la sidebar et le formulaire -->
+    
+    <div class="col-md-9"> <!-- Utilise les colonnes restantes pour le formulaire, le plaçant à côté de la sidebar -->
+      <div class="card"> <!-- Encapsule le formulaire dans un card pour le mettre en cadre -->
+        <div class="card-header">
+          Ajouter une nouvelle équipe
+        </div>
+        <div class="card-body">
+          <form [formGroup]="teamForm" (ngSubmit)="addTeam()">
+            <div class="mb-3">
+              <label for="teamName" class="form-label">Nom de l'équipe</label>
+              <input type="text" formControlName="name" class="form-control" id="teamName" placeholder="Entrez le nom de l'équipe" required>
+            </div>
+        
+            <!-- Input pour les IDs d'utilisateurs -->
+            <div class="mb-3">
+              <label for="userIds" class="form-label">IDs des Utilisateurs</label>
+              <input type="text" formControlName="userIds" class="form-control" id="userIds" placeholder="Ex: 1,2,3">
+            </div>
+        
+            <!-- Input pour les IDs de projets -->
+            <div class="mb-3">
+              <label for="projectIds" class="form-label">IDs des Projets</label>
+              <input type="text" formControlName="projectIds" class="form-control" id="projectIds" placeholder="Ex: 4,5,6">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Ajouter l'équipe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

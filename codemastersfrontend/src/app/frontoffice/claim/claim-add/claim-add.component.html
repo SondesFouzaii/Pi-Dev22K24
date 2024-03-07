@@ -1,0 +1,28 @@
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header">
+      Submit a New Claim
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="submitClaim()">
+        <div class="mb-3">
+          <label for="userName" class="form-label">User's Name</label>
+          <input type="text" class="form-control" id="userName" [(ngModel)]="claim.user.name" name="userName" required>
+        </div>
+        <div class="mb-3">
+          <label for="userStoryName" class="form-label">User Story's Name</label>
+          <input type="text" class="form-control" id="userStoryName" [(ngModel)]="claim.userstory.name" name="userStoryName" required>
+        </div>
+        <div class="mb-3">
+          <label for="claimTitle" class="form-label">Claim Title</label>
+          <input type="text" class="form-control" id="claimTitle" [(ngModel)]="claim.title" name="claimTitle" required>
+        </div>
+        <div class="mb-3">
+          <label for="claimContent" class="form-label">Claim Content</label>
+          <textarea class="form-control" id="claimContent" rows="5" [(ngModel)]="claim.content" name="claimContent" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Claim</button>
+      </form>
+    </div>
+  </div>
+</div>

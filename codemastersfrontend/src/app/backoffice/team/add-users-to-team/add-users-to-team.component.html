@@ -1,0 +1,9 @@
+<div class="container mt-3">
+  <form (ngSubmit)="addUsers()">
+    <div class="mb-3">
+      <label for="userIDsInput" class="form-label">User IDs (comma-separated):</label>
+      <input type="text" id="userIDsInput" class="form-control" [formControl]="userIDsInput">
+    </div>
+    <button type="submit" class="btn btn-primary" >Add Users to Team</button>
+  </form>
+</div>

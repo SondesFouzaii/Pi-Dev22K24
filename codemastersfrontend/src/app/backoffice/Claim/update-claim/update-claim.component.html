@@ -1,0 +1,21 @@
+<div class="container mt-4">
+    <div class="card">
+      <div class="card-header">
+        Edit Claim
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" [(ngModel)]="claimData.title" name="title" required>
+          </div>
+          <div class="form-group">
+            <label for="content">Contennt:</label>
+            <textarea class="form-control" id="content" [(ngModel)]="claimData.content" name="content" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

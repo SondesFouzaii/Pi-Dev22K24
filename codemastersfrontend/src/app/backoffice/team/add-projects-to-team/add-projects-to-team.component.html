@@ -1,0 +1,17 @@
+<div class="container mt-3">
+    <div class="card">
+      <div class="card-header">
+        Add Projects to Team
+      </div>
+      <div class="card-body">
+        <form (ngSubmit)="addProjects()">
+          <div class="mb-3">
+            <label for="projectIDsInput" class="form-label">Project IDs (comma-separated):</label>
+            <input type="text" id="projectIDsInput" class="form-control" [formControl]="projectIDsInput">
+          </div>
+          <button type="submit" class="btn btn-primary">Add Projects to Team</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
