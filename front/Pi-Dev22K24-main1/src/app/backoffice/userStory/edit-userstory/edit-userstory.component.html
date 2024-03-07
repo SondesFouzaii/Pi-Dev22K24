@@ -1,0 +1,43 @@
+<div class="container">
+  <br><br>
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">Edit User Story</h1>
+
+        <div class="row">
+          <div class="container">
+            <br><br>
+            <div id="layoutSidenav_content">
+              <main>
+                <div class="container-fluid px-4">
+                  <div class="row">
+                    <form [formGroup]="userStoryForm" (ngSubmit)="onSubmit()">
+                      <div class="form-group">
+                        <label for="name">User Story Name:</label>
+                        <input type="text" id="name" formControlName="name" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="description" formControlName="description" class="form-control"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="priority">Priority:</label>
+                        <input type="text" id="priority" formControlName="priority" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label for="estimation">Estimation:</label>
+                        <input type="text" id="estimation" formControlName="estimation" class="form-control">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                  </div>
+                </div>
+              </main>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
