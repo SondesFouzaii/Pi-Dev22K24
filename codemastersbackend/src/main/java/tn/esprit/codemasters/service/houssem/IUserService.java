@@ -20,12 +20,14 @@ public interface IUserService {
     public void blockunblock(Long userid);
     public void modifyRole(Long userid,User.Role role);
     public String resetpwd(String email);
-    public boolean verifyaccount(String code);
+    //public String verifyaccount(String code);
+    //public void deleteverificationcodes();
     public void removeaccount(Long idtoremove);
     public ResponseEntity<String> findbybarrcode(String barrcode);
     public User retrieveUserbyemail(String email);
     public String getmailbybarrcode(String code);
     public List<Activities> getallActivities();
     public void addcard(Long id,String Code);
+    //public String generateUniqueCode(int length);
 
 }

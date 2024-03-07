@@ -18,20 +18,20 @@
                 </div>
 
                 <div class="card-body p-0">
-                    <form class="form-horizontal" method="post">
+                    <form class="form-horizontal" >
                         <div class="form-group">
                             <label class="form-label text-gray">Enter your 6 digits security code</label>
                             <div class="d-flex align-items-center justify-content-center gap-2 flex-nowrap">
-                                <input type="text" class="form-control"  value="" placeholder="" required>
-                                <input type="text" class="form-control"  value="" placeholder="" required>
-                                <input type="text" class="form-control"  value="" placeholder="" required>
-                                <input type="text" class="form-control"  value="" placeholder="" required>
-                                <input type="text" class="form-control"  value="" placeholder="" required>
-                                <input type="text" class="form-control"  value="" placeholder="" required>
+                                <input type="text" class="form-control"  [(ngModel)]="v1" placeholder="" required>
+                                <input type="text" class="form-control"  [(ngModel)]="v2" placeholder="" required>
+                                <input type="text" class="form-control"  [(ngModel)]="v3" placeholder="" required>
+                                <input type="text" class="form-control"  [(ngModel)]="v4" placeholder="" required>
+                                <input type="text" class="form-control"  [(ngModel)]="v5" placeholder="" required>
+                                <input type="text" class="form-control"  [(ngModel)]="v6" placeholder="" required>
                             </div>
                         </div>
         
-                        <button type="submit" class="btn btn-primary w-100 text-uppercase text-white rounded-2 lh-34 ff-heading fw-bold shadow">Verify</button>
+                        <button (click)="verifieremail()"  type="submit" class="btn btn-primary w-100 text-uppercase text-white rounded-2 lh-34 ff-heading fw-bold shadow">Verify</button>
                         <p class="mt-4 mb-0"><a routerLink="/verif" class="text-primary fw-bold text-decoration-underline">Didn't recieve the code?</a></p>
                     </form>
                 </div>

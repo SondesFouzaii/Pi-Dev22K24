@@ -15,20 +15,15 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import tn.esprit.codemasters.entity.Activities;
-import tn.esprit.codemasters.entity.Comment;
-import tn.esprit.codemasters.entity.Session;
-import tn.esprit.codemasters.entity.User;
-import tn.esprit.codemasters.repository.ActivitiesRepository;
-import tn.esprit.codemasters.repository.CommentRepository;
-import tn.esprit.codemasters.repository.PostRepository;
-import tn.esprit.codemasters.repository.UserRepository;
+import tn.esprit.codemasters.entity.*;
+import tn.esprit.codemasters.repository.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-
+import java.util.UUID;
 @Slf4j
 @Service
 @AllArgsConstructor
@@ -37,6 +32,7 @@ public class UserServiceImp implements IUserService{
     CommentRepository commentRepository;
     PostRepository postRepository;
     ActivitiesRepository activitiesRepository;
+    AccountVerificationRepository accountVerificationRepository;
     private static final String key = "houssem";
     /**
      * @param simpleuser
@@ -52,7 +48,7 @@ public class UserServiceImp implements IUserService{
             simpleuser.setRole(User.Role.DEVELOPER);
             simpleuser.setEnabled(true);
             simpleuser.setImage("https://cdn-icons-png.flaticon.com/512/149/149071.png");
-            simpleuser.setNon_locked(false);
+            simpleuser.setNon_locked(true);
             simpleuser.setUsing_mfa(false);
             simpleuser.setCreated_date(new Date());
 
@@ -67,6 +63,8 @@ public class UserServiceImp implements IUserService{
             activity.setEmail(simpleuser.getEmail());
             activity.setActivity("account creation");
             activitiesRepository.save(activity);
+
+
 
             return "Account added successfully";
         } catch (Exception e) {
@@ -280,14 +278,9 @@ public class UserServiceImp implements IUserService{
         return "password sent seccesfuly";
     }
 
-    /**
-     * @param code
-     * @return
-     */
-    @Override
-    public boolean verifyaccount(String code) {
-        return false;
-    }
+
+
+
 
     /**
      * @param idtoremove
@@ -379,6 +372,8 @@ public class UserServiceImp implements IUserService{
     }
 
 
+
+
     // encript the password
         public static String encrypt(String text) {
             StringBuilder encrypted = new StringBuilder();
@@ -452,5 +447,7 @@ public class UserServiceImp implements IUserService{
             System.out.println("Error: " + e.toString());
         }
     }
+
+
 
 }

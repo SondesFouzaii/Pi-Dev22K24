@@ -75,6 +75,10 @@ public generatecard(id: number,code:string):Observable<void>{
   return this.http.put<void>(`${this.apiServerUrl}/add-card/${id}/${code}`, {});
 }
 
+public verifyaccount(code: string): Observable<string> {
+  return this.http.get<string>(`${this.apiServerUrl}/verifyaccount/${code}`);
+}
+
 
 //auth service
 setToken(token: string): void {

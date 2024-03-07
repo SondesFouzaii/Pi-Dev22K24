@@ -56,7 +56,7 @@ import { SignincardComponent } from './main/signincard/signincard.component';
     MatButtonModule,
     LayoutModule ,
     MatToolbarModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
