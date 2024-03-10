@@ -3,52 +3,60 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BackComponent } from './Back office/back/back.component';
-import { FooterComponent } from './Back office/back/footer/footer.component';
-import { HeaderComponent } from './Back office/back/header/header.component';
+import { BackofficeModule } from './backoffice/backoffice.module';
+import { FrontofficeModule } from './frontoffice/frontoffice.module';
+import { FrontofficeRoutingModule } from './frontoffice/frontoffice-routing.module';
+import { BackofficeRoutingModule } from './backoffice/backoffice-routing.module';
+import { NotfoundComponent } from './main/notfound/notfound.component';
+import { ResetComponent } from './main/reset/reset.component';
+import { SigninComponent } from './main/signin/signin.component';
+import { SignupComponent } from './main/signup/signup.component';
+import { VerifComponent } from './main/verif/verif.component';
+import { WelcomeComponent } from './main/welcome/welcome.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { MatNativeDateModule } from '@angular/material/core';
-import {MaterialExampleModule} from '../material.module';
-import {HttpClientModule} from '@angular/common/http';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
-import { NotfoundComponent } from './notfound/notfound.component';
-import { DashboardComponent } from './Back office/dashboard/dashboard.component';
-import { UsersComponent } from './Back office/users/users.component';
-import { UserdetailsComponent } from './Back office/userdetails/userdetails.component';
-import { RouterLink } from '@angular/router';
-import { FrontComponent } from './Front office/front/front.component';
-import { FrontdashboardComponent } from './Front office/frontdashboard/frontdashboard.component';
-import { FrontheaderComponent } from './Front office/front/frontheader/frontheader.component';
-import { FrontfooterComponent } from './Front office/front/frontfooter/frontfooter.component';
-import { MyprofileComponent } from './Front office/myprofile/myprofile.component';
-import { ProfileComponent } from './Front office/profile/profile.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SignincardComponent } from './main/signincard/signincard.component';
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    BackComponent,
-    FooterComponent,
-    HeaderComponent,
+    NotfoundComponent,
+    ResetComponent,
     SigninComponent,
     SignupComponent,
-    NotfoundComponent
+    VerifComponent,
+    WelcomeComponent,
+    SignincardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BackofficeModule,
+    FrontofficeModule,
+    FrontofficeRoutingModule,
+    BackofficeRoutingModule,
     FormsModule,
-    BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatToolbarModule,
-    HttpClientModule,
-    MatNativeDateModule,
-    MaterialExampleModule,
     ReactiveFormsModule,
-    RouterLink
+    BrowserAnimationsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule ,
+    MatToolbarModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -21,6 +21,17 @@ spring:
     init:
       mode: never
       continue-on-error: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: houssemjallouli99@gmail.com
+    password: uujtoekvvvctgxsq
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 
 ### SERVER CONFIGURATION ###
@@ -28,6 +39,10 @@ server:
   servlet:
     context-path: /codemasters
   port: 8089
+
+  ### mail
+
+
 
 
 

@@ -22,23 +22,25 @@ public class User {
         //String name;
         String first_name;
         String last_name;
+        @Column(unique = true)
+        String email;
+        String password;
+
+        String image;
+
+        @Enumerated(EnumType.STRING)
+        Role role;
         @Temporal(TemporalType.DATE)
         Date birth_date;
         @Enumerated(EnumType.STRING)
         Gender gender;
         String address;
         String phone_number;
-        @Column(unique = true)
-        String email;
-        String password;
-        String image;
         String status;
-        @Enumerated(EnumType.STRING)
-        Role role;
         String barrcode;
-        boolean enabled;
-        boolean non_locked;
-        boolean using_mfa;
+        boolean enabled;//only the admin can update that
+        boolean non_locked;//on creation by a simple user the account need to be verified
+        boolean using_mfa;// inder construction
         @Temporal(TemporalType.DATE)
         Date created_date;
 

@@ -17,9 +17,9 @@ public class AccountVerification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String url;
+    String code;
     Date date;
+    Boolean active;
+    String email;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    User user;
 }

@@ -2,14 +2,24 @@ package tn.esprit.codemasters.service.houssem;
 
 import tn.esprit.codemasters.entity.Test;
 import tn.esprit.codemasters.entity.Test;
+import tn.esprit.codemasters.entity.UserTest;
 
 import java.util.List;
 
 public interface ITestService {
-    public List<Test> retrieveAllTests(); 
-    public Test retrieveTest(Long TestId);
-    public Test addTest(Test c);
-    public void activedesactiver(Long TestId);
-    public Test modifyTest(Test test);
+    public String addTest(Test test);
+    public void activateanactivate(Long testId);
+    public String modifyTest(Test test);
+    public List<Test> retrieveAllTests();
+    public Test retrieveTest(Long testId);
+    public String addquestiontotest(Long idTest,Long idQustion);
+    public void deletequestion(Long questionId);
 
+//
+//
+//
+//
+//
+    public void addusertest(UserTest userTest);
+    public List<UserTest> showalltests();
 }
