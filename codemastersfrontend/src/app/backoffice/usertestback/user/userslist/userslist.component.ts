@@ -78,4 +78,8 @@ roleLista() {
     }
   );
 }
+
+countUsersByRole(role: string): number {
+  return this.users.filter(user => user.role === role).length;
+}
 }

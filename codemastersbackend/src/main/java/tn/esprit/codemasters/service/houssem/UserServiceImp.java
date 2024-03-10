@@ -212,11 +212,16 @@ public class UserServiceImp implements IUserService{
      * @return
      */
     @Override
-    public String updatePWDUser(Long userid, String pwd) {
+    public String updatePWDUser(Long userid,String oldpwd,String pwd) {
         User user=userRepository.findById(userid).orElse(null);
-        user.setPassword(encrypt(pwd));
-        userRepository.save(user);
-        return "password updated succesfully";
+        assert user != null;
+        if (decrypt(user.getPassword()).equals(oldpwd)){
+            user.setPassword(encrypt(pwd));
+            userRepository.save(user);
+            return "password updated succesfully";
+        }else {
+            return "Wrong password";
+        }
     }
 
     /**

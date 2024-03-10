@@ -19,7 +19,7 @@ public class AccountVerification {
     long id;
     String code;
     Date date;
-    Boolean delete;
+    Boolean active;
     String email;
 
 }

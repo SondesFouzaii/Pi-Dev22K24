@@ -14,7 +14,7 @@ public interface IUserService {
     public User retrieveUser(Long userid);
     public String updateUser(User user);
     public String updatepersonalinformations(User user);
-    public String updatePWDUser(Long userid,String pwd);
+    public String updatePWDUser(Long userid,String oldpwd,String pwd);
     public String updateImgUser(Long userid,String image);
     public List<User> retrieveAllUsers();
     public void blockunblock(Long userid);

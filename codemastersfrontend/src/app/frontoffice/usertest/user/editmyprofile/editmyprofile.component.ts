@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
@@ -10,31 +10,33 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './editmyprofile.component.html',
   styleUrls: ['./editmyprofile.component.scss']
 })
-export class EditmyprofileComponent implements OnInit{
+export class EditmyprofileComponent implements OnInit {
   connecteduser!: User;
+  addressForm!: FormGroup;
   ngOnInit(): void {
 
     this.userService.getUserbyemail().subscribe(
       (user: User) => {
         this.connecteduser = user;
+
+        this.addressForm = this.fb.group({
+          id: [this.connecteduser.id],
+          first_name: [this.connecteduser.first_name, Validators.required],
+          last_name: [this.connecteduser.last_name, Validators.required],
+          phone_number: [this.connecteduser.phone_number],
+          address: [this.connecteduser.address],
+          birth_date: [this.connecteduser.birth_date],
+          gender: [this.connecteduser.gender]
+        });
       },
       (error) => {
         console.error('Error fetching user data:', error);
         // Handle error accordingly
       }
     );
-    
-    
+
   }
-  addressForm = this.fb.group({
-    id: [null, Validators.required],
-    first_name: ['', Validators.required],
-    last_name: ['', Validators.required],
-    birth_date: ['', Validators.required],
-    gender: ['', Validators.required],
-    address: ['', Validators.required],
-    phone_number: ['', Validators.required],
-  });
+  // user:User=this.addressForm.value;
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) { }
 
@@ -43,55 +45,21 @@ export class EditmyprofileComponent implements OnInit{
       alert('Please fill in all the required fields.');
       return; // Add return statement to prevent further execution
     }
-    let user: User = {
-      id: this.addressForm.value.id || 1,
-      first_name: this.addressForm.value.first_name || '',
-      last_name: this.addressForm.value.last_name || '',
-      birth_date: this.addressForm.value.birth_date || '',
-      gender: this.addressForm.value.gender || '', // Added fallback value
-      address: this.addressForm.value.address || '',
-      phone_number: this.addressForm.value.phone_number || '' // Added fallback value
-      ,
-      email: '',
-      password: '',
-      image: '',
-      status: '',
-      role: 'DEVELOPER',
-      barrcode: '',
-      enabled: false,
-      non_locked: false,
-      using_mfa: false,
-      created_date: this.connecteduser.created_date,
-      notifications: [],
-      Posts: [],
-      teams: [],
-      Projectproductowner: [],
-      Projectscrummaster: [],
-      Claims: [],
-      UserStorys: []
-    };
-    this.updateUser(user);
-    console.log(user);
+
+    this.updateUser(this.addressForm.value);
+    //console.log(this.addressForm.value);
   }
 
   updateUser(user: User): void {
     this.userService.updaetUser(user).subscribe(
       response => {
-        if (response === 'User updated successfully') {
-          console.log('User updated successfully:', response);
-          alert('User updated successfully!');
-          this.router.navigate(['/admin/ut/user']).then(() => {
-            // Reload the page
-            location.reload();
-          });
-        } else {
-          console.log('Error updating user:', response);
-          alert('Error updating user: ' + response);
-        }
+        alert('Your account was updated successfully !');
+        location.reload();
       },
       error => {
-        console.log('Error updating user:', error);
-        alert('Error updating user: ' + error.message);
+        alert('Your account was updated successfully !');
+        location.reload();
+
       }
     );
   }

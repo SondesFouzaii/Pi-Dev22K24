@@ -2,13 +2,8 @@ package tn.esprit.codemasters.service.houssem;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import tn.esprit.codemasters.entity.Question;
-import tn.esprit.codemasters.entity.QuestionOption;
-import tn.esprit.codemasters.entity.Test;
-import tn.esprit.codemasters.entity.User;
-import tn.esprit.codemasters.repository.QuestionOptionRepository;
-import tn.esprit.codemasters.repository.QuestionRepository;
-import tn.esprit.codemasters.repository.TestRepository;
+import tn.esprit.codemasters.entity.*;
+import tn.esprit.codemasters.repository.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +16,8 @@ TestRepository testRepository;
 QuestionRepository questionRepository;
 QuestionOptionRepository questionOptionRepository;
 
+UserRepository userRepository;
+UserTestRepository userTestRepository;
     /**
      * @param test
      * @return
@@ -102,5 +99,19 @@ QuestionOptionRepository questionOptionRepository;
     @Override
     public void deletequestion(Long questionId) {
 
+    }
+
+    @Override
+    public void addusertest(UserTest userTest) {
+        User user=userTest.getUser();
+        Test test=userTest.getTest();
+        userTest.setUser(user);
+        userTest.setTest(test);
+        userTestRepository.save(userTest);
+    }
+
+    @Override
+    public List<UserTest> showalltests() {
+        return userTestRepository.findAll();
     }
 }

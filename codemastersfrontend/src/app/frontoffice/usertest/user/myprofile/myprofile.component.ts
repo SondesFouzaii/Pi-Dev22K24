@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Activities } from 'src/app/models/activitie';
 import { User } from 'src/app/models/user';
@@ -12,6 +13,12 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./myprofile.component.scss']
 })
 export class MyprofileComponent implements OnInit {
+  msg!:string;
+  msge!:string;
+  passwordForm!: FormGroup;
+oldpwd!:string;
+newpwd!:string;
+newpwd2!:string;
   connecteduser!: User;
   imgtest!: any ;
   constructor(private serv: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
@@ -55,4 +62,26 @@ export class MyprofileComponent implements OnInit {
       this.imgtest = file.name;
     }
   }
+
+  onSubmit(): void {
+    if (this.newpwd == this.newpwd2 && this.newpwd.length > 5) {
+      this.serv.updatePasswd(this.connecteduser.id, this.oldpwd, this.newpwd).subscribe(
+        response => {
+          // Handle success response
+          this.msg = response.toString(); // Assuming response contains a success message
+          
+        },
+        error => {
+          // Handle error response
+          this.msg = error.error.text; // Access error message correctly
+          console.log(this.msge);
+        }
+      );
+    } else {
+      // Display an error message if conditions are not met
+      this.msg = "New password and confirmation password don't match or the password length is less than 6 characters.";
+    }
+  }
+  
+
 }

@@ -20,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ActivitiesComponent } from './activities/activities.component';
 import { QRCodeModule } from 'angularx-qrcode';
+
 @NgModule({
   declarations: [
     UserslistComponent,

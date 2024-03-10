@@ -71,6 +71,11 @@ public restPasswd(mail:string): Observable<string> {
   return this.http.get<string>(`${this.apiServerUrl}/getpassword/${mail}`);
 }
 
+public updatePasswd(id:number,oldp:string,newp:string): Observable<string> {
+  return this.http.get<string>(`${this.apiServerUrl}/update-password/${id}/${oldp}/${newp}`);
+}
+
+
 public generatecard(id: number,code:string):Observable<void>{
   return this.http.put<void>(`${this.apiServerUrl}/add-card/${id}/${code}`, {});
 }

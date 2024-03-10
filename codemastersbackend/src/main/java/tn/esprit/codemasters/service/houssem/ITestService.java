@@ -2,6 +2,7 @@ package tn.esprit.codemasters.service.houssem;
 
 import tn.esprit.codemasters.entity.Test;
 import tn.esprit.codemasters.entity.Test;
+import tn.esprit.codemasters.entity.UserTest;
 
 import java.util.List;
 
@@ -19,5 +20,6 @@ public interface ITestService {
 //
 //
 //
-
+    public void addusertest(UserTest userTest);
+    public List<UserTest> showalltests();
 }

@@ -102,6 +102,11 @@ public class UserRestController {
         userService.addcard(id,Code);
     }
 
+    @GetMapping("/update-password/{userid}/{oldpwd}/{pwd}")
+    public String updatePWDUser(@PathVariable ("userid") Long userid,@PathVariable ("oldpwd") String oldpwd,@PathVariable ("pwd")String pwd){
+        return userService.updatePWDUser(userid,oldpwd,pwd);
+    }
+
 
 
 }
