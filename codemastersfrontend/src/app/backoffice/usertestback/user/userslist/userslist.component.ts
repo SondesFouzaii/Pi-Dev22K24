@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserslistComponent implements OnInit{
   emailsearch: string='.';
-  isempty:boolean=this.emailsearch!=='';
+  isempty:boolean=this.emailsearch!==''
   selectedRole!:string;
   Rolelist:String[]=[]
   displayrole:boolean[]=[];
@@ -18,7 +19,7 @@ export class UserslistComponent implements OnInit{
   cr(ii:number){
     this.displayrole[ii]=!this.displayrole[ii];
   }
-  constructor(private uservice:UserService) { }
+  constructor(private uservice:UserService,private router: Router) { }
   ngOnInit(): void {
     this.emailsearch='';
     this.roleLista();
@@ -82,4 +83,5 @@ roleLista() {
 countUsersByRole(role: string): number {
   return this.users.filter(user => user.role === role).length;
 }
+
 }

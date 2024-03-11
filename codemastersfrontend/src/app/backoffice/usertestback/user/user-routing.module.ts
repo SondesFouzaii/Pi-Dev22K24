@@ -8,13 +8,14 @@ import { ActivitiesComponent } from './activities/activities.component';
 const routes: Routes = [
   { path: 'add', component: AddaccountComponent },
   { path: 'activities', component: ActivitiesComponent },
-  {
-    path: '', component: UserslistComponent, children: [
-      { path: 'details/:id', component: UserdetailsComponent },
-      { path: '', redirectTo: '/back/ut/user', pathMatch: 'full' }
+  { path: 'details/:id', component: UserdetailsComponent },
+  { path: '', redirectTo: '/back/ut/user', pathMatch: 'full' }, 
+  { path: '', component: UserslistComponent, children: [
+      // Optional children routes can be added here
     ]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -14,7 +14,7 @@ export class UserdetailsComponent {
   user!: User;
   value = 'Clear me';
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private uservice: UserService) {
+  constructor(private activatedRoute: ActivatedRoute, private uservice: UserService) {
   }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -34,20 +34,20 @@ export class UserdetailsComponent {
     );
   }
 
-  delete(id: number): void {
-    console.log("test");
-    this.uservice.deleteUser(id).subscribe(
-      () => {
-        this.router.navigate(['/back/ut/user']).then(() => {
-          // Reload the page
-          location.reload();
-        });
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }
+  // delete(id: number): void {
+  //   console.log("test");
+  //   this.uservice.deleteUser(id).subscribe(
+  //     () => {
+  //       this.router.navigate(['/back/ut/user']).then(() => {
+  //         // Reload the page
+  //         location.reload();
+  //       });
+  //     },
+  //     (error: HttpErrorResponse) => {
+  //       alert(error.message);
+  //     }
+  //   );
+  // }
 
   generatecard(id:number,code:string){
         this.uservice.generatecard(id,code).subscribe(() => {

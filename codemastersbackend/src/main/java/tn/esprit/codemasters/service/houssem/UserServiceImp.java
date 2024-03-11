@@ -255,7 +255,6 @@ public class UserServiceImp implements IUserService{
             user.setEnabled(true);
         else
             user.setEnabled(false);
-
         userRepository.save(user);
     }
 
