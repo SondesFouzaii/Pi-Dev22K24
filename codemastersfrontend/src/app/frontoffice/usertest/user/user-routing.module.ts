@@ -7,7 +7,6 @@ import { EditmyprofileComponent } from './editmyprofile/editmyprofile.component'
 const routes: Routes = [
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'myprofile', component: MyprofileComponent },
-  { path: 'manageaccount', component: EditmyprofileComponent },
   { path: '', redirectTo: '/front/ut/user/myprofile', pathMatch: 'full' },
 ];
 

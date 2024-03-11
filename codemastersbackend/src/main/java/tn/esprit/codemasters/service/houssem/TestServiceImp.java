@@ -80,7 +80,7 @@ UserTestRepository userTestRepository;
      */
     @Override
     public Test retrieveTest(Long testId) {
-        return null;
+        return testRepository.findById(testId).orElse(null);
     }
 
     /**

@@ -26,6 +26,11 @@ public class TestRestController {
         return testService.retrieveAllTests();
     }
 
+    @GetMapping("/retrieve-test/{id}")
+    public Test retrieveTest(@PathVariable ("id") Long id) {
+        return testService.retrieveTest(id);
+    }
+
 
 
     @PostMapping("/pass-test")
