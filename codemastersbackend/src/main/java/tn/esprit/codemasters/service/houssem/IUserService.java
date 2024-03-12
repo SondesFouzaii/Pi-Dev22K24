@@ -1,9 +1,8 @@
 package tn.esprit.codemasters.service.houssem;
 
 import org.springframework.http.ResponseEntity;
-import tn.esprit.codemasters.entity.Activities;
-import tn.esprit.codemasters.entity.Comment;
-import tn.esprit.codemasters.entity.User;
+import tn.esprit.codemasters.entity.user.Activities;
+import tn.esprit.codemasters.entity.user.User;
 
 import java.util.List;
 

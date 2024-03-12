@@ -26,4 +26,7 @@ this.getalltests();
       }
     );
   }
+  getActiveTests(): Test[] {
+    return this.tests.filter(test => test.active);
+  }
 }

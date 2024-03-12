@@ -3,6 +3,8 @@ package tn.esprit.codemasters.service.houssem;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.codemasters.entity.*;
+import tn.esprit.codemasters.entity.quiz.*;
+import tn.esprit.codemasters.entity.user.User;
 import tn.esprit.codemasters.repository.*;
 
 import java.util.HashSet;
@@ -100,6 +102,41 @@ UserTestRepository userTestRepository;
     public void deletequestion(Long questionId) {
 
     }
+
+    @Override
+    public void importquiz(Quizimport quiz) {
+        QQuizimport[] qQuizimport = quiz.getQuizz();
+        Test test = new Test();
+        test.setTitle(quiz.getNom());
+
+        Set<Question> questions = new HashSet<>();
+        for (QQuizimport q : qQuizimport) {
+            Question question = new Question();
+            question.setQuestion(q.getQuestion());
+
+            Set<QuestionOption> options = new HashSet<>();
+            String[] propositions = q.getPropositions();
+            String ans = q.getRéponse();
+            for (String proposition : propositions) {
+                QuestionOption option = new QuestionOption();
+                option.setAnswer(proposition);
+                if (option.getAnswer().equals(ans)) {
+                    option.setIscorrect(true);
+                } else {
+                    option.setIscorrect(false);
+                }
+                options.add(option);
+            }
+
+            question.setQuestionOptions(options);
+            questions.add(question);
+        }
+
+        test.setActive(true);
+        test.setQuestions(questions);
+        testRepository.save(test);
+        }
+
 
     @Override
     public void addusertest(UserTest userTest) {

@@ -1,10 +1,10 @@
-package tn.esprit.codemasters.entity;
+package tn.esprit.codemasters.entity.quiz;
 
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -13,14 +13,13 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
-public class ResetPasswordVerification {
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    @Column(unique = true)
-    String url;
-    Date date;
+    String question;
+    String image;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    User user;
-}
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<QuestionOption> questionOptions;
+    }

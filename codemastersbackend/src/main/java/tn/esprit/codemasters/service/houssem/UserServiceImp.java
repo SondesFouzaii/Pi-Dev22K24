@@ -6,24 +6,18 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import tn.esprit.codemasters.entity.*;
+import tn.esprit.codemasters.entity.user.Activities;
+import tn.esprit.codemasters.entity.user.User;
 import tn.esprit.codemasters.repository.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
-import java.util.UUID;
+
 @Slf4j
 @Service
 @AllArgsConstructor

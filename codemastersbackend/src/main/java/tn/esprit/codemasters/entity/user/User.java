@@ -1,9 +1,10 @@
-package tn.esprit.codemasters.entity;
+package tn.esprit.codemasters.entity.user;
 
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.UniqueElements;
+import tn.esprit.codemasters.entity.*;
 
 import java.util.Date;
 import java.util.Set;

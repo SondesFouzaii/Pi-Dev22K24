@@ -1,10 +1,10 @@
-package tn.esprit.codemasters.entity;
+package tn.esprit.codemasters.entity.quiz;
 
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import tn.esprit.codemasters.entity.UserTest;
 
-import java.util.Date;
 import java.util.Set;
 
 @Entity

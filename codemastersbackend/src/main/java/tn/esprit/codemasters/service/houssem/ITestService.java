@@ -1,7 +1,7 @@
 package tn.esprit.codemasters.service.houssem;
 
-import tn.esprit.codemasters.entity.Test;
-import tn.esprit.codemasters.entity.Test;
+import tn.esprit.codemasters.entity.quiz.Quizimport;
+import tn.esprit.codemasters.entity.quiz.Test;
 import tn.esprit.codemasters.entity.UserTest;
 
 import java.util.List;
@@ -14,6 +14,7 @@ public interface ITestService {
     public Test retrieveTest(Long testId);
     public String addquestiontotest(Long idTest,Long idQustion);
     public void deletequestion(Long questionId);
+    public void importquiz(Quizimport quiz);
 
 //
 //

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Test } from '../models/test';
 import { Observable } from 'rxjs';
+import { Quiz } from '../models/quiz';
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +20,12 @@ export class QuizService {
     return this.http.get<Test>(`${this.apiServerUrl}/retrieve-test/${id}`);
   } 
 
+  addQuiz(quiz: Quiz): Observable<void> {
+    return this.http.post<void>(`${this.apiServerUrl}/add-quiz`, quiz);
+  }
+
+  public activateanactivate(userId: number):Observable<void>{
+    return this.http.put<void>(`${this.apiServerUrl}/activateanactivate/${userId}`, {});
+  }
+  
 }
