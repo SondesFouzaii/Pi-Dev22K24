@@ -1,0 +1,40 @@
+<main class="main-wrapper">
+    <div class="container-fluid">
+        <p>availabletests works!</p>
+
+        <div class="row">
+            <div class="col-xxl-3 col-lg-6" *ngFor="let t of getActiveTests()">
+
+                <div class="card border-0">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between gap-4">
+                            <div class="avatar-img w-auto rounded-2 overflow-hidden flex-shrink-0">
+                                <img [src]="t.image" alt="img" width="80">
+                            </div>
+                            <div class="dropdown">
+                                <a href="#" data-bs-toggle="dropdown" class="fs-24">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </a>
+                                <div class="dropdown-menu p-0">
+                                    <a class="dropdown-item" href="candidate.html">View Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content mt-4">
+                            <h5 class="mb-1">{{ t.title }} - <span class="text-primary">{{ t.description }}</span>
+                            </h5>
+                            <small class="d-inline-block text-gray fs-14 fw-normal">{{ t.id }}</small>
+                        </div>
+                        <div
+                            class="d-flex align-items-center justify-content-between gap-3 flex-wrap btn-width-equal mt-4">
+                            <a [routerLink]="['../passatest', t.id]"
+                                class="btn btn-primary ff-heading fs-14 fw-bold">Start the Test</a>
+                            <a href="candidate.html" class="btn btn-muted ff-heading fs-14 fw-bold text-primary">View
+                                Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

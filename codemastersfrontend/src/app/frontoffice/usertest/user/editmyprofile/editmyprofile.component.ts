@@ -28,6 +28,7 @@ export class EditmyprofileComponent implements OnInit {
           birth_date: [this.connecteduser.birth_date],
           gender: [this.connecteduser.gender]
         });
+        this.roleLista();
       },
       (error) => {
         console.error('Error fetching user data:', error);
@@ -63,4 +64,22 @@ export class EditmyprofileComponent implements OnInit {
       }
     );
   }
+
+
+
+
+
+  //gender
+  genderList: string[] = [];
+
+roleLista() {
+  this.userService.getGenders().subscribe(
+    (response: string[]) => {
+      this.genderList = response;
+    },
+    (error) => {
+      console.error('Error fetching roles:', error);
+    }
+  );
+}
 }

@@ -1,11 +1,10 @@
-package tn.esprit.codemasters.entity;
+package tn.esprit.codemasters.entity.user;
 
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -14,11 +13,13 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
-public class Activities {
+public class AccountVerification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String activity;
+    String code;
     Date date;
+    Boolean active;
     String email;
-    }
+
+}
