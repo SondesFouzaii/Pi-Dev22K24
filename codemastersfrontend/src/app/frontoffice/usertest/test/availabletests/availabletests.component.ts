@@ -38,7 +38,7 @@ tests: Test[] = [];
     this.getTests(); // Initial call to fetch tests
     this.interval = setInterval(() => {
       this.getTests(); // Fetch tests at fixed intervals
-    }, 1000);
+    }, 5000);
   }
 
   ngOnDestroy(): void {

@@ -1,5 +1,6 @@
 package tn.esprit.codemasters.entity.quiz;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,6 +24,7 @@ public class Test {
     String image;
     boolean active;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy="test")
     private Set<UserTest> userTests;
 

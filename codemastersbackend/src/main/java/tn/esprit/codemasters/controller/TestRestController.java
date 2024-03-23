@@ -3,6 +3,7 @@ package tn.esprit.codemasters.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.codemasters.entity.quiz.ApiOpenquizzdb;
+import tn.esprit.codemasters.entity.quiz.Question;
 import tn.esprit.codemasters.entity.quiz.Quizimport;
 import tn.esprit.codemasters.entity.quiz.Test;
 import tn.esprit.codemasters.entity.UserTest;
@@ -52,9 +53,30 @@ public class TestRestController {
         testService.activateanactivate(testId);
     }
 
-        @PostMapping("/add-quiz-api")
+    @PostMapping("/add-quiz-api")
     public void addtestwithapi(@RequestBody List<ApiOpenquizzdb> apiOpenquizzdbs) {
         testService.addtestwithapi(apiOpenquizzdbs);
     }
+
+    @DeleteMapping("/delete/{testId}")
+    public void deletetest(@PathVariable("testId") Long testId) {
+        testService.deletetest(testId);
+    }
+
+    @PutMapping("/updatetest/{id}/{title}/{description}")
+    public String modifyTest(@PathVariable("id") Long id,@PathVariable("title") String title,@PathVariable("description") String description){
+        return testService.modifyTest(id,title,description);
+    }
+
+    @DeleteMapping("/deletequestion/{id}")
+    public void deletequestion(@PathVariable("id") Long id) {
+        testService.deletequestion(id);
+    }
+
+    @PostMapping("/add-question/{id}")
+    public String addquestiontotest(@PathVariable("id") Long id, @RequestBody Question question){
+        return testService.addquestiontotest(id,question);
+    }
+
 
 }

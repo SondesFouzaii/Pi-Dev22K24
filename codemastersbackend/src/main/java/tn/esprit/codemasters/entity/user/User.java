@@ -1,5 +1,6 @@
 package tn.esprit.codemasters.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -77,6 +78,7 @@ public class User {
     private Set<UserStory> userStorys;
 
     //test
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
     private Set<UserTest> userTests;
 }

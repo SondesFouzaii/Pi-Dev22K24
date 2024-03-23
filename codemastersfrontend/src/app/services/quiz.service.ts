@@ -4,15 +4,17 @@ import { Router } from '@angular/router';
 import { Test } from '../models/test';
 import { Observable, map } from 'rxjs';
 import { Quiz } from '../models/quiz';
+import { Question } from '../models/question';
+import { UserTest } from '../models/usertest';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
   private apiUrl = 'https://api.pexels.com/v1/';
-  private apiKey = '3HmHyURxliuydDWldMrrWvTw7Pq7mF4jpOoYf50Pd1oOdNifZv9JW6IY';
-  private apiServerUrl='http://localhost:8089/codemasters/quiz';
-  constructor(private http:HttpClient,private router: Router) { }
+  private apiKey = '3HmjnHyURxliuydjkOoYf50Pd1oOdNifZv9JW6IY';
+  private apiServerUrl = 'http://localhost:8089/codemasters/quiz';
+  constructor(private http: HttpClient, private router: Router) { }
 
   getImageUrl(query: string): Observable<string> {
     const url = `${this.apiUrl}search/photos?query=${encodeURIComponent(query)}&per_page=1`;
@@ -28,28 +30,52 @@ export class QuizService {
     );
   }
 
-  public getTests():Observable<Test[]>{
+
+  public deletetest(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/delete/${id}`);
+  }
+
+  public deletequestion(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/deletequestion/${id}`);
+  }
+  public getTests(): Observable<Test[]> {
     return this.http.get<any>(`${this.apiServerUrl}/retrieve-all-tests`);
-  } 
+  }
 
-  public getatest(id: number):Observable<Test>{
+  public getatest(id: number): Observable<Test> {
     return this.http.get<Test>(`${this.apiServerUrl}/retrieve-test/${id}`);
-  } 
+  }
 
-  addQuiz(quiz: Quiz,img:string): Observable<void> {
+  addQuiz(quiz: Quiz, img: string): Observable<void> {
     return this.http.post<void>(`${this.apiServerUrl}/add-quiz/${img}`, quiz);
   }
 
-  public activateanactivate(userId: number):Observable<void>{
+  public activateanactivate(userId: number): Observable<void> {
     return this.http.put<void>(`${this.apiServerUrl}/activateanactivate/${userId}`, {});
   }
 
-  public getaquestion(link: any):Observable<any>{
+  public getaquestion(link: any): Observable<any> {
     return this.http.get<any>(`${link}`);
-  } 
+  }
 
   addQuizApi(quizs: any[]): Observable<void> {
     return this.http.post<void>(`${this.apiServerUrl}/add-quiz-api`, quizs);
   }
-  
+
+  public modifyTest(id: number, title: string, description: string): Observable<string> {
+    return this.http.put<string>(`${this.apiServerUrl}/updatetest/${id}/${title}/${description}`, {});
+  }
+
+  addQuestion(id: number, question: Question): Observable<void> {
+    return this.http.post<void>(`${this.apiServerUrl}/add-question/${id}`, question);
+  }
+
+  passAtest(usertest: UserTest): Observable<void> {
+    return this.http.post<void>(`${this.apiServerUrl}/pass-test`, usertest);
+  }
+
+  public getquizhistory(): Observable<UserTest[]> {
+    return this.http.get<any>(`${this.apiServerUrl}/retrieve-all-passed`);
+  }
+
 }
