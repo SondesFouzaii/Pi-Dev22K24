@@ -11,7 +11,9 @@ import { QuizService } from 'src/app/services/quiz.service';
   styleUrls: ['./passatest.component.scss']
 })
 export class PassatestComponent implements OnInit {
+  
   constructor(private quizservice: QuizService, private activateroute: ActivatedRoute) { }
+
   showWarning: boolean = false;
   isQuizStarted: boolean = false;
   currentQuestionNumber: number = 0;
@@ -24,6 +26,8 @@ export class PassatestComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.activateroute.snapshot.params['id']
     this.gettestbyid();
+// Call searchImage method somewhere in your component
+
 
   }
 
@@ -58,6 +62,7 @@ export class PassatestComponent implements OnInit {
         element.unsubscribe();
       })
     }
+
   }
 
 

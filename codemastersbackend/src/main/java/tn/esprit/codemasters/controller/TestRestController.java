@@ -2,6 +2,7 @@ package tn.esprit.codemasters.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.codemasters.entity.quiz.ApiOpenquizzdb;
 import tn.esprit.codemasters.entity.quiz.Quizimport;
 import tn.esprit.codemasters.entity.quiz.Test;
 import tn.esprit.codemasters.entity.UserTest;
@@ -19,10 +20,11 @@ public class TestRestController {
         return testService.addTest(test);
     }
 
-    @PostMapping("/add-quiz")
-    public void importquiz(@RequestBody Quizimport quiz) {
+    @PostMapping("/add-quiz/{img}")
+    public void importquiz(@RequestBody Quizimport quiz,@PathVariable("img") String img) {
         //https://openquizzdb.org/media/cover/oqdb_quizz_204.jpg
-         testService.importquiz(quiz);
+        String image="https://openquizzdb.org/media/cover/oqdb_quizz_"+img+".jpg";
+         testService.importquiz(quiz,image);
     }
 
     @GetMapping("/retrieve-all-tests")
@@ -48,6 +50,11 @@ public class TestRestController {
     @PutMapping("/activateanactivate/{testId}")
     public void activateanactivate(@PathVariable("testId") Long testId) {
         testService.activateanactivate(testId);
+    }
+
+        @PostMapping("/add-quiz-api")
+    public void addtestwithapi(@RequestBody List<ApiOpenquizzdb> apiOpenquizzdbs) {
+        testService.addtestwithapi(apiOpenquizzdbs);
     }
 
 }

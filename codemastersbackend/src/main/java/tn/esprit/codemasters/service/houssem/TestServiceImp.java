@@ -104,7 +104,7 @@ UserTestRepository userTestRepository;
     }
 
     @Override
-    public void importquiz(Quizimport quiz) {
+    public void importquiz(Quizimport quiz,String imgnbr) {
         QQuizimport[] qQuizimport = quiz.getQuizz();
         Test test = new Test();
         test.setTitle(quiz.getNom());
@@ -131,7 +131,7 @@ UserTestRepository userTestRepository;
             question.setQuestionOptions(options);
             questions.add(question);
         }
-
+        test.setImage(imgnbr);
         test.setActive(true);
         test.setQuestions(questions);
         testRepository.save(test);
@@ -150,5 +150,40 @@ UserTestRepository userTestRepository;
     @Override
     public List<UserTest> showalltests() {
         return userTestRepository.findAll();
+    }
+
+    @Override
+    public void addtestwithapi(List<ApiOpenquizzdb> apiOpenquizzdbs) {
+        Test test=new Test();
+        ApiOpenquizzdb anyone =apiOpenquizzdbs.get(0);
+        test.setTitle(anyone.getCategorie());
+        test.setDescription("a simple test about "+anyone.getCategorie()+" in"+anyone.getLangue()+" and the difficulti is : "+anyone.getDifficulte());
+        test.setImage("assets/img/quiz/"+anyone.getCategorie()+".png");
+        Set<Question> questions=new HashSet<>();
+        for (ApiOpenquizzdb q : apiOpenquizzdbs) {
+            Question question = new Question();
+            question.setQuestion(q.getQuestion());
+            question.setImage(anyone.getTheme());
+            Set<QuestionOption> options = new HashSet<>();
+            String[] propositions = q.getAutres_choix();
+            String ans = q.getReponse_correcte();
+            for (String proposition : propositions) {
+                QuestionOption option = new QuestionOption();
+                option.setAnswer(proposition);
+                if (option.getAnswer().equals(ans)) {
+                    option.setIscorrect(true);
+                } else {
+                    option.setIscorrect(false);
+                }
+                options.add(option);
+            }
+
+            question.setQuestionOptions(options);
+            questions.add(question);
+        }
+        test.setActive(true);
+        test.setQuestions(questions);
+        testRepository.save(test);
+
     }
 }

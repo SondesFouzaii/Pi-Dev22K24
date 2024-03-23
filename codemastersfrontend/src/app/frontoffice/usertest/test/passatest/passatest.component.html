@@ -62,6 +62,8 @@
                     <div class="card-body p-0 text-center">
                         <h5 class="card-title mt-4">
                             {{(test.questions)[currentQuestionNumber].question}}
+                           
+                            
                         </h5>
                         <div class="list-group list-group-flush">
                             <button type="button"
@@ -70,6 +72,11 @@
                                 *ngFor="let option of (test.questions)[currentQuestionNumber].questionOptions">
                                 {{option.answer}}
                             </button>
+                        </div>
+                        /////////////////////////////////
+                        <div *ngIf="(test.questions)[currentQuestionNumber].image">
+                            {{(test.questions)[currentQuestionNumber].image}}
+                            <img [src]="(test.questions)[currentQuestionNumber].image" alt="">
                         </div>
                     </div>
                     <div class="card-footer bg-white border-0">

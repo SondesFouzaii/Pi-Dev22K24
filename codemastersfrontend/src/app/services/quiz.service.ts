@@ -2,15 +2,31 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Test } from '../models/test';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Quiz } from '../models/quiz';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
+  private apiUrl = 'https://api.pexels.com/v1/';
+  private apiKey = '3HmHyURxliuydDWldMrrWvTw7Pq7mF4jpOoYf50Pd1oOdNifZv9JW6IY';
   private apiServerUrl='http://localhost:8089/codemasters/quiz';
   constructor(private http:HttpClient,private router: Router) { }
+
+  getImageUrl(query: string): Observable<string> {
+    const url = `${this.apiUrl}search/photos?query=${encodeURIComponent(query)}&per_page=1`;
+    const headers = { Authorization: this.apiKey };
+    return this.http.get<any>(url, { headers }).pipe(
+      map(response => {
+        if (response && response.photos && response.photos.length > 0) {
+          return response.photos[0].src.large2x;
+        } else {
+          throw new Error('No images found for the query.');
+        }
+      })
+    );
+  }
 
   public getTests():Observable<Test[]>{
     return this.http.get<any>(`${this.apiServerUrl}/retrieve-all-tests`);
@@ -20,12 +36,20 @@ export class QuizService {
     return this.http.get<Test>(`${this.apiServerUrl}/retrieve-test/${id}`);
   } 
 
-  addQuiz(quiz: Quiz): Observable<void> {
-    return this.http.post<void>(`${this.apiServerUrl}/add-quiz`, quiz);
+  addQuiz(quiz: Quiz,img:string): Observable<void> {
+    return this.http.post<void>(`${this.apiServerUrl}/add-quiz/${img}`, quiz);
   }
 
   public activateanactivate(userId: number):Observable<void>{
     return this.http.put<void>(`${this.apiServerUrl}/activateanactivate/${userId}`, {});
+  }
+
+  public getaquestion(link: any):Observable<any>{
+    return this.http.get<any>(`${link}`);
+  } 
+
+  addQuizApi(quizs: any[]): Observable<void> {
+    return this.http.post<void>(`${this.apiServerUrl}/add-quiz-api`, quizs);
   }
   
 }

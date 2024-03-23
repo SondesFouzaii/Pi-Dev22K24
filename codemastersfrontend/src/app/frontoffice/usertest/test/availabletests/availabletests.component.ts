@@ -9,23 +9,53 @@ import { QuizService } from 'src/app/services/quiz.service';
   styleUrls: ['./availabletests.component.scss']
 })
 export class AvailabletestsComponent implements OnInit{
-  constructor(private quizservice:QuizService) { }
-  ngOnInit(): void {
+//   constructor(private quizservice:QuizService) { }
+//   ngOnInit(): void {
    
-this.getalltests();
+// this.getalltests();
 
+//   }
+//   public tests!:Test[];
+//   public getalltests(): void{
+//     this.quizservice.getTests().subscribe(
+//       (response:Test[])=>{
+//         this.tests=response;
+//       },
+//       (error:HttpErrorResponse)=>{
+//         alert(error.message);
+//       }
+//     );
+//   }
+//   getActiveTests(): Test[] {
+//     return this.tests.filter(test => test.active);
+//   }
+tests: Test[] = [];
+  interval: any;
+
+  constructor(private quizservice: QuizService) { }
+
+  ngOnInit(): void {
+    this.getTests(); // Initial call to fetch tests
+    this.interval = setInterval(() => {
+      this.getTests(); // Fetch tests at fixed intervals
+    }, 1000);
   }
-  public tests!:Test[];
-  public getalltests(): void{
+
+  ngOnDestroy(): void {
+    clearInterval(this.interval); // Clear interval on component destruction
+  }
+
+  getTests(): void {
     this.quizservice.getTests().subscribe(
-      (response:Test[])=>{
-        this.tests=response;
+      (response: Test[]) => {
+        this.tests = response;
       },
-      (error:HttpErrorResponse)=>{
-        alert(error.message);
+      (error: HttpErrorResponse) => {
+        console.error('Error fetching tests:', error);
       }
     );
   }
+
   getActiveTests(): Test[] {
     return this.tests.filter(test => test.active);
   }

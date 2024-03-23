@@ -1,5 +1,6 @@
 package tn.esprit.codemasters.service.houssem;
 
+import tn.esprit.codemasters.entity.quiz.ApiOpenquizzdb;
 import tn.esprit.codemasters.entity.quiz.Quizimport;
 import tn.esprit.codemasters.entity.quiz.Test;
 import tn.esprit.codemasters.entity.UserTest;
@@ -14,7 +15,7 @@ public interface ITestService {
     public Test retrieveTest(Long testId);
     public String addquestiontotest(Long idTest,Long idQustion);
     public void deletequestion(Long questionId);
-    public void importquiz(Quizimport quiz);
+    public void importquiz(Quizimport quiz,String imgnbr);
 
 //
 //
@@ -23,4 +24,8 @@ public interface ITestService {
 //
     public void addusertest(UserTest userTest);
     public List<UserTest> showalltests();
+    //
+    //
+    public void addtestwithapi(List<ApiOpenquizzdb> apiOpenquizzdbs);
+
 }
