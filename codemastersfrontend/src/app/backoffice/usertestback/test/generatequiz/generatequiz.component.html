@@ -87,6 +87,9 @@
             </div>
             <div class="col-lg-12 mt-3">
                 <button class="btn btn-success" (click)="test()">Generate</button>
+                <div *ngIf="spinner" class="middle-position">
+                <mat-spinner color="warn"></mat-spinner>
+            </div>
             </div>
         </div>
     </form>

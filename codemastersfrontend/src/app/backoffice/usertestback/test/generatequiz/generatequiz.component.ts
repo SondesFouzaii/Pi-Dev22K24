@@ -8,6 +8,7 @@ import { QuizService } from 'src/app/services/quiz.service';
   styleUrls: ['./generatequiz.component.scss']
 })
 export class GeneratequizComponent implements OnInit {
+  spinner=false;
   apiform!: FormGroup;
   selectedValue: number = 0;
   quizsbyapi: any[] = [];
@@ -28,6 +29,7 @@ export class GeneratequizComponent implements OnInit {
     });
   }
   test() {
+    this.spinner=true;
     console.log(this.apiform.value);
     this.url = this.openquizzdbAPI  + "&lang=" + this.apiform.value.langue
                                     + "&choice=" + this.apiform.value.choix
