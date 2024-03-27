@@ -1,0 +1,34 @@
+.response-container {
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+.response-content {
+    margin-bottom: 10px;
+}
+
+.response-part {
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 0.25rem;
+    overflow-x: auto;
+    white-space: pre-wrap;
+}
+
+.response-part pre {
+    margin: 0;
+}
+
+.offcanvas-sm, .offcanvas-md, .offcanvas-lg, .offcanvas-xl, .offcanvas-xxl, .offcanvas {
+    --kleon-offcanvas-width: 600px;
+    --kleon-offcanvas-height: 30vh;
+    --kleon-offcanvas-padding-x: 20px;
+    --kleon-offcanvas-padding-y: 20px;
+    --kleon-offcanvas-color: ;
+    --kleon-offcanvas-bg: #ffffff;
+    --kleon-offcanvas-border-width: 1px;
+    --kleon-offcanvas-border-color: var(--kleon-border-color-translucent);
+    --kleon-offcanvas-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
