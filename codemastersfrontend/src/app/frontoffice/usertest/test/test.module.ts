@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     PassatestComponent,
-    AvailabletestsComponent
+    AvailabletestsComponent,
   ],
   imports: [
     CommonModule,

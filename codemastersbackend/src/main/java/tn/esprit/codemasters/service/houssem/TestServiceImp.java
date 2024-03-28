@@ -210,4 +210,9 @@ UserTestRepository userTestRepository;
         testRepository.save(test);
 
     }
+
+    @Override
+    public void deleteut(Long id) {
+        userTestRepository.deleteById(id);
+    }
 }

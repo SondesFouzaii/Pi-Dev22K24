@@ -107,6 +107,9 @@ public class UserRestController {
         return userService.updatePWDUser(userid,oldpwd,pwd);
     }
 
-
+    @GetMapping("/searchprofile/{keywoard}")
+    public List<User> searchprofile(@PathVariable ("keywoard") String keywoard){
+        return userService.searchprofile(keywoard);
+    }
 
 }

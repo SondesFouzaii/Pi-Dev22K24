@@ -7,7 +7,7 @@ export class Test {
     description!:string;
     image!:string;
     active!:boolean;
-    userTests!:UserTest[];
+    //userTests!:UserTest[];
     questions!:Question[];
 
   }

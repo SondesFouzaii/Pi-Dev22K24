@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-chat-gpt',
@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./chat-gpt.component.scss']
 })
 export class ChatGPTComponent implements OnInit {
+  @Input() connectedUser: any;
   message = [
     { role: "system", content: "You are a helpful assistant." }
   ];
@@ -17,13 +18,14 @@ export class ChatGPTComponent implements OnInit {
       parts: [{ "text": "hello may name is houssem" }]
     }
   ];
+  
   result: any;
   resultgoogle: any;
   queryFormGroup!: FormGroup;
   constructor(private fb: FormBuilder, private http: HttpClient) { }
   ngOnInit(): void {
     this.queryFormGroup = this.fb.group({
-      query: this.fb.control("")
+      query: this.fb.control("",Validators.required)
     });
   }
 
@@ -61,19 +63,19 @@ export class ChatGPTComponent implements OnInit {
     let newContent = [
       {
         role: "user",
-        parts: [{ text: this.queryFormGroup.value.query }]
+        parts: [{ text: "hello i am "+this.connectedUser+" "+this.queryFormGroup.value.query }]
       }
     ];
   
     let payload = {
       contents: newContent
     };
-  
     this.http.post(url + API_KEY, payload, { headers: headers })
       .subscribe({
         next: (resp) => {
           this.resultgoogle = resp;
-          console.log(resp);
+          //console.log(resp);
+          this.queryFormGroup.reset();
         },
         error: (err) => {
           console.error(err);

@@ -23,13 +23,14 @@ export class MyprofileComponent implements OnInit {
   newpwd2!: string;
   connecteduser!: User;
   imgtest!: any;
+  search: any;
   constructor(private serv: UserService, private activatedRoute: ActivatedRoute, private router: Router, private quizservice: QuizService) { }
 
   ngOnInit(): void {
     this.serv.getUserbyemail().subscribe(
       (user: User) => {
         this.connecteduser = user;
-        this.gettesthistory();
+        this.getTestHistory();
 
       },
       (error) => {
@@ -86,19 +87,17 @@ export class MyprofileComponent implements OnInit {
       this.msg = "New password and confirmation password don't match or the password length is less than 6 characters.";
     }
   }
-  quizhistory!: UserTest[];
-  gettesthistory() {
+  quizhistory!: any[];
+  getTestHistory(): void {
     this.quizservice.getquizhistory().subscribe(
-      (response: UserTest[]) => {
-        this.quizhistory = response;
-        console.log(response)
-      },
-      (error) => {
-        console.error('Error fetching quiz history:', error);
-        // Handle error (e.g., show error message)
-      }
+        (res: UserTest[]) => {
+            this.quizhistory = res;
+            console.log("Quiz History:", res);
+        },
+        
     );
-  }
+}
+
   
 
 }

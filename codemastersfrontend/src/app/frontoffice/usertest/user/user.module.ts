@@ -20,6 +20,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { TeamateComponent } from './teamate/teamate.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MyprofileComponent,
     ProfileComponent,
     EditmyprofileComponent,
+    TeamateComponent,
   ],
   imports: [
     CommonModule,

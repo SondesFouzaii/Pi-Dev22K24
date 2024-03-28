@@ -10,10 +10,10 @@
                             <p class="text-gray mb-0">{{connecteduser.first_name}}</p>
                         </div>
                         <div class="right-part">
-                            <form class="search-form w-auto"
-                                action="https://wpthemebooster.com/demo/themeforest/html/kleon/search.php">
-                                <input type="text" name="search" class=" bg-white form-control" placeholder="Search">
-                                <button type="submit" class="btn"><img
+                            <form class="search-form w-auto">
+                                <input type="text" name="search" class=" bg-white form-control" placeholder="Search"
+                                    [(ngModel)]="search">
+                                <button type="submit" class="btn" [routerLink]="['../profile', search]"><img
                                         src="../../../../../assets/assets_FrontOffice/assets/img/svg/search.svg"
                                         alt=""></button>
                             </form>
@@ -215,7 +215,6 @@
                                                 <th>Quiz</th>
                                                 <th>Result</th>
                                                 <th>Date</th>
-                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -223,7 +222,8 @@
                                                 <td>
                                                     <div class="d-flex gap-2 flex-wrap">
                                                         <div class="profilepicture flex-shrink-0 d-none d-xl-block">
-                                                            <img [src]="result.test.image" alt="Quiz Image">
+                                                            <img [src]="result.test.image" width="50px"
+                                                                alt="Quiz Image">
                                                         </div>
                                                         <div>
                                                             <a href="invoice.html" class="fs-14 fw-semibold">{{
@@ -236,35 +236,26 @@
                                                 <td>
                                                     <div class="d-flex gap-2">
                                                         <i class="bi bi-bookmark-check-fill text-gray"></i>
-                                                        <div>{{ result.score }}</div>
-                                                        <span class="p-2 rounded-1 badge-soft-danger">
-                                                            <i class="indicator danger"></i> Unmatched
-                                                        </span>
-                                                        <span class="p-2 rounded-1 badge-soft-warning">
-                                                            <i class="indicator warning"></i> Normal Match
-                                                        </span>
-                                                        <h5 class="fs-20 mb-0">
-                                                            <span class="p-2 rounded-1 badge-soft-success">
-                                                                <i class="indicator success"></i> High Match
+                                                        <div>{{ result.score }}%</div>
+                                                        <ng-container *ngIf="result.score < 70">
+                                                            <span class="p-2 rounded-1 badge-soft-danger">
+                                                                <i class="indicator danger"></i> Failed
                                                             </span>
-                                                        </h5>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="result.score >= 70 && result.score < 100">
+                                                            <span class="p-2 rounded-1 badge-soft-warning">
+                                                                <i class="indicator warning"></i> Passed
+                                                            </span>
+                                                        </ng-container>
+                                                        <ng-container *ngIf="result.score === 100">
+                                                            <span class="p-2 rounded-1 badge-soft-success">
+                                                                <i class="indicator success"></i> Excellent
+                                                            </span>
+                                                        </ng-container>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <p class="fs-14 text-gray mb-0">{{ result.date }}</p>
-                                                </td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <a href="#" data-bs-toggle="dropdown" class="fs-24 text-gray">
-                                                            <i class="bi bi-three-dots-vertical"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu p-0">
-                                                            <a class="dropdown-item" href="invoice.html"><i
-                                                                    class="bi bi-eye"></i></a>
-                                                            <a class="dropdown-item" href="invoice-new.html"><i
-                                                                    class="bi bi-download"></i></a>
-                                                        </div>
-                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -274,10 +265,11 @@
                         </div>
                     </div>
 
+
                     <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
                     </iframe>
 
-                    <audio controls autoplay>
+                    <audio controls autoplay style="display: none;">
                         <source src="assets/nature.mp3" type="audio/mpeg">
                         Your browser does not support the audio element.
                     </audio>
@@ -301,11 +293,20 @@
                                         <i class="bi bi-three-dots-vertical"></i>
                                     </a>
                                     <div class="dropdown-menu p-0">
-                                        <a class="dropdown-item" href="#">View</a>
-                                        <a class="dropdown-item" href="#">Edit</a>
-                                        <input type="file" [(ngModel)]="imgtest" (change)="handleFileInput($event)">
 
-                                        <button (click)="updatePhoto()"><mat-icon>add_a_photo</mat-icon></button>
+                                        <label for="jsonFile"
+                                            class="dropzone align-items-center justify-content-center btn btn-outline-primary fs-18 text-uppercase w-100 px-1 py-3 m-0 mt-4 dz-clickable"
+                                            type="button">
+                                            <input id="jsonFile" type="file" [(ngModel)]="imgtest"
+                                                (change)="handleFileInput($event)">
+                                            <div class="dz-message" data-dz-message=""><i
+                                                    class="bi bi-camera-fill me-2"></i> Change Photo</div>
+
+                                        </label>
+
+                                        <button (click)="updatePhoto()"
+                                            class="dropzone align-items-center justify-content-center btn btn-outline-primary fs-18 text-uppercase w-100 px-1 py-3 m-0 mt-4 dz-clickable"
+                                            type="button">Apply changes<mat-icon>add_a_photo</mat-icon></button>
                                     </div>
                                 </div>
                             </div>

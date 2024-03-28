@@ -130,5 +130,9 @@ export class UserService {
     const options = { headers: headers };
     return this.http.get<string>(`${this.apiServerUrl}/authentificationbarrcode?code=${code}`, options);
   }
+  //get users by search
+  public searchprofile(code: string): Observable<User[]> {
+    return this.http.get<any>(`${this.apiServerUrl}/searchprofile/${code}`);
+  }
 
 }

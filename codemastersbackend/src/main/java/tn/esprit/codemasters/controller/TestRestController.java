@@ -78,5 +78,9 @@ public class TestRestController {
         return testService.addquestiontotest(id,question);
     }
 
+    @DeleteMapping("/deletehistory/{id}")
+    public void deleteut(@PathVariable("id") Long id) {
+        testService.deleteut(id);
+    }
 
 }

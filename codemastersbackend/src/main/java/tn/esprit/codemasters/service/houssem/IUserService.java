@@ -28,5 +28,6 @@ public interface IUserService {
     public List<Activities> getallActivities();
     public void addcard(Long id,String Code);
     //public String generateUniqueCode(int length);
+    public List<User> searchprofile(String keyword);
 
 }

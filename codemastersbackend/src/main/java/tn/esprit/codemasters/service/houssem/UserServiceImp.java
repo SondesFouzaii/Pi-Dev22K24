@@ -15,6 +15,7 @@ import tn.esprit.codemasters.entity.user.Activities;
 import tn.esprit.codemasters.entity.user.User;
 import tn.esprit.codemasters.repository.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -369,7 +370,21 @@ public class UserServiceImp implements IUserService{
         userRepository.save(user);
     }
 
+    @Override
+    public List<User> searchprofile(String keyword) {
+        List<User> allUsers = userRepository.findAll();
+        List<User> likeUsers = new ArrayList<>();
+        keyword = keyword.trim().toLowerCase();
 
+        for (User user : allUsers) {
+            String firstName = user.getFirst_name().toLowerCase();
+            String lastName = user.getLast_name().toLowerCase();
+            if (firstName.contains(keyword) || lastName.contains(keyword)) {
+                likeUsers.add(user);
+            }
+        }
+        return likeUsers;
+    }
 
 
     // encript the password

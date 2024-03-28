@@ -4,6 +4,7 @@ import { Notification } from "./notification";
 import { Post } from "./post";
 import { Project } from "./project";
 import { Userstory } from "./userstory";
+import { UserTest } from "./usertest";
 
 export class User {
     id!:number;
@@ -30,4 +31,5 @@ export class User {
     Projectscrummaster!: Project[];
     Claims!: Claim[];
     UserStorys!: Userstory[];
+    //userTests!:UserTest[];
   }
