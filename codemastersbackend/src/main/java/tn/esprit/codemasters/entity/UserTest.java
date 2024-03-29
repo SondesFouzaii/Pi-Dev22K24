@@ -26,7 +26,6 @@ public class UserTest {
     @ManyToOne
     User user;
 
-
     @ManyToOne
     Test test;
 

@@ -40,7 +40,7 @@ export class TeamateComponent implements OnInit{
     const left = (window.innerWidth / 2) - (width / 2);
     const top = (window.innerHeight / 2) - (height / 2);
     
-    window.open('http://192.168.1.105:4200/call/LOC9N4lf', 'NewWindow', `width=${width}, height=${height}, left=${left}, top=${top}`);
+    window.open('http://localhost:4201/call/LOC9N4lf/'+this.id, 'NewWindow', `width=${width}, height=${height}, left=${left}, top=${top}`);
   }
 
 }

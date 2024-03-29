@@ -70,6 +70,7 @@
             },
             "development": {
               "browserTarget": "codemastersfrontend:build:development"
+              
             }
           },
           "defaultConfiguration": "development"

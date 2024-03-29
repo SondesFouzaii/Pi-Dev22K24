@@ -14,7 +14,7 @@ import { AuthGuard } from './guards/auth.guard';
 const routes: Routes = [
   { path: 'back', canActivate: [AuthGuard], loadChildren: () => import('./backoffice/backoffice.module').then((m) => m.BackofficeModule) },
   { path: 'front', canActivate: [AuthGuard], loadChildren: () => import('./frontoffice/frontoffice.module').then((m) => m.FrontofficeModule) },
-  { path: 'call/:room', component: CallComponent },
+  { path: 'call/:room:/:id', component: CallComponent },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'signin2', component: SignincardComponent },
