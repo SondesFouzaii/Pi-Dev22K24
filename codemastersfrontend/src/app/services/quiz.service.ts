@@ -6,6 +6,7 @@ import { Observable, map } from 'rxjs';
 import { Quiz } from '../models/quiz';
 import { Question } from '../models/question';
 import { UserTest } from '../models/usertest';
+import { GeminiAPI } from '../models/config';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,10 @@ export class QuizService {
   private apiUrl = 'https://api.pexels.com/v1/';
   private apiKey = '3HmjnHyURxliuydjkOoYf50Pd1oOdNifZv9JW6IY';
   //private apiServerUrl = 'http://localhost:8089/codemasters/quiz';
-  private apiServerUrl = 'http://192.168.1.105:8089/codemasters/quiz';
+  private apiServerUrl = 'http://172.16.0.206:8089/codemasters/quiz';
+  //private apiServerUrl = 'http://172.16.1.243:8089/codemasters/quiz';
+  //private apiServerUrl = 'http://172.16.6.131:8089/codemasters/quiz';
+
   constructor(private http: HttpClient, private router: Router) { }
 
   getImageUrl(query: string): Observable<string> {
@@ -77,6 +81,15 @@ export class QuizService {
 
   public getquizhistory(): Observable<UserTest[]> {
     return this.http.get<any>(`${this.apiServerUrl}/retrieve-all-passed`);
+  }
+
+  //gemini
+  addgemini(quiz: GeminiAPI): Observable<void> {
+    return this.http.post<void>(`${this.apiServerUrl}/add-gemini`, quiz);
+  }
+
+  getgeminis(id: number): Observable<GeminiAPI[]> {
+    return this.http.get<any>(`${this.apiServerUrl}/retrieve-all-gemini/${id}`);
   }
 
 }

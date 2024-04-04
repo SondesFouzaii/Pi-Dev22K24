@@ -2,11 +2,7 @@ package tn.esprit.codemasters.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.codemasters.entity.quiz.ApiOpenquizzdb;
-import tn.esprit.codemasters.entity.quiz.Question;
-import tn.esprit.codemasters.entity.quiz.Quizimport;
-import tn.esprit.codemasters.entity.quiz.Test;
-import tn.esprit.codemasters.entity.UserTest;
+import tn.esprit.codemasters.entity.quiz.*;
 import tn.esprit.codemasters.service.houssem.ITestService;
 
 import java.util.List;
@@ -82,5 +78,43 @@ public class TestRestController {
     public void deleteut(@PathVariable("id") Long id) {
         testService.deleteut(id);
     }
+
+
+    //gemini
+    @PostMapping("/add-gemini")
+    public void addgemini(@RequestBody Gemini gemini){
+        testService.addgemini(gemini);
+    }
+
+    @GetMapping("/retrieve-all-gemini/{id}")
+    public List<Gemini> getallgemini(@PathVariable("id") Long id) {
+        return testService.getallgemini(id);
+    }
+
+
+
+
+
+    // the comments of the test (not yet used)
+    @GetMapping("/retrieve-all-TestComments")
+    public List<TestComments> getComments() {
+        return testService.getComments();
+    }
+
+    @PostMapping("/createComment")
+    public TestComments createComment(@RequestBody TestComments testComments) {
+        return testService.createComment(testComments);
+    }
+
+    @PutMapping("/updateComment/{t}/{id}")
+    public void updateComment(@PathVariable("t") String t,@PathVariable("id") Long id) {
+        testService.updateComment(t,id);
+    }
+
+    @DeleteMapping("/deleteComment/{id}")
+    public void deleteComment(@PathVariable("id") Long id) {
+        testService.deleteComment(id);
+    }
+
 
 }

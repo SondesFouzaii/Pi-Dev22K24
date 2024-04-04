@@ -9,7 +9,7 @@
     style="background-color: rgb(242, 230, 250);">
     <div class="offcanvas-header bg-light-200">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/2560px-Google_Gemini_logo.svg.png" width="10%" alt="aaaayahoussem">
-        <h5 class="offcanvas-title">Hello {{connectedUser}}</h5>
+        <h5 class="offcanvas-title">Hello {{connectedUser.first_name}}</h5>
         <button type="button"
             class="aside_close btn btn-danger z-index-9 rounded-circle p-0 m-0 d-flex align-items-center justify-content-center"
             data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-x-lg"></i></button>
@@ -40,6 +40,55 @@
         </div>
     </div>
 
+    <!-- <div class="slider-container">
+        <h2>List of My Gemini Conversations</h2>
+        <div class="card rounded-1 border-0 chat-preview">
+            <div
+                class="card-header d-flex align-items-center justify-content-between flex-wrap gap-4 p-5">
+                <div class="card-body" style="background-color: rgb(251, 247, 255);">
+                    <div *ngFor="let g of gemenis">
+                        <div *ngIf="g.iduser == connectedUser.id">
+                            <div class="message--body reply d-flex gap-5 mb-5">
+                                <div
+                                    class="media overflow-visible position-relative flex-shrink-0 d-none d-sm-block">
+                                    <img src="{{ connectedUser.image }}" alt="{{ connectedUser.image }}"
+                                        width="60" class="rounded-2">
+                                    <span class="indicator success position-absolute"></span>
+                                </div>
+                                <div class="user-message">
+                                    <div class="bg-primary rounded-2 p-4 mb-2">
+                                        <p class="message--text text-white mb-0">{{ g.question }}
+                                        </p>
+                                    </div>
+                                    <div class="message--date fs-12 fw-normal text-gray text-end">{{
+                                        g.date
+                                        }}</div>
+                                </div>
+                            </div>
+
+                            <div class="message--body d-flex gap-5 mb-5">
+                                <div
+                                    class="media overflow-visible position-relative flex-shrink-0 d-none d-sm-block">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/2560px-Google_Gemini_logo.svg.png"
+                                        alt="img" width="60" class="rounded-2">
+                                    <span class="indicator success position-absolute"></span>
+                                </div>
+                                <div class="user-message">
+                                    <div class="bg-light-200 rounded-2 p-4 mb-2">
+                                        <h6 class="message--sender mb-1">Gemini</h6>
+                                        <p class="message--text mb-0"> {{ g.reponse }}</p>
+                                    </div>
+                                    <div class="message--date fs-12 fw-normal text-gray">{{ g.date }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div> -->
     <!-- Your chat GPT -->
     <div class="card-body" style="background-color: rgb(221, 251, 242);">
         <h5 class="offcanvas-title">Chat GPG</h5>

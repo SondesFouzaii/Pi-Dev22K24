@@ -5,17 +5,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Activities } from '../models/activitie';
 import { AdvancedUser } from '../models/addadvenceduser';
+import { Call } from '@angular/compiler';
+import { Callsomeone } from '../models/config';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
   v1!: string;
   v2!: string;
   //http://localhost:8089/codemasters/user/retrieve-all-users
   //private apiServerUrl='http://localhost:8089/codemasters/user';
-  private apiServerUrl = 'http://192.168.1.105:8089/codemasters/user';
-  constructor(private http: HttpClient, private router: Router) { }
+  private apiServerUrl = 'http://172.16.0.206:8089/codemasters/user';
+  //private apiServerUrl = 'http://172.16.1.243:8089/codemasters/user';
+  //private apiServerUrl = 'http://172.16.6.131:8089/codemasters/user';
+
+  constructor(private http: HttpClient, private router: Router) {}
 
   public getUsers(): Observable<User[]> {
     return this.http.get<any>(`${this.apiServerUrl}/retrieve-all-users`);
@@ -48,17 +53,25 @@ export class UserService {
     return this.http.delete<void>(`${this.apiServerUrl}/remove-user/${userId}`);
   }
 
-
   public bloquage(userId: number): Observable<void> {
-    return this.http.put<void>(`${this.apiServerUrl}/bloquer-debloquer/${userId}`, {});
+    return this.http.put<void>(
+      `${this.apiServerUrl}/bloquer-debloquer/${userId}`,
+      {}
+    );
   }
 
   public modifierRole(userId: number, role: string): Observable<void> {
-    return this.http.put<void>(`${this.apiServerUrl}/modify-role/${userId}/${role}`, {});
+    return this.http.put<void>(
+      `${this.apiServerUrl}/modify-role/${userId}/${role}`,
+      {}
+    );
   }
 
   public modifierImage(userId: number, img: string): Observable<void> {
-    return this.http.put<void>(`${this.apiServerUrl}/modify-img/${userId}/${img}`, {});
+    return this.http.put<void>(
+      `${this.apiServerUrl}/modify-img/${userId}/${img}`,
+      {}
+    );
   }
 
   public getRoles(): Observable<string[]> {
@@ -72,19 +85,26 @@ export class UserService {
     return this.http.get<string>(`${this.apiServerUrl}/getpassword/${mail}`);
   }
 
-  public updatePasswd(id: number, oldp: string, newp: string): Observable<string> {
-    return this.http.get<string>(`${this.apiServerUrl}/update-password/${id}/${oldp}/${newp}`);
+  public updatePasswd(
+    id: number,
+    oldp: string,
+    newp: string
+  ): Observable<string> {
+    return this.http.get<string>(
+      `${this.apiServerUrl}/update-password/${id}/${oldp}/${newp}`
+    );
   }
 
-
   public generatecard(id: number, code: string): Observable<void> {
-    return this.http.put<void>(`${this.apiServerUrl}/add-card/${id}/${code}`, {});
+    return this.http.put<void>(
+      `${this.apiServerUrl}/add-card/${id}/${code}`,
+      {}
+    );
   }
 
   public verifyaccount(code: string): Observable<string> {
     return this.http.get<string>(`${this.apiServerUrl}/verifyaccount/${code}`);
   }
-
 
   //auth service
   setToken(token: string): void {
@@ -104,19 +124,22 @@ export class UserService {
     this.router.navigate(['signin']);
   }
 
-
-
   public authenticate(email: string, password: string): Observable<string> {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
     const options = { headers: headers };
     this.setToken(email);
-    return this.http.get<string>(`${this.apiServerUrl}/authentification?email=${email}&password=${password}`, options);
+    return this.http.get<string>(
+      `${this.apiServerUrl}/authentification?email=${email}&password=${password}`,
+      options
+    );
   }
 
   public getUserbyemail(): Observable<User> {
-    return this.http.get<User>(`${this.apiServerUrl}/retrieve-userbymail/${this.getToken()}`);
+    return this.http.get<User>(
+      `${this.apiServerUrl}/retrieve-userbymail/${this.getToken()}`
+    );
   }
 
   public barrcodetomail(code: string): Observable<string> {
@@ -125,14 +148,16 @@ export class UserService {
 
   public authenticatebarrcode(code: string): Observable<string> {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     });
     const options = { headers: headers };
-    return this.http.get<string>(`${this.apiServerUrl}/authentificationbarrcode?code=${code}`, options);
+    return this.http.get<string>(
+      `${this.apiServerUrl}/authentificationbarrcode?code=${code}`,
+      options
+    );
   }
   //get users by search
   public searchprofile(code: string): Observable<User[]> {
     return this.http.get<any>(`${this.apiServerUrl}/searchprofile/${code}`);
   }
-
 }

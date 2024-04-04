@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.validator.constraints.UniqueElements;
 import tn.esprit.codemasters.entity.*;
+import tn.esprit.codemasters.entity.quiz.UserTest;
 
 import java.util.Date;
 import java.util.Set;

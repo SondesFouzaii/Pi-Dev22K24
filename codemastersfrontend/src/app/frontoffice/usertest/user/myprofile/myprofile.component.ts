@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Activities } from 'src/app/models/activitie';
+import { GeminiAPI } from 'src/app/models/config';
 import { User } from 'src/app/models/user';
 import { UserTest } from 'src/app/models/usertest';
 import { QuizService } from 'src/app/services/quiz.service';
@@ -31,14 +32,14 @@ export class MyprofileComponent implements OnInit {
       (user: User) => {
         this.connecteduser = user;
         this.getTestHistory();
-
+        this.getgemenis();
       },
       (error) => {
         console.error('Error fetching user data:', error);
         // Handle error accordingly
       }
     );
-    
+
     this.getallactivities();
   }
 
@@ -90,14 +91,23 @@ export class MyprofileComponent implements OnInit {
   quizhistory!: any[];
   getTestHistory(): void {
     this.quizservice.getquizhistory().subscribe(
-        (res: UserTest[]) => {
-            this.quizhistory = res;
-            console.log("Quiz History:", res);
-        },
-        
+      (res: UserTest[]) => {
+        this.quizhistory = res;
+        console.log("Quiz History:", res);
+      },
+
     );
-}
+  }
 
-  
-
+  gemenis: GeminiAPI[] = [];
+  getgemenis(): void {
+    this.quizservice.getgeminis(this.connecteduser.id).subscribe(
+      (response: GeminiAPI[]) => {
+        this.gemenis = response;
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error fetching tests:', error);
+      }
+    );
+  }
 }

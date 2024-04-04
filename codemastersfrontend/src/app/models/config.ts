@@ -45,3 +45,19 @@ export { firebaseConfig, cometChat }
 // // Initialize Firebase
 // const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
+export class GeminiAPI {
+    question!: string;
+    reponse!: string;
+    iduser!: number;
+    date!: Date;
+    
+  }
+
+  export class Callsomeone {
+    ansered!:boolean;
+    idappelant!: number;
+    idappeler!: number;
+    message!:string;
+    date!: Date;
+    
+  }

@@ -25,7 +25,7 @@ public class CodemastersApplication {
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("http://192.168.1.105:4200","http://localhost:4200","http://localhost:4201"));//http://localhost:4200
+		corsConfiguration.setAllowedOrigins(Arrays.asList("http://192.168.1.105:4200","http://localhost:4200","http://localhost:4201","http://172.16.1.243:4200","http://localhost:4202","http://172.16.0.206:4200"));//http://localhost:4200
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
 				"Access-Control-Request-Method", "Access-Control-Request-Headers"));

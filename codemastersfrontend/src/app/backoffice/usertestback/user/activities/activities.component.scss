@@ -1,0 +1,20 @@
+/* activities.component.scss */
+.custom-paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  ::ng-deep .mat-paginator-navigation .mat-button-wrapper {
+    color: #007bff; /* Change color of paginator buttons */
+  }
+  
+  ::ng-deep .mat-paginator-range-label {
+    color: #6c757d; /* Change color of page range label */
+  }
+  
+  ::ng-deep .mat-paginator-page-size-label {
+    color: #6c757d; /* Change color of page size label */
+  }
+  

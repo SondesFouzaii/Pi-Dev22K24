@@ -49,7 +49,7 @@ export class GeneratequizComponent implements OnInit {
     console.log(this.quizsbyapi);
     this.quizservice.addQuizApi(this.quizsbyapi).subscribe(()=>{location.reload();});
   }
-  private openquizzdbAPI = 'https://api.openquizzdb.org/?key=WH4XF8N9SV';
+  private openquizzdbAPI = 'https://api.openquizzdb.org/?key=WH4aaaN9SV';
   private url: any
 
 

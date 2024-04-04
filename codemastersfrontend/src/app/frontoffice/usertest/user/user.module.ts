@@ -19,9 +19,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TeamateComponent } from './teamate/teamate.component';
-
+import { QRCodeModule } from 'angularx-qrcode';
+import { CallHistoryComponent } from './call-history/call-history.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +30,14 @@ import { TeamateComponent } from './teamate/teamate.component';
     ProfileComponent,
     EditmyprofileComponent,
     TeamateComponent,
+    CallHistoryComponent,
   ],
   imports: [
     CommonModule,
-    UserRoutingModule, MatTableModule, MatFormFieldModule, MatPaginatorModule,
+    UserRoutingModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
     MatSlideToggleModule,
     MatTableModule,
     MatPaginatorModule,
@@ -47,7 +52,8 @@ import { TeamateComponent } from './teamate/teamate.component';
     MatToolbarModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDatepickerModule
-  ]
+    MatDatepickerModule,
+    QRCodeModule,
+  ],
 })
-export class UserModule { }
+export class UserModule {}

@@ -50,8 +50,8 @@ sleep(10);
 
   startCall(): void {
     // Generate Kit Token
-    const appID = 4380595200;
-    const serverSecret = "01c949cbae46e9a46470c3313ec844de0";
+    const appID = 4312520;
+    const serverSecret = "01c949cbae46e9a46470azeec844de";
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, this.finalID, this.connecteduser.id.toString(), this.connecteduser.first_name.toString() + " " + this.connecteduser.last_name.toString());
 
     // Create instance object from Kit Token

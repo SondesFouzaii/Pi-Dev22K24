@@ -1,10 +1,8 @@
-package tn.esprit.codemasters.entity;
+package tn.esprit.codemasters.entity.user;
 
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import tn.esprit.codemasters.entity.quiz.Test;
-import tn.esprit.codemasters.entity.user.User;
 
 import java.util.Date;
 
@@ -15,18 +13,13 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
-public class UserTest {
+public class CallUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    int score;
-    @Temporal(TemporalType.DATE)
+    boolean ansered;
+    long idappelant;
+    long idappeler;
+    String message;
     Date date;
-
-    @ManyToOne
-    User user;
-
-    @ManyToOne
-    Test test;
-
     }

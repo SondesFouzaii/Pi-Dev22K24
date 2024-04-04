@@ -8,6 +8,7 @@ import { createClient, Photo } from 'pexels';
 import { UserTest } from 'src/app/models/usertest';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { sleep } from 'openai/core';
 
 @Component({
   selector: 'app-passatest',
@@ -27,6 +28,7 @@ export class PassatestComponent implements OnInit {
   correctAnswerCount: number = 0;
   isQuizEnded: boolean = false;
   id!: number;
+  showWastedEffect: boolean = false;
   ngOnInit(): void {
     this.id = this.activateroute.snapshot.params['id']
     this.gettestbyid();
@@ -70,6 +72,11 @@ this.usrtest.user = this.connecteduser;
       this.quizservice.passAtest(this.usrtest).subscribe();
     } else {
       this.scoreMessage = "Sorry, you failed.";
+      sleep(40);
+      this.showWastedEffect = true;
+      setTimeout(() => {
+        this.showWastedEffect = false;
+      }, 5000);
     }
   }
 
@@ -132,7 +139,7 @@ this.usrtest.user = this.connecteduser;
   async searchPhotos(image: any) {
     //console.log('searchPhotos called'); // Add this line
     const query = image;
-    const client = createClient('3HmHyURxliuydDWldMrrWvTw7azeazeZv9JW6IY'); // Pexels API key
+    const client = createClient('3HmHyURxliuydDWldMrrWvTw7Pq7mF4jpOoYY'); // Pexels API key
     try {
       const response: any = await client.photos.search({ query, per_page: 1 });
       const photos: any[] = response.photos;

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -14,19 +15,13 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
-public class Test {
+public class Gemini {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    String title;
-    String description;
-    String image;
-    boolean active;
-
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="test")
-    private Set<UserTest> userTests;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<Question> questions;
+    String question;
+    @Column(length = 1000)
+    String reponse;
+    long iduser;
+    Date date;
     }

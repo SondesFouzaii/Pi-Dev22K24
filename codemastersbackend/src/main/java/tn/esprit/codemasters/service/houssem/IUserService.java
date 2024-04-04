@@ -2,6 +2,7 @@ package tn.esprit.codemasters.service.houssem;
 
 import org.springframework.http.ResponseEntity;
 import tn.esprit.codemasters.entity.user.Activities;
+import tn.esprit.codemasters.entity.user.CallUser;
 import tn.esprit.codemasters.entity.user.User;
 
 import java.util.List;
@@ -29,5 +30,6 @@ public interface IUserService {
     public void addcard(Long id,String Code);
     //public String generateUniqueCode(int length);
     public List<User> searchprofile(String keyword);
+
 
 }

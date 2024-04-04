@@ -2,4 +2,36 @@
 <app-frontoffice-sidebar></app-frontoffice-sidebar>
 <router-outlet></router-outlet>
 <app-frontoffice-footer></app-frontoffice-footer>
-<app-chat-gpt [connectedUser]="connecteduser.first_name"></app-chat-gpt>
+<app-chat-gpt [connectedUser]="connecteduser"></app-chat-gpt>
+<audio controls autoplay style="display: none;" *ngIf="someoneIsCalling">
+    <source src="assets/audio/butterfly.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1"
+                            aria-labelledby="confirmDeleteModalLabel" aria-hidden="true" *ngIf="someoneIsCalling">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close" (click)="closeCallModal()"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{thecaller.first_name}} {{thecaller.last_name}} is calling you
+                                        <br>
+                                        <qrcode [qrdata]="linktocall"  [errorCorrectionLevel]="'M'"></qrcode>
+                                    </div>
+                                    <div class="modal-footer" >
+                                            <div  data-bs-dismiss="modal" (click)="closeCallModal()" id="app">
+                                                <i class="fas fa-phone"></i>
+                                            </div>
+                                            <span style="margin-left: 300px;"></span>
+                                            <div  data-bs-dismiss="modal" (click)="answer()" id="app2">
+                                                <i class="fas fa-phone"></i>
+                                            </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>

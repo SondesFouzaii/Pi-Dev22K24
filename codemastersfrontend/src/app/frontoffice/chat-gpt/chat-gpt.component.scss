@@ -36,3 +36,13 @@
     display: inline;
     align-items: center; 
   }
+
+  .slider-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.chat-preview {
+    height: 400px; /* Set fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
