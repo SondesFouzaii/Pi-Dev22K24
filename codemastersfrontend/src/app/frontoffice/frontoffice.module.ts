@@ -10,7 +10,7 @@ import { UsertestComponent } from './usertest/usertest.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChatGPTComponent } from './chat-gpt/chat-gpt.component';
 import { QRCodeModule } from 'angularx-qrcode';
-
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -21,13 +21,15 @@ import { QRCodeModule } from 'angularx-qrcode';
     FrontofficeSidebarComponent,
     FrontofficeFooterComponent,
     UsertestComponent,
-    ChatGPTComponent
+    ChatGPTComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,
     FrontofficeRoutingModule,
     ReactiveFormsModule,
-    QRCodeModule
+    QRCodeModule,
+    
   ]
 })
 export class FrontofficeModule { }

@@ -1,0 +1,45 @@
+.bg-image {
+    background-image: url("../../assets/assets_card/img/jeuxcarte.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  aside {
+    height: 100vh;
+  }
+  
+  .none{
+    display: none;
+  }
+  .backblack{
+    background-color: black;
+  }
+  
+  .margin{
+    margin-bottom: 15em;
+  }
+  
+  .tableDeJeux {
+    width: 48em;
+  }
+  
+  // .carte {
+  //   // height: 160px;
+  //   // width: 110px;
+  //   // margin-top: 1em;
+  //   // border-radius: 0.5em;
+  //   height: 175px;
+  //   width: 125px;
+  //   margin: 1px;
+    
+  // }
+  
+  .carte {
+    display: flex; /* Utiliser flex pour afficher les images horizontalement */
+    flex-wrap: wrap; /* Permettre le retour à la ligne automatique si nécessaire */
+  }
+  
+  .carte img {
+    height: 175px;
+    width: 125px;
+    margin: 1px;
+  }

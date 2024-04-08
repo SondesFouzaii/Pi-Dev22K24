@@ -1,8 +1,12 @@
-import { User } from "./user";
+export class Message {
+  senderEmail: string;
+  time: string;
+  replymessage: string;
+  chat: any;
 
-export interface Message {
-    id: number;
-    content: string;
-
-    user: User;
+  constructor() {
+      this.senderEmail='';
+      this.time='';
+      this.replymessage='';
   }
+}

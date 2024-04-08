@@ -7,12 +7,12 @@ import { BackofficeModule } from './backoffice/backoffice.module';
 import { FrontofficeModule } from './frontoffice/frontoffice.module';
 import { FrontofficeRoutingModule } from './frontoffice/frontoffice-routing.module';
 import { BackofficeRoutingModule } from './backoffice/backoffice-routing.module';
-import { NotfoundComponent } from './main/notfound/notfound.component';
-import { ResetComponent } from './main/reset/reset.component';
-import { SigninComponent } from './main/signin/signin.component';
-import { SignupComponent } from './main/signup/signup.component';
-import { VerifComponent } from './main/verif/verif.component';
-import { WelcomeComponent } from './main/welcome/welcome.component';
+import { NotfoundComponent } from './Main/notfound/notfound.component';
+import { ResetComponent } from './Main/reset/reset.component';
+import { SigninComponent } from './Main/signin/signin.component';
+import { SignupComponent } from './Main/signup/signup.component';
+import { VerifComponent } from './Main/verif/verif.component';
+import { WelcomeComponent } from './Main/welcome/welcome.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -23,7 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
-import { SignincardComponent } from './main/signincard/signincard.component';
+import { SignincardComponent } from './Main/signincard/signincard.component';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 
 
@@ -57,6 +58,8 @@ import { SignincardComponent } from './main/signincard/signincard.component';
     LayoutModule ,
     MatToolbarModule,
     MatDialogModule,
+    PickerModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

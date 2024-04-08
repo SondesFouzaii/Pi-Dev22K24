@@ -1,0 +1,52 @@
+<main id="bg.image" class="bg-image">
+    <aside class="d-flex align-items-center justify-content-center">
+      <div *ngFor="let img of images">
+        <img [src]="img.image" (click)="handleImageClick(img.valeur)">
+      </div>
+      <div *ngIf="selectedCardValue !== null">
+        <p>Carte sélectionnée : {{ selectedCardValue }}</p>
+        
+      </div>
+      <button (click)="assignCardValueToTask()">Assigner</button>
+      <button (click)="backnavigate()">back </button>
+
+
+    </aside>
+    
+    
+  </main>
+  
+
+<!-- <main id="bg.image" class="bg-image">
+    <aside class="d-flex align-items-center justify-content-center">
+        <div *ngFor="let img of images">
+            <img [src]="img.image" (click)="handleImageClick(img.valeur)">
+        </div>
+        <div id="Content" class="d-none tableDeJeux d-flex justify-content-between flex-wrap align-items-center">
+            <div *ngFor="let img of images" class="carte" (click)="handleImageClick(img.valeur)">
+                <img [src]="img.image">
+            </div>
+
+        </div>
+
+
+
+    </aside>
+
+</main> -->
+<!-- <div *ngFor="let img of images">
+                <img [src]="img.image" (click)="handleImageClick(img.valeur)">
+            </div> -->
+
+<!-- <div id="Content" class="d-none tableDeJeux d-flex justify-content-between flex-wrap align-items-center">
+                <div *ngFor="let img of images" class="carte" (click)="handleImageClick(img.valeur)">
+                  <img [src]="img.image">
+                </div>
+              </div> -->
+
+<!-- <select class="form-control" formControlName="sessionId">
+                                            <option *ngFor="let task of tasks" [value]="task.id">{{
+                                                task.name }}<button class="btn btn-primary"
+                                                    (click)="selectTask(task.id)"></button></option>
+
+                                        </select> -->
