@@ -3,7 +3,6 @@ package tn.esprit.codemasters.entity.quiz;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import tn.esprit.codemasters.entity.quiz.Test;
 import tn.esprit.codemasters.entity.user.User;
 
 import java.util.Date;
@@ -14,7 +13,7 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@FieldDefaults(level=AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserTest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +28,4 @@ public class UserTest {
     @ManyToOne
     Test test;
 
-    }
+}

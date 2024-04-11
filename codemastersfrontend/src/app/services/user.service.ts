@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { User } from '../models/user';
+import { Activities, AdvancedUser, User } from '../models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Activities } from '../models/activitie';
-import { AdvancedUser } from '../models/addadvenceduser';
 import { Call } from '@angular/compiler';
 import { Callsomeone } from '../models/config';
 
@@ -15,8 +13,8 @@ export class UserService {
   v1!: string;
   v2!: string;
   //http://localhost:8089/codemasters/user/retrieve-all-users
-  //private apiServerUrl='http://localhost:8089/codemasters/user';
-  private apiServerUrl = 'http://172.16.0.206:8089/codemasters/user';
+  private apiServerUrl='http://localhost:8089/codemasters/user';
+  //private apiServerUrl = 'http://172.16.0.206:8089/codemasters/user';
   //private apiServerUrl = 'http://172.16.1.243:8089/codemasters/user';
   //private apiServerUrl = 'http://172.16.6.131:8089/codemasters/user';
 

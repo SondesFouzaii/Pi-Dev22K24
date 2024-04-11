@@ -2,9 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Question } from 'src/app/models/question';
-import { QuestionOption } from 'src/app/models/questionoption';
-import { Test } from 'src/app/models/test';
+import { Question, Test } from 'src/app/models/test';
 import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({

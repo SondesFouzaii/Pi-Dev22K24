@@ -139,7 +139,7 @@ this.usrtest.user = this.connecteduser;
   async searchPhotos(image: any) {
     //console.log('searchPhotos called'); // Add this line
     const query = image;
-    const client = createClient('3HmHyURxliuydDWldMrrWvTw7Pq7mF4jpOoYY'); // Pexels API key
+    const client = createClient('3HmHyURxliuydDWldMrrWvTw7Pq7mF4jpOoYf50Pd1oOdNifZv9JW6IY'); // Pexels API key
     try {
       const response: any = await client.photos.search({ query, per_page: 1 });
       const photos: any[] = response.photos;

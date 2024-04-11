@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Test } from '../models/test';
+import { Question, Test } from '../models/test';
 import { Observable, map } from 'rxjs';
 import { Quiz } from '../models/quiz';
-import { Question } from '../models/question';
+
 import { UserTest } from '../models/usertest';
 import { GeminiAPI } from '../models/config';
 
@@ -14,8 +14,8 @@ import { GeminiAPI } from '../models/config';
 export class QuizService {
   private apiUrl = 'https://api.pexels.com/v1/';
   private apiKey = '3HmjnHyURxliuydjkOoYf50Pd1oOdNifZv9JW6IY';
-  //private apiServerUrl = 'http://localhost:8089/codemasters/quiz';
-  private apiServerUrl = 'http://172.16.0.206:8089/codemasters/quiz';
+  private apiServerUrl = 'http://localhost:8089/codemasters/quiz';
+  //private apiServerUrl = 'http://172.16.0.206:8089/codemasters/quiz';
   //private apiServerUrl = 'http://172.16.1.243:8089/codemasters/quiz';
   //private apiServerUrl = 'http://172.16.6.131:8089/codemasters/quiz';
 

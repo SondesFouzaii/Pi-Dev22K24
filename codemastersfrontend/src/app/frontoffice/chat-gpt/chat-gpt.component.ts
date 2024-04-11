@@ -57,7 +57,7 @@ export class ChatGPTComponent implements OnInit {
   //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
   googleAI() {
     let url = "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=";
-    let API_KEY = "AIzaSyAOqrAtNCMKFnrDFUA";
+    let API_KEY = "AIzaSyAOqrAtNCMKFnH9NE7Et1WuZO-q5erDFUA";
   
     let headers = new HttpHeaders()
       .set("Content-Type", "application/json")

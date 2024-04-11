@@ -1,6 +1,3 @@
-import { Question } from "./question";
-import { UserTest } from "./usertest";
-
 export class Test {
     id!: number;
     title!:string;
@@ -10,4 +7,19 @@ export class Test {
     //userTests!:UserTest[];
     questions!:Question[];
 
+  }
+
+  export class Question {
+    id!: number;
+    question!:string;
+    image!:string;
+    questionOptions!:QuestionOption[];
+
+
+  }
+  export class QuestionOption {
+    id!: number;
+    answer!:string;
+    iscorrect!:boolean;
+    isSelected: boolean = false;
   }
