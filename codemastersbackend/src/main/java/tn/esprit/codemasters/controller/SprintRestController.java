@@ -28,7 +28,11 @@ public class SprintRestController {
 
     @PostMapping("/add-sprint")
     public Sprint addSprint(@RequestBody Sprint sprint) {
-        return sprintService.addSprint(sprint);
+        if (!sprintService.sprintExist(sprint.getStartDate(),sprint.getEndDate()))
+        {
+            return sprintService.addSprint(sprint);
+        }
+        else return null;
     }
 
 

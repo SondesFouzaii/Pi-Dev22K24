@@ -8,6 +8,7 @@ import tn.esprit.codemasters.repository.SprintRepository;
 import tn.esprit.codemasters.repository.TaskRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @Service
 @AllArgsConstructor
@@ -83,5 +84,13 @@ public class SprintServiceImpl implements ISprintService{
             sprintRepository.save(sprint);
 
         }
+    }
+
+    @Override
+    public boolean sprintExist(Date startDate, Date endDate) {
+        List<Sprint> sprints1 = sprintRepository.findSprintsByEndDateAfterAndEndDateBefore(startDate, endDate);
+        List<Sprint> sprints2 = sprintRepository.findSprintsByStartDateAfterAndStartDateBefore(startDate, endDate);
+        List<Sprint> sprints3 =sprintRepository.findSprintsByStartDateBeforeAndEndDateAfter(startDate, endDate);
+        return ((!sprints1.isEmpty()) || (!sprints2.isEmpty()) || (!sprints3.isEmpty()) );
     }
 }

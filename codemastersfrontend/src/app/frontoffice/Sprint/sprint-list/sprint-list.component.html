@@ -113,12 +113,14 @@
                 </div>
             </div>
             <div class="modal fade" id="newcard" tabindex="-1" aria-hidden="true">
+                
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="card border-0 m-0">
                             <div class="card-header bg-transparent border-0 p-5 pb-0">
-                                <h4>Add Task</h4>
+                                <h4>Add Sprint</h4>
                             </div>
+                            
             
                             <div class="card-body pt-3">
                                 <form [formGroup]="sprintForm" (ngSubmit)="onSubmit()">
@@ -175,12 +177,35 @@
                                     <div class="form-group mb-0">
                                         <button type="submit" class="btn btn-primary m-0">Submit</button>
                                     </div>
+                                    
+
                                 </form>
+                                
                             </div>
+                            <div *ngIf="sprintExistError"  class="alert alert-warning" role="alert">
+                                <strong>Attention !</strong> A sprint already exists in this time
+                                <button type="button" class="close" (click)="sprintExistError = false" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </div>
+
+                            <div *ngIf="dateCheckError"  class="alert alert-danger" role="alert">
+                                <strong>Attention !</strong> End Date must be after Start Date
+                                <button type="button" class="close" (click)="dateCheckError = false" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
+                
             </div>
+            
+              
+
+            
+              
 
 
 

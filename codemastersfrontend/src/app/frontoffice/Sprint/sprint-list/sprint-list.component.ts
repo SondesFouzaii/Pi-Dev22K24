@@ -16,6 +16,8 @@ export class SprintListComponent implements OnInit {
   sprintForm: FormGroup; 
   selectedSprint: Sprint | null = null;
   edit_sprintForm!:FormGroup;
+  sprintExistError = false;
+  dateCheckError=false;
 
   constructor(private sprintService: SprintService, private fb: FormBuilder) {
     // Initialiser le formulaire réactif dans le constructeur
@@ -23,25 +25,51 @@ export class SprintListComponent implements OnInit {
       title: ['', Validators.required],
       velocity: [''],
       retrospective: [''],
-      startDate: [''],
-      endDate: [''],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
       status: ['PLANNED', Validators.required]
-    });
+    }, { validators: this.dateValidator });
 
-    this.edit_sprintForm=this.fb.group({
+    this.edit_sprintForm = this.fb.group({
       title: ['', Validators.required],
       velocity: [''],
       retrospective: [''],
-      startDate: [''],
-      endDate: [''],
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required],
       status: ['PLANNED', Validators.required]
-
-    })
+    }, { validators: this.dateValidator });
   }
 
   ngOnInit(): void {
     this.getSprints();
   }
+
+  dateValidator(formGroup: FormGroup) {
+
+    const startDateControl = formGroup.get('startDate');
+    const endDateControl = formGroup.get('endDate');
+  
+    if (startDateControl && endDateControl) {
+        const startDate = startDateControl.value;
+        const endDate = endDateControl.value;
+  
+        if (startDate && endDate && startDate >= endDate) {
+            endDateControl.setErrors({ endDateBeforeStartDate: true });
+            // Retourne un objet avec une erreur pour indiquer que la date de fin est antérieure à la date de début
+            this.dateCheckError=true;
+            return { endDateBeforeStartDate: true };
+        } else {
+            endDateControl.setErrors(null);
+            return null;
+        }
+    }
+  
+    // Ajout d'un retour par défaut si aucune des conditions ci-dessus n'est remplie
+    return null;
+}
+
+  
+  
 
   getSprints(): void {
     this.sprintService.getSprints()
@@ -76,14 +104,15 @@ export class SprintListComponent implements OnInit {
   onSubmit(): void {
     if (this.sprintForm.valid) {
       const formData = { ...this.sprintForm.value };
-  
+
       // Formater les dates au format 'yyyy-MM-dd'
       const startDate = this.formatDate(formData.startDate);
       const endDate = this.formatDate(formData.endDate);
-  
+
       // Créer un nouvel objet Sprint avec les dates formatées
       const sprintData = { ...formData, startDate, endDate };
-  
+
+
       // Appeler le service pour ajouter le sprint avec les données du formulaire
       this.sprintService.addSprint(sprintData).subscribe(
         (response) => {
@@ -95,6 +124,8 @@ export class SprintListComponent implements OnInit {
         },
         (error) => {
           console.error('Erreur lors de l\'ajout du sprint : ', error);
+          // Activer l'alerte en cas d'erreur
+          this.sprintExistError = true;
         }
       );
     } else {

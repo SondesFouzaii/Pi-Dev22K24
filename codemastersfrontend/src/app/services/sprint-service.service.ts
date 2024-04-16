@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Sprint, StatSprint } from '../models/sprint';
 import { Task } from '../models/task';
 
@@ -33,9 +33,22 @@ export class SprintService {
 
 
   // Fonction pour ajouter une tâche
-  addSprint(Sprint: Sprint): Observable<Sprint> {
-    return this.http.post<Sprint>(`${this.apiUrl}/add-sprint`, Sprint);
+  addSprint(sprint: Sprint): Observable<Sprint> {
+    return this.http.post<Sprint>(`${this.apiUrl}/add-sprint`, sprint).pipe(
+      map((response: Sprint) => {
+        // Vérifier si la réponse est null
+        if (response === null) {
+          // Si la réponse est null, afficher un message d'erreur
+          console.log("Un sprint existe deja dans cette période");
+          // Ou vous pouvez déclencher une erreur et la gérer dans le composant appelant
+          throw new Error("Un sprint existe deja dans cette période");
+        }
+        // Si la réponse n'est pas null, retourner le sprint ajouté
+        return response;
+      })
+    );
   }
+  
   modifySprint(Sprint: Sprint): Observable<Sprint> {
     return this.http.put<Sprint>(`${this.apiUrl}/modify-sprint`, Sprint);
   }
