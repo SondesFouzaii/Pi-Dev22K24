@@ -4,7 +4,7 @@ import { Task } from "./task";
 import { User } from "./user";
 
 export interface Userstory {
-    id: number;
+    id?: number;
     name: string;
     description: string;
     priority: number;

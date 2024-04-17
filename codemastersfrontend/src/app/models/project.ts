@@ -1,3 +1,4 @@
+import { User } from './user';
 import { Team } from "./Team";
 
 export interface Project {
@@ -5,6 +6,5 @@ export interface Project {
     name: string;
     creationdate: Date;
     deadline: Date;
-
-    team: Team;
+    user: User;
   }

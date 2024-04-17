@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="frame">
+        <h1 class="mt-4">User Story Details</h1>
+
+        <div class="row">
+            <div *ngIf="userstory">
+                <p><strong>Name:</strong> {{ userstory.name }}</p>
+                <p><strong>Description:</strong> {{ userstory.description }}</p>
+                <p><strong>Priority:</strong> {{ userstory.priority }}</p>
+                <p><strong>Estimation:</strong> {{ userstory.estimation }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .frame {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+}
+
+</style>

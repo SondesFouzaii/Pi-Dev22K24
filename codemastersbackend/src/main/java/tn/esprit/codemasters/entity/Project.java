@@ -5,11 +5,12 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@ToString
+//@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
@@ -20,9 +21,9 @@ public class Project {
     String name;
     Date creationdate;
     Date deadline;
-
-
+    @OneToMany
+    Set <UserStory> userStoryset;
     //h
-    @ManyToOne
-    Team team;
+    @ManyToMany(mappedBy="projectdevolpppers")
+    private Set<User> users;
 }

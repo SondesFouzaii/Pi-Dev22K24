@@ -1,54 +1,38 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+//import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BackComponent } from './Back office/back/back.component';
-import { FooterComponent } from './Back office/back/footer/footer.component';
-import { HeaderComponent } from './Back office/back/header/header.component';
+import { BackofficeComponent } from './backoffice/backoffice.component';
+import { FrontofficeComponent } from './frontoffice/frontoffice.component';
+import { BackofficeModule } from './backoffice/backoffice.module';
+import { FrontofficeModule } from './frontoffice/frontoffice.module';
+import { FrontofficeRoutingModule } from './frontoffice/frontoffice-routing.module';
+import { BackofficeRoutingModule } from './backoffice/backoffice-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { MatNativeDateModule } from '@angular/material/core';
-import {MaterialExampleModule} from '../material.module';
-import {HttpClientModule} from '@angular/common/http';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
-import { NotfoundComponent } from './notfound/notfound.component';
-import { DashboardComponent } from './Back office/dashboard/dashboard.component';
-import { UsersComponent } from './Back office/users/users.component';
-import { UserdetailsComponent } from './Back office/userdetails/userdetails.component';
-import { RouterLink } from '@angular/router';
-import { FrontComponent } from './Front office/front/front.component';
-import { FrontdashboardComponent } from './Front office/frontdashboard/frontdashboard.component';
-import { FrontheaderComponent } from './Front office/front/frontheader/frontheader.component';
-import { FrontfooterComponent } from './Front office/front/frontfooter/frontfooter.component';
-import { MyprofileComponent } from './Front office/myprofile/myprofile.component';
-import { ProfileComponent } from './Front office/profile/profile.component';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FullCalendarModule } from '@fullcalendar/angular'; // Importer FullCalendarModule
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    BackComponent,
-    FooterComponent,
-    HeaderComponent,
-    SigninComponent,
-    SignupComponent,
-    NotfoundComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatToolbarModule,
-    HttpClientModule,
-    MatNativeDateModule,
-    MaterialExampleModule,
+   BackofficeModule,
+    FrontofficeModule,
+    FrontofficeRoutingModule,
+    BackofficeRoutingModule,
     ReactiveFormsModule,
-    RouterLink
+   // MatSnackBarModule,
+    RouterModule,
+    FormsModule,
+    HttpClientModule,FullCalendarModule,[ToastrModule.forRoot()]
+
   ],
   providers: [],
   bootstrap: [AppComponent]

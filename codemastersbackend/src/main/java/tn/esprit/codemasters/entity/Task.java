@@ -1,5 +1,6 @@
 package tn.esprit.codemasters.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -38,6 +39,7 @@ public class Task {
 
     //
     @ManyToOne
+    @JsonIgnore
     UserStory userstory;
 
     @ManyToOne

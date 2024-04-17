@@ -1,9 +1,11 @@
 package tn.esprit.codemasters.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -13,6 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
+
 public class UserStory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,16 +25,16 @@ public class UserStory {
     int priority;
     int estimation;
 
-    //
-    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToOne
     Project project;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="userstory")
-    private Set<Claim> reclamations;
-
+    @OneToMany(mappedBy="userstory")
+    private Set<Claim> Reclamations;
+    @JsonIgnore
     @ManyToOne
     User user;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="userstory")
-    private Set<Task> tasks;
+    @JsonIgnore
+    @OneToMany( mappedBy="userstory")
+    private Set<Task> Tasks;
 }
