@@ -66,4 +66,9 @@ public class SprintRestController {
     public void removeTaskFromSprint(@PathVariable("sprint-id") Long sprintId,@PathVariable("task-id") Long taskId) {
         sprintService.removeTaskFromSprint(sprintId, taskId);
     }
+
+    @RequestMapping("/envoyer-email/{sprintTitle}")
+    public void sendEmail(@PathVariable("sprintTitle") String sprintTitle) {
+        sprintService.sendEmail(sprintTitle);
+    }
 }

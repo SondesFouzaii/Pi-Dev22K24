@@ -77,5 +77,9 @@ export class SprintService {
     return this.http.put(`${this.apiUrl}/remove-task-from-sprint/${sprintId}/${taskId}`, {});
   }
 
+  sendEmail(sprintTitle: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/envoyer-email/${sprintTitle}`, null);
+  }
+
   
-}
+  }

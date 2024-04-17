@@ -1,6 +1,9 @@
 package tn.esprit.codemasters.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import tn.esprit.codemasters.entity.Sprint;
 import tn.esprit.codemasters.entity.Task;
@@ -15,6 +18,13 @@ import java.util.List;
 public class SprintServiceImpl implements ISprintService{
     SprintRepository sprintRepository;
     TaskRepository taskRepository;
+
+     JavaMailSender mailSender;
+
+    @Autowired
+    public void EmailService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
     @Override
     public List<Sprint> retrieveAllSprints() {
         return sprintRepository.findAll();
@@ -92,5 +102,14 @@ public class SprintServiceImpl implements ISprintService{
         List<Sprint> sprints2 = sprintRepository.findSprintsByStartDateAfterAndStartDateBefore(startDate, endDate);
         List<Sprint> sprints3 =sprintRepository.findSprintsByStartDateBeforeAndEndDateAfter(startDate, endDate);
         return ((!sprints1.isEmpty()) || (!sprints2.isEmpty()) || (!sprints3.isEmpty()) );
+    }
+
+    public void sendEmail(String sprintTitle) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo("oussnaff@gmail.com");
+        message.setSubject("Sprint \"" + sprintTitle + "\" has been completed");
+        message.setText("The status of \"" + sprintTitle + "\" has been modified and marked as COMPLETED.");
+
+        mailSender.send(message);
     }
 }

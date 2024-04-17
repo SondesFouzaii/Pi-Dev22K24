@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Sprint } from 'src/app/models/sprint';
+import { Sprint, StatSprint } from 'src/app/models/sprint';
 import { SprintService } from 'src/app/services/sprint-service.service';
 
 @Component({
@@ -18,6 +18,8 @@ export class SprintListComponent implements OnInit {
   edit_sprintForm!:FormGroup;
   sprintExistError = false;
   dateCheckError=false;
+  sprintStatusUpdated=false;
+  sprintStatusUpdatedTitle:string=''
 
   constructor(private sprintService: SprintService, private fb: FormBuilder) {
     // Initialiser le formulaire réactif dans le constructeur
@@ -42,6 +44,7 @@ export class SprintListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSprints();
+    
   }
 
   dateValidator(formGroup: FormGroup) {
@@ -68,13 +71,47 @@ export class SprintListComponent implements OnInit {
     return null;
 }
 
+
+checkSprintEndDate(): void {
+  const currentDate = new Date();
+  if (this.sprints) {
+    this.sprints.forEach(sprint => {
+      const startDate = new Date(sprint.startDate);
+      const endDate = new Date(sprint.endDate);
+      const status = sprint.status;
+      
+      if (endDate <= currentDate && startDate < currentDate && status!=StatSprint.COMPLETED ) {
+        console.log(`The status of "${sprint.title}" has been modified !`);
+        sprint.status = StatSprint.COMPLETED;
+        // Appel au service pour modifier le sprint sur le serveur
+        this.sprintService.modifySprint(sprint).subscribe(
+          () => {
+            this.sprintStatusUpdated=true;
+            this.sprintStatusUpdatedTitle=sprint.title;
+            console.log(`Sprint "${sprint.title}" has been marked as COMPLETED successfully.`);
+            this.sendEmail(sprint.title);
+            
+           
+          },
+          error => {
+            console.error(`Error occurred while updating sprint "${sprint.title}": `, error);
+            // Gérer l'erreur si nécessaire
+          }
+        );
+      }
+    });
+  }
+}
+
   
   
 
   getSprints(): void {
     this.sprintService.getSprints()
       .subscribe((sprints: Sprint[]) => {
-        this.sprints = sprints;
+        this.sprints = sprints,
+        this.checkSprintEndDate();
+        
       });
   }
 
@@ -182,6 +219,17 @@ export class SprintListComponent implements OnInit {
       startDate: sprint.startDate,
       endDate:sprint.endDate
     });
+  }
+
+  sendEmail(sprintTitle: string) {
+    this.sprintService.sendEmail(sprintTitle).subscribe(
+      () => {
+        console.log(`Email for sprint "${sprintTitle}" has been sent successfully.`);
+      },
+      error => {
+        console.error(`Error occurred while sending email for sprint "${sprintTitle}": `, error);
+      }
+    );
   }
 
   

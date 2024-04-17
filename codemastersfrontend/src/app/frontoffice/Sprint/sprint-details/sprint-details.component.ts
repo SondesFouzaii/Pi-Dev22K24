@@ -4,6 +4,8 @@ import { Sprint } from 'src/app/models/sprint';
 import { Task } from 'src/app/models/task';
 import { SprintService } from 'src/app/services/sprint-service.service';
 import { TaskService } from 'src/app/services/task-service.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-sprint-details',
@@ -18,8 +20,36 @@ export class SprintDetailsComponent implements OnInit {
   selectedComplexity: string = '';
   selectedPriority: string = '';
   searchTerm: string = '';
+  addRetroForm!:FormGroup;
+  retrospectiveAdded=false;
+
+  user: User = {
+    id: 1,
+    first_name: "John",
+    last_name: "Doe",
+    birth_date: "1990-01-01",
+    gender: "Male",
+    address: "123 Main St",
+    phone_number: "123-456-7890",
+    email: "john.doe@example.com",
+    password: "password123",
+    image: "../../../../assets/assets_FrontOffice/assets/img/10.jpg",
+    status: "Active",
+    role: "User",
+    barrcode: "123456789",
+    enabled: true,
+    non_locked: true,
+    using_mfa: false,
+    notifications: [],
+    Posts: [],
+    teams: [],
+    Projectproductowner: [],
+    Projectscrummaster: [],
+    Claims: [],
+    UserStorys: []
+};
   
-  constructor(private route: ActivatedRoute, private sprintService: SprintService, private taskService :TaskService) { }
+  constructor(private route: ActivatedRoute, private sprintService: SprintService, private taskService :TaskService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.sprintId = this.route.snapshot.paramMap.get('id') || '';
@@ -32,7 +62,41 @@ export class SprintDetailsComponent implements OnInit {
       this.SprintTasks=tasks;
 
     })
+    this.addRetroForm = this.fb.group({
+      retrospective: ['', Validators.required]
+    });
   
+  }
+
+
+  addRetrospective() {
+    if (this.addRetroForm.valid) {
+      // Le formulaire est valide, vous pouvez ajouter la rétrospective
+      if (this.sprint) {
+        // Associer les valeurs du formulaire aux propriétés de la tâche sélectionnée
+        const now = new Date().toLocaleString();
+        const firstName = '<strong>' + this.user.first_name + '</strong>';
+        const lastName = '<strong>' + this.user.last_name + '</strong>';
+        const retrospective = '<span class="large">' + this.addRetroForm.value.retrospective + '</span>';
+        this.sprint.retrospective = this.sprint.retrospective + '\n' + now + ' - ' + firstName + ' ' + lastName + '\n' + retrospective;
+  
+        // Appeler la méthode de service pour modifier le sprint
+        this.sprintService.modifySprint(this.sprint).subscribe(
+          data => {
+            console.log(data);
+            // Réinitialiser le formulaire après la soumission réussie
+            this.addRetroForm.reset();
+            this.retrospectiveAdded = true;
+          },
+          error => console.log(error)
+        );
+      } else {
+        console.log('Retrospective add failed !');
+      }
+    } else {
+      // Le formulaire est invalide, vous pouvez afficher un message d'erreur ou effectuer une autre action
+      console.log('Invalid Form !');
+    }
   }
 
   loadSprint() {

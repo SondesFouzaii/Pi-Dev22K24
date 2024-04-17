@@ -1,0 +1,30 @@
+.scrollable-content {
+    max-height: 200px; /* Ajustez la hauteur maximale selon vos besoins */
+    overflow-y: auto;
+    background-color: #f7f7f7;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    line-height: 1.4;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .scrollable-content pre {
+    margin: 0;
+    white-space: pre-wrap;
+  }
+
+  .bold {
+    font-weight: bold;
+    font-size: 30px;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+  
+  span.large {
+    font-size: 30px;
+  }

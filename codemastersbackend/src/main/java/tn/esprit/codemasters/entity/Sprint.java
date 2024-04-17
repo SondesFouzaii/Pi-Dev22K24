@@ -26,6 +26,8 @@ public class Sprint {
     Date endDate;
     StatSprint status;
     Double velocity;
+
+    @Column(length = 5000)
     String retrospective;
 
     public enum StatSprint{

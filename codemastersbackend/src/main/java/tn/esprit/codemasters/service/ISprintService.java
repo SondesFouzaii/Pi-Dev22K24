@@ -18,4 +18,5 @@ public interface ISprintService {
     public void affectTaskToSprint(Long sprintId,Long taskId);
     public void removeTaskFromSprint(Long sprintId,Long taskId);
     public boolean sprintExist(Date startDate, Date endDate);
+    public void sendEmail(String sprintTitle);
 }
