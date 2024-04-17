@@ -1,0 +1,54 @@
+<!-- <form [formGroup]="commentForm" (ngSubmit)="updateComment()">
+    <div class="form-group">
+      <label for="content">Content:</label>
+      <textarea class="form-control" id="content" formControlName="content" rows="5"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Comment</button>
+  </form>
+   -->
+
+   <main class="main-wrapper">
+    <div class="container-fluid">
+        <div class="inner-contents">
+            <div class="page-header d-flex align-items-center justify-content-between mr-bottom-30">
+                <div class="left-part">
+                    <h2 class="text-dark">modify Comment</h2>
+                </div>
+                <div class="right-part">
+                    <form class="search-form w-auto" action="https://wpthemebooster.com/demo/themeforest/html/kleon/search.php">
+                        <input type="text" name="search" class=" bg-white form-control" placeholder="Search">
+                        <button type="submit" class="btn"><img src="assets/img/svg/search.svg" alt=""></button>
+                    </form>
+                </div>
+            </div>
+  
+  
+            <div class="card border-0 p-5">
+                <div class="card-header bg-transparent border-0 p-0 d-flex align-items-center justify-content-between gap-3">
+                    
+                </div>
+  
+                <div class="card-body p-0 pt-4">
+                  
+                  <form [formGroup]="commentForm" (ngSubmit)="updateComment()">
+  
+                   
+    
+                    <div class="form-group">
+                      <label for="content">Content:</label>
+                      <textarea class="form-control" id="content" rows="3" formControlName="content"></textarea>
+                    </div>
+    
+                  
+  
+                    
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+  
+                    </form>
+                    
+                </div>
+            </div>
+  
+        </div>
+    </div>
+  </main>

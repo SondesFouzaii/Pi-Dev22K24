@@ -1,0 +1,23 @@
+<div class="modify-post-container">
+    <h2>Modifier le post</h2>
+    <form [formGroup]="modifyPostForm" (ngSubmit)="modifyPost()">
+      <div class="form-group">
+        <label for="title">Titre</label>
+        <input type="text" class="form-control" id="title" formControlName="title">
+      </div>
+      <div class="form-group">
+        <label for="content">Contenu</label>
+        <textarea class="form-control" id="content" formControlName="content"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="image">Image</label>
+        <input type="file" class="form-control" id="image" (change)="onImageChange($event)">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Modifier</button>
+      </div>
+    </form>
+    <div *ngIf="showMessage" class="alert alert-success">
+      Le post a été modifié avec succès.
+    </div>
+  </div>

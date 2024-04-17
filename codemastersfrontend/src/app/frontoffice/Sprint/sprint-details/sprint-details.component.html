@@ -1,0 +1,161 @@
+<style>
+    
+</style>
+
+<main class="main-wrapper">
+    <div class="container-fluid">
+        <a routerLink="/sprint/sprint-list">
+            <i class="fas fa-arrow-left"></i> Retour
+          </a>
+          
+        <div class="inner-contents">
+            
+            <div class="page-header d-flex align-items-center justify-content-between mr-bottom-30">
+                
+                <div class="left-part">
+                    <h2 class="text-dark">{{this.sprint.title}}</h2>
+                </div>
+                
+            </div>
+
+            <div class="card border-0 p-5">
+                <div class="card-header pb-5 bg-transparent border-0 d-flex align-items-center justify-content-between gap-3">
+                    <h4 class="mb-0">List of {{this.sprint.title}} Tasks</h4>
+                </div>
+
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" class="form-check-input" id="checkbox1" value=""></th>
+                                    <th>Task</th>  
+                                    <th>Complexity</th>
+                                    <th>Priority</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let task of this.SprintTasks">
+                                <tr>
+                                    <td><input type="checkbox" class="form-check-input" id="checkbox1" value=""></td>
+                                    <td>
+                                        <div class="employee d-flex gap-2 flex-wrap">
+                                            <div class="description">
+                                                <h6 class="mb-0">{{task.title}}</h6>
+                                                <small>{{task.userstory?.User?.first_name}}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span *ngIf="task.complexity==='HIGH'" class="p-2 rounded-1 badge-soft-danger"> <i class="indicator danger"></i> {{task.complexity}}</span>
+                                        <span *ngIf="task.complexity==='MEDIUM'" class="p-2 rounded-1 badge-soft-warning"> <i class="indicator warning"></i> {{task.complexity}}</span>
+                                        <span *ngIf="task.complexity==='LOW'" class="p-2 rounded-1 badge-soft-success"> <i class="indicator success"></i> {{task.complexity}}</span>
+                                    </td>
+                                    <td>
+                                        <span *ngIf="task.priority==='HIGH'" class="p-2 rounded-1 badge-soft-danger"> <i class="indicator danger"></i> {{task.priority}}</span>
+                                        <span *ngIf="task.priority==='MEDIUM'" class="p-2 rounded-1 badge-soft-warning"> <i class="indicator warning"></i> {{task.priority}}</span>
+                                        <span *ngIf="task.priority==='LOW'" class="p-2 rounded-1 badge-soft-success"> <i class="indicator success"></i> {{task.priority}}</span>
+                                    
+
+                                    </td>
+
+                                    <td>{{task.description}}</td>                                 
+                                    <td>
+                                        <span class="btn btn-outline-danger" (click)="removeTaskFromSprint(this.sprint.id, task.id)"> Remove From {{this.sprint.title}}</span>
+                                    </td>
+                                    
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                  
+
+                
+
+
+                <div class="card-header pb-5 bg-transparent border-0 d-flex align-items-center justify-content-between gap-3">
+                    <h4 class="mb-0">List Of Available Tasks</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="complexityFilter" class="form-label">Complexity Filter</label>
+                            <select class="form-control" id="complexityFilter" [(ngModel)]="selectedComplexity">
+                                <option selected disabled value="">Choose...</option>
+                                <option value="">All</option>
+                                <option value="LOW">Low</option>
+                                <option value="MEDIUM">Medium</option>
+                                <option value="HIGH">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="priorityFilter" class="form-label">Priority Filter</label>
+                            <select class="form-control" id="priorityFilter" [(ngModel)]="selectedPriority">
+                                <option selected disabled value="">Choose...</option>
+                                <option value="">All</option>
+                                <option value="LOW">Low</option>
+                                <option value="MEDIUM">Medium</option>
+                                <option value="HIGH">High</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" class="form-check-input" id="checkbox1" value=""></th>
+                                    <th>Task</th>  
+                                    <th>Complexity</th>
+                                    <th>Priority</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let task of filteredTasks">
+                                <tr>
+                                    <td><input type="checkbox" class="form-check-input" id="checkbox1" value=""></td>
+                                    <td>
+                                        <div class="employee d-flex gap-2 flex-wrap">
+                                            <div class="description">
+                                                <h6 class="mb-0">{{task.title}}</h6>
+                                                <small>{{task.userstory?.name}}</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span *ngIf="task.complexity==='HIGH'" class="p-2 rounded-1 badge-soft-danger"> <i class="indicator danger"></i> {{task.complexity}}</span>
+                                        <span *ngIf="task.complexity==='MEDIUM'" class="p-2 rounded-1 badge-soft-warning"> <i class="indicator warning"></i> {{task.complexity}}</span>
+                                        <span *ngIf="task.complexity==='LOW'" class="p-2 rounded-1 badge-soft-success"> <i class="indicator success"></i> {{task.complexity}}</span>
+                                    </td>
+                                    <td>
+                                        <span *ngIf="task.priority==='HIGH'" class="p-2 rounded-1 badge-soft-danger"> <i class="indicator danger"></i> {{task.priority}}</span>
+                                        <span *ngIf="task.priority==='MEDIUM'" class="p-2 rounded-1 badge-soft-warning"> <i class="indicator warning"></i> {{task.priority}}</span>
+                                        <span *ngIf="task.priority==='LOW'" class="p-2 rounded-1 badge-soft-success"> <i class="indicator success"></i> {{task.priority}}</span>
+                                    
+
+                                    </td>
+                                    <td>{{task.description}}</td>                                 
+                                    <td>
+                                        <span class="btn btn-primary" (click)="affectTaskToSprint(this.sprint.id, task.id)"> Add to {{this.sprint.title}}</span>
+                                    </td>
+                                    
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

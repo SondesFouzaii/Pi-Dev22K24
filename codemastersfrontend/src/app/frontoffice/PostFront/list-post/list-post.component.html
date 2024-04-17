@@ -1,0 +1,153 @@
+<main class="main-wrapper">
+  <div class="container-fluid">
+    <div class="inner-contents">
+      <!-- Champ de recherche -->
+      <div class="header-search w-100">
+        <form class="search-form" (submit)="search(query)">
+          <input type="text" name="search" class="keyword form-control w-100" [(ngModel)]="query" placeholder="Search">
+          <button type="submit" class="btn"><img src="../../../assets/assets_FrontOffice/../../../assets/assets_FrontOffice/assets/img/svg/search.svg" alt=""></button>
+        </form>
+      </div>
+      <div class="page-header d-flex align-items-start align-items-md-center justify-content-between flex-wrap mr-bottom-30">
+        <div class="left-part">
+          <h2 class="text-dark">Posts</h2>
+        </div>
+        <button class="btn btn-outline-primary" (click)="addPost()">
+          Add Post <i class="fas fa-plus"></i>
+        </button>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div *ngIf="getPaginatedPosts() | async as paginatedPosts" class="row">
+            <div class="col-6" *ngFor="let post of paginatedPosts">
+              <h5 class="media-heading text-uppercase reviews">{{ post.user?.last_name}} {{ post.user?.first_name }}</h5>
+
+              <div class="card border-0">
+                <div class="card-body">
+                  <span class="font-weight-bold time">{{ formatDate(post.creationDate) }}</span>
+                  <div class="p-2 px-3"><span class="font-weight-bold">{{ post.title }}</span></div>
+                  <div class="d-flex justify-content-between gap-4">
+                    <div class="feed-image p-2 px-3" *ngIf="post.imageSrc">
+                      <img class="img-fluid img-responsive" [src]="post.imageSrc">
+                    </div>
+                    <div class="dropdown">
+                      <a href="#" data-bs-toggle="dropdown" class="fs-24">
+                        <i class="bi bi-three-dots-vertical"></i>
+                      </a>
+                      <div class="dropdown-menu p-0">
+                        <a class="dropdown-item" (click)="removePost(post.id)">Remove</a>
+                        <a class="dropdown-item" (click)="modifyPostfront(post.id)">Modify</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap btn-width-equal mt-4">
+                    <button type="button" class="btn ff-heading fs-18 fw-bold text-dark p-0 m-0 border-0" (click)="likePost(post.id, userId)">
+                      <i class="bi bi-hand-thumbs-up text-primary me-2"></i> {{ post.liked.length }} Like
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#add-comment" (click)="postId = post.id">
+                      <i class="bi bi-chat-fill fs-18 text-primary me-2"></i> 
+                      <ng-container *ngIf="post.comments">
+                        <span class="text-primary">{{ post.comments.length }}</span>&nbsp;Comments
+                      </ng-container>
+                    </button>
+                    <button class="share-button">
+                      <a href="https://www.facebook.com/sharer/sharer.php?u={{postUrl}}" target="_blank" class="share-icon">
+                        <i class="fab fa-facebook"></i>
+                      </a>
+                      <a href="https://twitter.com/intent/tweet?url={{postUrl}}&text={{post.title}}" target="_blank" class="share-icon">
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                      <a href="https://www.linkedin.com/shareArticle?url={{postUrl}}&title={{post.title}}" target="_blank" class="share-icon">
+                        <i class="fab fa-linkedin"></i>
+                      </a>
+                    </button>
+                  </div>
+                  <div class="user-info">
+                    <h4 class="media-heading text-uppercase reviews" *ngIf="post.user">{{ post.user.last_name }} {{ post.user.first_name }}</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane active" id="comments-login">
+                <ul class="media-list">
+                  <li class="media" *ngFor="let comment of post.comments">
+                    <div class="media-body">
+                      <div class="well well-lg">
+                        <h5 class="media-heading text-uppercase reviews">{{ comment.user.last_name }} {{ comment.user.first_name }}</h5>
+                        <ul class="media-date text-uppercase reviews list-inline">
+                          <li class="dd">{{ formatDateComment(comment.createdAt) }}</li>
+                        </ul>
+                        <p class="media-comment">
+                          {{ comment.content }}
+                        </p>
+                        <span>
+                          <a href="javascript:void(0);" (click)="deleteComment(comment.id)" title="Supprimer"><i class="fas fa-trash"></i> Supprimer</a>
+                          &nbsp;
+                          <a href="javascript:void(0);" (click)="updateComment(comment.id)" title="updateComment"><i class="fas fa-edit"></i> Modifier</a>
+
+                        </span>
+                      </div>
+                    </div>
+                     <!-- Formulaire de soumission de réponse -->
+    <form [formGroup]="replyForm" (ngSubmit)="onSubmitReplyComment(comment.id)" class="media">
+      <div class="media-body">
+        <div class="mb-3">
+          <label for="replyContent" class="form-label">Your Reply:</label>
+          <textarea class="form-control" id="replyContent" rows="3" formControlName="content" required></textarea>
+        </div>
+        <div class="text-end">
+          <button type="submit" class="btn btn-primary">Reply</button>
+        </div>
+      </div>
+    </form>
+    <!-- Affichage des réponses au commentaire -->
+<ul>
+  <li *ngFor="let reply of comment.replies">
+    <h5 class="media-heading text-uppercase reviews">{{ comment.user.last_name }} {{ comment.user.first_name }}</h5>
+
+    {{ reply.content }}
+    <a href="javascript:void(0);" (click)="deleteComment(comment.id)" title="Supprimer"><i class="fas fa-trash"></i> Supprimer</a>
+
+  </li>
+
+</ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination justify-content-center mt-4">
+    <button class="btn btn-primary" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">Previous</button>
+    <button *ngFor="let page of totalPagesArray" class="btn btn-primary" [class.active]="page === currentPage" (click)="goToPage(page)">{{ page }}</button>
+    <button class="btn btn-primary" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">Next</button>
+  </div>
+</main>
+
+<!-- Boîte de commentaire personnalisée -->
+<div class="modal fade" id="add-comment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Comment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="commentForm" (submit)="onSumbitComment()" class="post-form">
+          <div class="mb-3">
+            <label for="comment" class="form-label">Your Comment:</label>
+            <textarea class="form-control" id="comment" rows="3" formControlName="content" required></textarea>
+          </div>
+          <div class="text-end">
+            <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal" (click)="commentForm.reset()">Close</button>
+            <button type="submit" class="btn btn-primary">Add Comment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
