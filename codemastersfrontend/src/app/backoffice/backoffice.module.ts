@@ -19,6 +19,12 @@ import { AddClaimComponent } from './Claim/add-claim/add-claim.component';
 import { UpdateClaimComponent } from './Claim/update-claim/update-claim.component';
 import { AddUsersToTeamComponent } from './team/add-users-to-team/add-users-to-team.component';
 import { AddProjectsToTeamComponent } from './team/add-projects-to-team/add-projects-to-team.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule  } from '@angular/platform-browser/animations'; // This should also be imported if not already done
+import { MatIconModule } from '@angular/material/icon';
+import { ChartComponent } from './chart/chart.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -38,7 +44,9 @@ import { AddProjectsToTeamComponent } from './team/add-projects-to-team/add-proj
     AddClaimComponent,
     UpdateClaimComponent,
     AddUsersToTeamComponent,
-    AddProjectsToTeamComponent
+    AddProjectsToTeamComponent,
+    DashboardComponent,
+    ChartComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +54,15 @@ import { AddProjectsToTeamComponent } from './team/add-projects-to-team/add-proj
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BackofficeRoutingModule
+    BackofficeRoutingModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatSnackBarModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    })
   ],
   exports: [
     BackofficeComponent

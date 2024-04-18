@@ -1,0 +1,41 @@
+/* src/app/components/chart/chart.component.css */
+.team-stats-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.team-stats-container h1 {
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    margin-top: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+strong {
+    color: #2a2a2a;
+}
+/* Assuming the file is chart.component.css */
+.team-stats-container {
+    margin-top: 100px; /* Adjust this value to set how far down you want the component */
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}

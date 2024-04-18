@@ -23,17 +23,10 @@
               <h5>UserStory</h5>
               <p>Name: {{ claim.userstory.name }}</p>
               
-              <div class="text-center">
-              
-                <button class="btn btn-success" (click)="editClaim(claim.id)">Edit</button>
-                <button class="btn btn-danger" (click)="deleteClaim(claim.id)">Delete</button>
-              </div>
+             
             </div>
           </div>
-          <div class="text-center mt-4">
-            <button class="btn btn-success" (click)="addClaim()">Add Claim</button>
-            <button class="btn btn-success" (click)="exportClaimsToPdf()">Exporter en PDF</button>
-          </div>
+          
         </div>
       </main>
     </div>

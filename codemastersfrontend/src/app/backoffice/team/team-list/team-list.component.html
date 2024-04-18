@@ -1,60 +1,241 @@
-<div class="team-list">
-  <!-- <input type="text" [(ngModel)]="searchTerm" (keyup)="searchTeams()" placeholder="Search teams...">-->
-  <div class="row"> 
-<!-- Main Content -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-4">
-      <div class="container">
-        <div *ngFor="let team of teams" class="card mb-3">
-          <div class="card-header">{{ team.name }}</div>
-          <div class="card-body">
-            <h5>Users</h5>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Gender</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let user of team.users">
-                  <td>{{ user.name }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.role }}</td>
-                  <td>{{ user.gender }}</td>
-                </tr>
-              </tbody>
-            </table>
-            <h5>Projects</h5>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Date of creation</th>
-                  <th>Deadline</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let project of team.projects">
-                  <td>{{ project.name }}</td>
-                  <td>{{ project.creationdate | date }}</td>
-                  <td>{{ project.deadline | date }}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="text-center">
-              <button class="btn btn-success" (click)="navigateToUpdateTeam(team.id)">Modifier</button>
-              <button class="btn btn-danger"(click)="deleteTeam(team.id)">Delete</button>
-            </div>
-          </div>
-        </div>
-        <div class="text-center mt-4">
-          <button class="btn btn-success" (click)="navigateToCreateTeam()">Add Team</button>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      
+      body {
+        font-family: 'Roboto', sans-serif;
+    }
+    /* Existing CSS stays, add or modify the below */
+.page-title {
+    font-size: 32px; /* Larger font size */
+    font-weight: 600; /* Bold */
+    color: #000000; /* Dark gray for text */
+    margin-left: 2rem; /* Aligns with the content of cards */
+    margin-bottom: 1rem; /* Spacing before the container */
+    margin-top: 100px;
+}
+
+.text-Left {
+    text-align: left;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #924aefb6; /* Dark color for readability */
+}
+
+.container {
+    margin-top: 0; /* Adjust if necessary */
+    max-width: 90%;
+    margin: 2rem auto; /* Adjust top margin to account for the heading */
+    background-color: #f6f6f6;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.team-card {
+    background-color: #fff; /* Couleur de fond pour la carte */
+    border: 1px solid #E5E7EB; /* Bordure légère pour délimiter la carte */
+    border-radius: 10px; /* Bords arrondis pour un look moderne */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile pour du relief */
+    margin-bottom: 2rem; /* Espacement entre les cartes */
+    padding: 20px; /* Padding intérieur pour l'espacement du contenu */
+    transition: box-shadow 0.3s ease; /* Transition douce pour l'interaction */
+}
+
+.team-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée au survol */
+}
+
+/* Style pour les titres à l'intérieur des cartes pour un meilleur alignement */
+.team-card > h2, .team-card .text-left {
+    margin-left: 0; /* Ajustez selon votre design */
+    font-size: 24px; /* Taille de police plus grande pour le titre de l'équipe */
+    color: #5d5d5d; /* Couleur du texte */
+    border-bottom: 2px solid #E5E7EB; /* Ligne sous le titre pour la séparation */
+    padding-bottom: 10px; /* Espacement sous le titre */
+}
+
+/* Adapter les styles des tables pour s'aligner avec le nouveau design des cartes */
+.table {
+    margin-top: 20px; /* Espacement au-dessus de la première table */
+}
+
+.table th {
+    background-color: #924aef40; /* Fond légèrement différent pour l'entête */
+}
+.team-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.user-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.team-header h2 {
+    margin: 0; /* Supprimez la marge par défaut du h2 pour un meilleur alignement */
+    flex-grow: 1; /* Permet au titre de prendre la majeure partie de l'espace */
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px; /* Espacement entre les icônes */
+    color: #924aefae; /* Couleur des icônes, ajustez selon le besoin */
+}
+
+.icon-button i {
+    font-size: 20px; /* Ajustez la taille des icônes */
+}
+.add-users-input {
+  display: flex;
+  align-items: center;
+}
+
+.add-users-input input {
+  flex-grow: 1;
+  margin-right: 10px; /* Espacement entre le champ de saisie et le bouton */
+  border: 4px solid #ccc; /* Bordure du champ de saisie */
+  border-radius: 20px; /* Coins arrondis pour le champ de saisie */
+  padding: 8px 12px; /* Padding intérieur pour augmenter l'espace dans le champ */
+  outline: none; /* Supprime l'outline lors de la sélection */
+}
+
+.add-users-input input:focus {
+  border-color: #924aefae; /* Change la couleur de la bordure lors de la focalisation */
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; /* Aligner le bouton à droite */
+  margin: 10px 110; /* Ajustez selon vos besoins */
+}
+
+
+    </style>
+</head>
+<body>
+    <h2 class="page-title" style="font-size: 40px;">Team List</h2>
+    <div class="input-group mb-3 justify-content-center">
+        <input class="form-control w-50" type="text" placeholder="Rechercher..." aria-label="Rechercher..." [(ngModel)]="searchTerm" (keyup)="searchTeams()">
+        <button class="btn btn-outline-primary" type="button" (click)="sortTeamsByTitle()">
+          <i [ngClass]="sortOrder ? 'fas fa-sort-alpha-down' : 'fas fa-sort-alpha-up-alt'"></i>
+        </button>
       </div>
-    </main>
-  </div>
+
+    <div class="container">
+    <div *ngFor="let team of teams ; ; let i = index" id="team-{{i}}"  class="team-card">
+        <div class="team-header">
+        <h2>{{ team.name }}</h2>
+        <button (click)="navigateToUpdateTeam(team.id)" title="Modifier"class="icon-button">
+            <i class="fas fa-edit"></i>
+        </button>
+        <button (click)="deleteTeam(team.id)" title="Supprimer"class="icon-button">
+            <i class="fas fa-trash"></i>
+        </button>
+        </div>
+        <div class="user-header">
+        <div class="text-Left">Users</div>
+        <button (click)="toggleAddUserRow(team)" class="icon-button">
+            <i class="fas fa-user-plus"></i> <!-- Icône d'ajout d'utilisateur -->
+          </button>       
+         </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Role</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop over each user in the team -->
+                <tr *ngFor="let user of team.users">
+                    <td>{{ user.first_name }} {{ user.last_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone_number }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>{{ user.gender }}</td>
+                </tr>
+                
+            </tbody>
+        </table>
+        <div *ngIf="team.showAddUser"class="add-users-input">
+            <input type="text" [(ngModel)]="team.newUserEmails" placeholder="Entrez les ID, séparés par des virgules">
+            <!-- Icône pour valider l'ajout d'utilisateurs -->
+            <button (click)="addUsers(team.id, team.newUserEmails, team)" class="icon-button">
+              <i class="fas fa-check"></i> <!-- Icône de validation -->
+            </button>
+          </div>
+          <div class="user-header">
+            <div class="text-Left">Projects</div>
+            <button (click)="toggleAddProjectRow(team)" class="icon-button">
+                <i class="fas fa-plus-circle"></i> <!-- Icône d'ajout d'utilisateur -->
+              </button>       
+             </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Creation Date</th>
+                    <th>Deadline</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop over each project in the team -->
+                <tr *ngFor="let project of team.projects">
+                    <td>{{ project.name }}</td>
+                    <td>{{ project.creationdate | date:'longDate' }}</td>
+                    <td>{{ project.deadline | date:'longDate' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="team.showAddProject"class="add-users-input">
+            <input type="text" [(ngModel)]="team.newProjectNames" placeholder="Entrez les IDs">
+            <!-- Icône pour valider l'ajout d'utilisateurs -->
+            <button (click)="addProjects(team.id, team.newProjectNames, team)" class="icon-button">
+              <i class="fas fa-check"></i> <!-- Icône de validation -->
+            </button>
+          </div>
+          <button class="icon-button" (click)="exportTeamsToPDFs()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+              <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+            </svg>
+          </button>    
+        </div>
+    <div class="button-container">
+        <button class="icon-button" (click)="navigateToCreateTeam()">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+      <div *ngIf="teams.length > 0" class="mt-4">
+        <nav aria-label="Navigation de pagination" class="d-flex justify-content-center">
+          <ul class="pagination">
+            <li class="page-item" [class.disabled]="currentPage === 0">
+              <a class="page-link" href="javascript:void(0)" aria-label="Précédent" (click)="previousPage()">&laquo;</a>
+            </li>
+            <li class="page-item disabled">
+              <span class="page-link">{{currentPage + 1}}/{{totalPages}}</span>
+            </li>
+            <li class="page-item" [class.disabled]="(currentPage + 1) * pageSize >= totalElements">
+              <a class="page-link" href="javascript:void(0)" aria-label="Suivant" (click)="nextPage()">&raquo;</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
 </div>
-
-
+   
+</body>
+</html>

@@ -11,7 +11,7 @@ import { ClaimService } from 'src/app/services/claimservice/claim.service';
 export class ClaimAddComponent {
   claim = {
     user: {
-      name: '' // User's name
+      email: '' // User's name
     },
     userstory: {
       name: '' // UserStory's name

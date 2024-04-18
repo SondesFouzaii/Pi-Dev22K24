@@ -1,0 +1,16 @@
+:host {
+    display: block;
+    padding: 16px;
+}
+
+.full-calendar-container {
+    width: 70%;          // Smaller width as per your requirements
+    margin-left: auto;   // Aligns the container to the right
+    margin-right: 35px;     // Keeps the container flush with the right side
+    padding: 10px;       // Optional: Adds padding around the calendar for visual spacing
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);  // Optional: Adds a shadow for better visual separation
+}
+
+full-calendar {
+    width: 100%;         // Makes the calendar responsive within the container
+}

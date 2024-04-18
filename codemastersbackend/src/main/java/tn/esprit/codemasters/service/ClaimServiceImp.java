@@ -5,13 +5,15 @@ import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import tn.esprit.codemasters.entity.Claim;
 import lombok.AllArgsConstructor;
-import tn.esprit.codemasters.entity.User;
+import tn.esprit.codemasters.entity.user.User;
 import tn.esprit.codemasters.entity.UserStory;
 import tn.esprit.codemasters.repository.ClaimRepository;
 import tn.esprit.codemasters.repository.UserRepository;
 import tn.esprit.codemasters.repository.UserStoryRepository;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 
 @AllArgsConstructor
@@ -42,8 +44,8 @@ public class ClaimServiceImp implements IClaimService{
     public String addClaim(Claim claim) {
         try {
             // Récupérer l'utilisateur par son nom
-            User user = userRepository.findByName(claim.getUser().getName());
-            if (user == null) {
+            Optional<User> optionalUser = userRepository.findByEmail(claim.getUser().getEmail());
+            if (optionalUser == null) {
                 return "User not found";
             }
 
@@ -54,10 +56,11 @@ public class ClaimServiceImp implements IClaimService{
             }
 
             // Affecter l'utilisateur et l'histoire d'utilisateur à la réclamation
-            claim.setUser(user);
+            claim.setUser(optionalUser.get());
             claim.setUserstory(userStory);
 
             Claim savedClaim = claimRepository.save(claim);
+
 
             return "Claim added successfully with ID: " + savedClaim.getId();
         } catch (Exception e) {
@@ -81,39 +84,8 @@ public class ClaimServiceImp implements IClaimService{
     public List<Claim> searchClaims(String searchTerm) {
         return claimRepository.searchClaims(searchTerm);
     }
-    @Autowired
-    private EmailService emailService;
 
-    @Transactional
-    public void createAndAssignClaim(Claim claim, User user) {
-        System.out.println("Début de la création et attribution d'une réclamation à " + user.getEmail());
 
-        // Vérifiez et préparez l'objet User (si nécessaire)
-        User assignedUser = userRepository.findById(user.getId())
-                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
-
-        // Log pour confirmer la récupération de l'utilisateur
-        System.out.println("Utilisateur assigné trouvé : " + assignedUser.getEmail());
-
-        // Attribuez l'utilisateur à la réclamation et définissez d'autres propriétés nécessaires
-        claim.setUser(assignedUser);
-
-        // Enregistrez la réclamation dans la base de données
-        claimRepository.save(claim);
-
-        // Log avant d'envoyer l'email
-        System.out.println("Tentative d'envoi d'email à " + assignedUser.getEmail());
-
-        // Envoyer un email de notification à l'utilisateur assigné
-        emailService.sendSimpleMessage(
-                assignedUser.getEmail(),
-                "Nouvelle Réclamation Assignée",
-                "Une nouvelle réclamation a été assignée à vous. Veuillez vérifier le système pour plus de détails."
-        );
-
-        // Log après l'envoi de l'email
-        System.out.println("Email envoyé à " + assignedUser.getEmail());
-    }
 
 
 }

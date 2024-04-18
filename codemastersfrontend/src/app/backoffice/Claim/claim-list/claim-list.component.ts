@@ -64,8 +64,6 @@ searchClaims(): void {
     });
     this.sortOrder = !this.sortOrder; // Inverse l'ordre pour le prochain tri
   }
-  exportClaimsToPdf(): void {
-    this.pdfExportService.exportClaimsToPdf(this.claims);
-  }
+ 
 
 }

@@ -10,6 +10,8 @@ import { AddClaimComponent } from './Claim/add-claim/add-claim.component';
 import { UpdateClaimComponent } from './Claim/update-claim/update-claim.component';
 import { AddUsersToTeamComponent } from './team/add-users-to-team/add-users-to-team.component';
 import { AddProjectsToTeamComponent } from './team/add-projects-to-team/add-projects-to-team.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChartComponent } from './chart/chart.component';
 
 const routes: Routes = [
   { path: '', component:BackofficeComponent , children: [
@@ -21,7 +23,9 @@ const routes: Routes = [
     { path: 'back-add-claim', component: AddClaimComponent },
     { path: 'back-update-claim/:id', component: UpdateClaimComponent },
     { path: 'back-add-users-to-team/:teamId', component: AddUsersToTeamComponent },
-    { path: 'back-add-projects-to-team/:teamId', component: AddProjectsToTeamComponent }
+    { path: 'back-add-projects-to-team/:teamId', component: AddProjectsToTeamComponent },
+    { path: 'dashboard-team', component: DashboardComponent },
+    { path: 'chart-team', component: ChartComponent }
 
 
 ]}

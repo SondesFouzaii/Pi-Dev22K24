@@ -13,7 +13,10 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ClaimUpdateComponent } from './claim/claim-update/claim-update.component';
 import { ListTeamComponent } from './team/list-team/list-team.component';
-
+import { TeamCalendarComponent } from './team-calendar/team-calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; // Make sure the import is correct
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { TeamComponent } from './team/team/team.component';
 
 
 
@@ -29,7 +32,9 @@ import { ListTeamComponent } from './team/list-team/list-team.component';
     ListClaimComponent,
     ClaimAddComponent,
     ClaimUpdateComponent,
-    ListTeamComponent
+    ListTeamComponent,
+    TeamCalendarComponent,
+    TeamComponent
     
     
 
@@ -40,7 +45,8 @@ import { ListTeamComponent } from './team/list-team/list-team.component';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FrontofficeRoutingModule
+    FrontofficeRoutingModule,
+    FullCalendarModule
   ]
 })
 export class FrontofficeModule { }

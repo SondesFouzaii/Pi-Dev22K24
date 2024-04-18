@@ -1,0 +1,37 @@
+.stats-card {
+    background-color: #fff;  // white background for the card
+    border-radius: 10px;
+    padding: 0;  // Remove padding here to allow title bar to extend
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 10px;
+}
+
+.stats-title {
+    background-color: #8a2be2;  // mauve background for titles
+    color: #ccc;  // gray color for title text
+    padding: 10px;
+    border-radius: 10px 10px 0 0;  // Rounded top corners
+    width: 100%;  // Ensure it spans the full width
+    display: flex;  // Use flex to align the icon and text
+    align-items: center;
+    justify-content: center;
+}
+
+.stats-number {
+    font-size: 2rem;
+    font-weight: bold;  // bold for numbers
+    color: #333;  // darker color for numbers for better readability
+    padding: 20px 0;  // Add padding to give some spacing from the title
+}
+.dashboard-title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center; // Center the title if that fits your design
+}
+body {
+    padding-top: 80px;  // Use the actual height of your header
+}
+
+// Rest of your styles...

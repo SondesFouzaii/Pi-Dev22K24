@@ -1,72 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<title>Dashboard Team</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 70%;
+            margin-top: 2rem;
+            margin-left: 25%;
+        }
+        .team-card, .user-card, .project-card {
+            background-color: #d6d6d688;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .team-card {
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+        .user-card, .project-card {
+            margin-bottom: 1rem;
+        }
+        .card-body {
+            padding: 1rem;
+        }
+        h2, h4 {
+            color: #333;
+        }
+        .text-center {
+            text-align: center;
+            font-size: 28px;
+        }
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .card {
+            flex: 1 0 15%; /* Diminution accrue de la largeur initiale des cartes */
+            max-width: 300px;/* Adjust based on your preference */
+            box-sizing: border-box;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
+        }
+        .team-card .date-info {
+    text-align: right;
+    color: gray;
+    font-size: 0.9em;
+}
+.date-info span {
+    font-size: 0.8em; /* Réduit la taille de la police */
+    color: grey; /* Garde la couleur grise comme vous l'avez demandé auparavant */
+}
+.team-card .date-info i {
+    margin-right: 5px;
+}
+.users-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 20px; /* Adjust space between cards */
+}
+
+.user-card {
+    flex: 0 0 30%; /* Each user card will take up 30% of the container width */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px; /* Space between rows */
+    padding: 10px;
+    text-align: center;
+}
+
+.user-card img {
+    width: 100px; /* Adjust size as necessary */
+    height: auto;
+    margin: auto; /* Centering the image */
+}
+
+@media (max-width: 800px) {
+    .user-card {
+        flex: 0 0 100%; /* Full width on smaller screens */
+    }
+}
+
+
+    </style>
 </head>
 <body>
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-10">
-      <h2 class="text-center mb-4">Team List</h2>
-      <!-- Ici commence la boucle pour chaque équipe -->
-      <div *ngFor="let team of teams" class="card shadow mb-5">
-        <div class="card-header">
-          {{ team.name }}
+<div class="container">
+    <h2 class="text-center my-4">Team List</h2>
+    <div *ngFor="let team of teams" class="team-card">
+        <h2>{{ team.name }}</h2>
+        
+        <div class="text-center">Users</div>
+        <div class="card-grid">
+            <!-- Repeat for each user in team.users -->
+            <div *ngFor="let user of team.users" class="user-card card">
+                <img src="{{user.gender === 'Homme' ? 'assets/assets_BackOffice/assets/img/male.png' : 'assets/assets_BackOffice/assets/img/female.png'}}" alt="User Image">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ user.first_name }} {{ user.last_name }}</h5>
+                    <p class="card-text" style="color: black;">
+                        <span class="bg-muted rounded-1 d-inline-block text-center text-primary lh-36 px-2 py-0 me-2">
+                        <i class="bi bi-envelope-fill" style="color: #924AEF;"></i></span> {{ user.email }}<br>
+                        
+                        <!-- Icône téléphone -->
+                        <span class="bg-muted rounded-1 d-inline-block text-center text-primary lh-36 px-2 py-0 me-2">
+                        <i class="bi bi-telephone-fill" style="color: #924AEF;"></i></span> {{ user.phone_number }}<br>
+                        <!-- Rôle et genre avec icône générique -->
+                        <span class="bg-muted rounded-1 d-inline-block text-center text-primary lh-36 px-2 py-0 me-2">
+                        <i class="fas fa-user-tag" style="color: #924AEF;"></i></span> {{ user.role }}<br>
+                        <span class="bg-muted rounded-1 d-inline-block text-center text-primary lh-36 px-2 py-0 me-2">
+                        <i class="fas fa-venus-mars" style="color: #924AEF;"></i></span> {{ user.gender }}
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-          <!-- Section utilisateurs -->
-          <h5 class="card-title">Users</h5>
-          <div class="table-responsive">
-            <table class="table table-hover">
-              <thead class="thead-dark">
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Gender</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let user of team.users">
-                  <td>{{ user.name }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.role }}</td>
-                  <td>{{ user.gender }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- Section projets -->
-          <h5 class="card-title mt-4">Projects</h5>
-          <div class="table-responsive">
-            <table class="table table-hover">
-              <thead class="thead-dark">
-                <tr>
-                  <th>Name</th>
-                  <th>Date of Creation</th>
-                  <th>Deadline</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let project of team.projects">
-                  <td>{{ project.name }}</td>
-                  <td>{{ project.creationdate | date }}</td>
-                  <td>{{ project.deadline | date }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        
+        <div class="text-center mt-4">Projects</div>
+        <div class="card-grid">
+            <!-- Repeat for each project in team.projects -->
+            <div *ngFor="let project of team.projects" class="project-card card">
+                <img src="assets/assets_BackOffice/assets/img/project.png" alt="Project Image">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ project.name }}</h5>
+                    <p class="card-text" style="color: black;">
+                        <span class="bg-muted rounded-1 d-inline-block text-center text-primary lh-36 px-2 py-0 me-2">
+                        <i class="fas fa-calendar-alt" style="color: mauve;"></i></span> Creation Date: {{ project.creationdate | date:'longDate' }}<br>
+                        <span class="bg-muted rounded-1 d-inline-block text-center text-primary lh-36 px-2 py-0 me-2">
+                        <i class="fas fa-hourglass-end" style="color: mauve;"></i></span> Deadline: {{ project.deadline | date:'longDate' }}<br>
+                        
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
-      <!-- Fin de la boucle -->
+        
+            <div *ngIf="!team.lastModifiedDate" class="date-info">
+                <span class="bg-muted rounded-1 d-inline-block text-center text-primary lh-36 px-2 py-0 me-2">
+                    Created : {{ team.createdDate | date:'medium' }}
+                </span>
+            </div>
+            <!-- Toujours afficher la date de modification si elle existe -->
+            <div *ngIf="team.lastModifiedDate" class="date-info">
+                <span class="bg-muted rounded-1 d-inline-block text-center text-primary lh-36 px-2 py-0 me-2">
+                    Modified : {{ team.lastModifiedDate | date:'medium' }}
+                </span>
+            </div>
+            <a [routerLink]="['/front-team', team.id]" class="view-icon" title="View Team">
+                <i class="fas fa-eye"></i> <!-- Using Font Awesome eye icon -->
+            </a>
+        
     </div>
-  </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

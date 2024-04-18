@@ -3,11 +3,11 @@ package tn.esprit.codemasters.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
+
 import org.springframework.web.bind.annotation.*;
 import org.webjars.NotFoundException;
 import tn.esprit.codemasters.entity.Claim;
-import tn.esprit.codemasters.entity.User;
+
 import tn.esprit.codemasters.entity.UserStory;
 import tn.esprit.codemasters.repository.ClaimRepository;
 import tn.esprit.codemasters.repository.UserRepository;

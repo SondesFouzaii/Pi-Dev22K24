@@ -5,7 +5,11 @@ export interface Team {
     id: number;
     name: string;
 
+    createdDate: Date;  // or Date, depending on how you handle dates
+    lastModifiedDate: Date;
+
     users: User[];
-    Projects: Project[];
+    projects: Project[];
 
   }
+  

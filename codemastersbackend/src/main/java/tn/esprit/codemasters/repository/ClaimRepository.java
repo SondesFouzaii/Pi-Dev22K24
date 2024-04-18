@@ -1,12 +1,12 @@
 package tn.esprit.codemasters.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import tn.esprit.codemasters.entity.Claim;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.util.List;
 
 public interface ClaimRepository extends JpaRepository<Claim,Long> {

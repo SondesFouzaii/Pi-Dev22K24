@@ -1,9 +1,7 @@
-
 <div class="container mt-3">
-  <div class="row"> <!-- Ajoute une rangée pour contenir la sidebar et le formulaire -->
-    
-    <div class="col-md-9"> <!-- Utilise les colonnes restantes pour le formulaire, le plaçant à côté de la sidebar -->
-      <div class="card"> <!-- Encapsule le formulaire dans un card pour le mettre en cadre -->
+  <div class="row">
+    <div class="col-md-9">
+      <div class="card">
         <div class="card-header">
           Ajouter une nouvelle équipe
         </div>
@@ -14,16 +12,16 @@
               <input type="text" formControlName="name" class="form-control" id="teamName" placeholder="Entrez le nom de l'équipe" required>
             </div>
         
-            <!-- Input pour les IDs d'utilisateurs -->
+            <!-- Input pour les emails des utilisateurs -->
             <div class="mb-3">
-              <label for="userIds" class="form-label">IDs des Utilisateurs</label>
-              <input type="text" formControlName="userIds" class="form-control" id="userIds" placeholder="Ex: 1,2,3">
+              <label for="userEmails" class="form-label">Emails des utilisateurs (séparés par des virgules)</label>
+              <input type="text" formControlName="userEmails" class="form-control" id="userEmails" placeholder="Ex: user1@example.com,user2@example.com">
             </div>
         
-            <!-- Input pour les IDs de projets -->
+            <!-- Input pour les noms des projets -->
             <div class="mb-3">
-              <label for="projectIds" class="form-label">IDs des Projets</label>
-              <input type="text" formControlName="projectIds" class="form-control" id="projectIds" placeholder="Ex: 4,5,6">
+              <label for="projectNames" class="form-label">Noms des projets (séparés par des virgules)</label>
+              <input type="text" formControlName="projectNames" class="form-control" id="projectNames" placeholder="Ex: Project Alpha,Project Beta">
             </div>
             
             <button type="submit" class="btn btn-primary">Ajouter l'équipe</button>
@@ -33,5 +31,3 @@
     </div>
   </div>
 </div>
-
-

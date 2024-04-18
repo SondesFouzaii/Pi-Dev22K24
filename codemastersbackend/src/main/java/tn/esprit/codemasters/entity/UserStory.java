@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import tn.esprit.codemasters.entity.user.User;
 
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -31,7 +31,7 @@ public class UserStory {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="userstory")
     @JsonIgnore
-    private Set<Claim> Claims;
+    private Set<Claim> reclamations;
 
     @ManyToOne
     @JsonIgnore
@@ -39,5 +39,5 @@ public class UserStory {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="userstory")
     @JsonIgnore
-    private Set<Task> Tasks;
+    private Set<Task> tasks;
 }

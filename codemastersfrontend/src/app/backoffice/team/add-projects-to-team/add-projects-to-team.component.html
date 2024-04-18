@@ -7,7 +7,7 @@
         <form (ngSubmit)="addProjects()">
           <div class="mb-3">
             <label for="projectIDsInput" class="form-label">Project IDs (comma-separated):</label>
-            <input type="text" id="projectIDsInput" class="form-control" [formControl]="projectIDsInput">
+            <input type="text" id="projectIDsInput" class="form-control" [formControl]="projectNamesInput ">
           </div>
           <button type="submit" class="btn btn-primary">Add Projects to Team</button>
         </form>

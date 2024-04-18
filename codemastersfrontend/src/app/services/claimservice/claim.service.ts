@@ -8,7 +8,7 @@ import { Userstory } from 'src/app/models/userstory';
   providedIn: 'root'
 })
 export class ClaimService {
-  private baseUrl = 'http://localhost:8090/codemasters/claims'; // URL de base de l'API
+  private baseUrl = 'http://localhost:8089/codemasters/claims'; // URL de base de l'API
 
   constructor(private http: HttpClient) { }
 

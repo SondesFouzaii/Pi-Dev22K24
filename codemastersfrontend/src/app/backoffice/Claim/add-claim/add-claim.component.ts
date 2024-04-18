@@ -11,10 +11,10 @@ import { ClaimService } from 'src/app/services/claimservice/claim.service';
 export class AddClaimComponent {
   claim = {
     user: {
-      name: '' // User's name
+      email: '' 
     },
     userstory: {
-      name: '' // UserStory's name
+      name: '' 
     },
     title: '',
     content: ''

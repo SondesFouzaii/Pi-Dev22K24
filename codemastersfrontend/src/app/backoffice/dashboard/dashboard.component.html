@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Assuming Angular CLI has injected the necessary stylesheets and scripts -->
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row">
+        <h1 class="dashboard-title">{{ pageTitle }}</h1>
+
+        <!-- Total Teams -->
+        <div class="col-md-4 mb-3">
+            <div class="stats-card">
+                <div class="stats-title">
+                    <i class="bi bi-people-fill"></i> Total Teams
+                </div>
+                <p class="stats-number">{{ totalTeams }}</p>
+            </div>
+        </div>
+        <!-- Total Users in Teams -->
+        <div class="col-md-4 mb-3">
+            <div class="stats-card">
+                <div class="stats-title">
+                    <i class="bi bi-person-fill"></i> Total Users in Teams
+                </div>
+                <p class="stats-number">{{ totalUsersInTeams }}</p>
+            </div>
+        </div>
+        <!-- Total Projects in Teams -->
+        <div class="col-md-4 mb-3">
+            <div class="stats-card">
+                <div class="stats-title">
+                    <i class="bi bi-folder-fill"></i> Total Projects in Teams
+                </div>
+                <p class="stats-number">{{ totalProjectsInTeams }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <!-- Canvas for Gender Distribution Chart -->
+            <canvas id="genderChart"></canvas>
+        </div>
+    </div>
+    
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

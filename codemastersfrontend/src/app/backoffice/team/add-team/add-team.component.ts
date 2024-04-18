@@ -11,36 +11,30 @@ import { TeamService } from 'src/app/services/teamservice/team.service';
 export class AddTeamComponent {
   teamForm = this.fb.group({
     name: ['', Validators.required],
-    userIds: [''], // Modifiez pour utiliser une chaîne
-    projectIds: [''], // Modifiez pour utiliser une chaîne
+    userEmails: [''],  // Using a string for emails
+    projectNames: [''],  // Using a string for project names
   });
-  
 
-  constructor(private fb: FormBuilder, private teamService: TeamService,private router: Router) { }
+  constructor(private fb: FormBuilder, private teamService: TeamService, private router: Router) { }
 
   addTeam(): void {
     if (this.teamForm.valid) {
       const formValue = this.teamForm.value;
   
-      const userIdsString = formValue.userIds ?? '';
-      const projectIdsString = formValue.projectIds ?? '';
-  
+      // Ensure the values are strings and default to an empty string if null or undefined
+      const userEmails = formValue.userEmails ?? '';
+      const projectNames = formValue.projectNames ?? '';
+
       const teamData = {
-        teamName: formValue.name, // Modification ici de 'name' à 'teamName'
-        userIds: userIdsString.split(',')
-                    .map(s => parseInt(s.trim(), 10))
-                    .filter(n => !isNaN(n)),
-        projectIds: projectIdsString.split(',')
-                      .map(s => parseInt(s.trim(), 10))
-                      .filter(n => !isNaN(n)),
+        teamName: formValue.name,
+        userEmails: userEmails.split(',').map(email => email.trim()).filter(email => email),  // Split, trim and remove empty entries
+        projectNames: projectNames.split(',').map(name => name.trim()).filter(name => name),  // Split, trim and remove empty entries
       };
-      
   
       this.teamService.addTeam(teamData).subscribe({
         next: (team) => {
           console.log('Équipe ajoutée avec succès', team);
-          this.router.navigate(['/back-show-team']); 
-         
+          this.router.navigate(['/back-show-team']);
         },
         error: (error) => {
           console.error('Erreur lors de l\'ajout de l\'équipe', error);
@@ -48,7 +42,4 @@ export class AddTeamComponent {
       });
     }
   }
-  
-  
-  
 }
