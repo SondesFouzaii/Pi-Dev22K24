@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style>
+        .image-cell {
+            width: 100px;
+            height: 0;
+            padding-bottom: 100%; /* Maintain aspect ratio */
+            position: relative;
+        }
+        .image-cell img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the entire cell */
+        }
+        .btn-disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body> 
+  
+  <main>
+    <div class="container-fluid px-4">
+      <h2 class="post-title">List of Posts</h2>
+      
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active"></li>
+      </ol>
+      
+      <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+       
+      </form>
+      <div >
+        <table class="datatable-table">
+          <thead>
+            <tr>
+              <th>Content</th>
+              <th>Creation Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let comment of pagedComments">
+                <td>{{ comment.content }}</td>
+                <td>{{ comment.createdAt }}</td>
+                <td>
+                    <button class="btn" (click)="deleteComment(comment.id)"><i class="fa fa-trash"></i></button>                
+                </td>
+            </tr>
+          </tbody>
+        </table>
+        <mat-paginator [length]="totalComments" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPageChange($event)"></mat-paginator>
+      </div>
+    </div>
+  </main>
+ 
+</body>
+</html>
