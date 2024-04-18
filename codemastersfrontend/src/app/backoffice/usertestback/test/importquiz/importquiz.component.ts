@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Quiz } from 'src/app/models/quiz';
 import { QuizService } from 'src/app/services/quiz.service';
 
@@ -7,9 +7,11 @@ import { QuizService } from 'src/app/services/quiz.service';
   templateUrl: './importquiz.component.html',
   styleUrls: ['./importquiz.component.scss']
 })
-export class ImportquizComponent {
+export class ImportquizComponent implements OnInit{
   constructor(private quizservice: QuizService){}
-
+ngOnInit(): void {
+  this.getNonAnsredQuestions();
+}
   importjson(event: any) {
     const file = event.target.files[0];
     const fileName = file.name;
@@ -45,4 +47,16 @@ export class ImportquizComponent {
 
     return null;
   }
+  replyText!:string;
+  replyToADevolopper(idQ:any,idd:any){
+
+    this.quizservice.replyToQuestion(idQ,this.replyText,idd).subscribe(()=>this.getNonAnsredQuestions());
+  }
+  allquestionsnotansered:any
+  getNonAnsredQuestions(){
+
+    this.quizservice.getCommentsThatNeedToBeAnnsered().subscribe((res)=>this.allquestionsnotansered=res);
+  }
+
+  
 }

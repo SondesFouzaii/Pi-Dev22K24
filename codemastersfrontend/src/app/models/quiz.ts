@@ -1,4 +1,4 @@
-export class Quiz {
+  export class Quiz {
     nom!: string;
     quizz!:QQ[];
 

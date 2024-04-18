@@ -47,7 +47,7 @@ export class MyprofileComponent implements OnInit {
   public getallactivities(): void {
     this.serv.getActivities().subscribe(
       (response: Activities[]) => {
-        this.activities = response;
+        this.activities = response.reverse();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

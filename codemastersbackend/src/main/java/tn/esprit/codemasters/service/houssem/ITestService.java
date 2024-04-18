@@ -44,13 +44,15 @@ public interface ITestService {
     public List<Gemini> getallgemini(Long id);
 
     // test's comments service
-    public List<TestComments> getComments();
+    public List<TestComments> getComments(Long id);
+    public List<TestComments> getCommentsThatNeedToBeAnnsered();
 
     public TestComments createComment(TestComments testComments);
 
-    public TestComments updateComment(String text, Long parentId);
+    public TestComments updateComment(String text, String parentId,Long id);
 
     public void deleteComment(Long parentId);
-
+// ranking of the results
+public List<UserTest> getTop3UsersPerTest();
 
 }

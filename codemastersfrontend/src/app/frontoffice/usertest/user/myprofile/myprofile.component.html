@@ -241,79 +241,86 @@
 
           <div class="card border-0 shadow-sm">
             <div class="card-header bg-transparent border-0 p-5 pb-0">
-              <h4 class="mb-0">Latest Invoice Payment</h4>
+              <h4 class="mb-0">Top 3 condidat in every test</h4>
             </div>
-            <div class="card-body pt-2">
+            <div class="card-body pt-2 activity-preview" >
               <div *ngFor="let result of quizhistory">
-                <div >
-                <div class="table-responsive">
-                  <table id="table-6" class="display text-center">
-                    <thead>
-                      <tr>
-                        <th>Quiz</th>
-                        <th>Result</th>
-                        <th>Date</th>
-                        <th>user</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="d-flex gap-2 flex-wrap">
-                            <div
-                              class="profilepicture flex-shrink-0 d-none d-xl-block"
-                            >
-                              <img
-                                [src]="result.test.image"
-                                width="50px"
-                                alt="Quiz Image"
-                              />
-                            </div>
-                            <div>
-                              <a
-                                href="invoice.html"
-                                class="fs-14 fw-semibold"
-                                >{{ result.test.title }}</a
+                <div>
+                  <div class="table-responsive">
+                    <table id="table-6" class="display text-center">
+                      <thead>
+                        <tr>
+                          <th>Quiz</th>
+                          <th>Result</th>
+                          <th>Date</th>
+                          <th>user</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="d-flex gap-2 flex-wrap">
+                              <div
+                                class="profilepicture flex-shrink-0 d-none d-xl-block"
                               >
-                              <h6 class="fw-semibold mb-0">
-                                {{ result.test.description }}
-                              </h6>
+                                <img
+                                  [src]="result.test.image"
+                                  width="50px"
+                                  alt="Quiz Image"
+                                />
+                              </div>
+                              <div>
+                                <a
+                                  href="invoice.html"
+                                  class="fs-14 fw-semibold"
+                                  >{{ result.test.title }}</a
+                                >
+                                <h6 class="fw-semibold mb-0">
+                                  {{ result.test.description }}
+                                </h6>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                        <td>
-                          <div class="d-flex gap-2">
-                            <i class="bi bi-bookmark-check-fill text-gray"></i>
-                            <div>{{ result.score }}%</div>
-                            <ng-container *ngIf="result.score < 70">
-                              <span class="p-2 rounded-1 badge-soft-danger">
-                                <i class="indicator danger"></i> Failed
-                              </span>
-                            </ng-container>
-                            <ng-container
-                              *ngIf="result.score >= 70 && result.score < 100"
-                            >
-                              <span class="p-2 rounded-1 badge-soft-warning">
-                                <i class="indicator warning"></i> Passed
-                              </span>
-                            </ng-container>
-                            <ng-container *ngIf="result.score === 100">
-                              <span class="p-2 rounded-1 badge-soft-success">
-                                <i class="indicator success"></i> Excellent
-                              </span>
-                            </ng-container>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="fs-14 text-gray mb-0">{{ result.date }}</p>
-                        </td>
-                        <td>
-                          <p class="fs-14 text-gray mb-0">{{ result.user.first_name }}</p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div></div>
+                          </td>
+                          <td>
+                            <div class="d-flex gap-2">
+                              <i
+                                class="bi bi-bookmark-check-fill text-gray"
+                              ></i>
+                              <div>{{ result.score }}%</div>
+                              <ng-container *ngIf="result.score < 60">
+                                <span class="p-2 rounded-1 badge-soft-danger">
+                                  <i class="indicator danger"></i> Failed
+                                </span>
+                              </ng-container>
+                              <ng-container
+                                *ngIf="result.score >= 60 && result.score < 100"
+                              >
+                                <span class="p-2 rounded-1 badge-soft-warning">
+                                  <i class="indicator warning"></i> Passed
+                                </span>
+                              </ng-container>
+                              <ng-container *ngIf="result.score === 100">
+                                <span class="p-2 rounded-1 badge-soft-success">
+                                  <i class="indicator success"></i> Excellent
+                                </span>
+                              </ng-container>
+                            </div>
+                          </td>
+                          <td>
+                            <p class="fs-14 text-gray mb-0">
+                              {{ result.date }}
+                            </p>
+                          </td>
+                          <td>
+                            <p class="fs-14 text-gray mb-0">
+                              {{ result.user.first_name }}
+                            </p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -428,30 +435,32 @@
                 >
                   <h4 class="mb-0">Account Activity</h4>
                 </div>
-                <table class="table table-primary table-bordered">
-                  <thead>
-                    <tr>
-                      <th scope="col">Date</th>
-                      <th scope="col">Type</th>
-                      <th scope="col">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody *ngFor="let a of activities">
-                    <tr *ngIf="a.email == connecteduser.email">
-                      <th scope="row">{{ a.date }}</th>
-                      <td>{{ a.activity }}</td>
-                      <td *ngIf="a.activity == 'login attempt success'">
-                        User successfully logged into the system
-                      </td>
-                      <td *ngIf="a.activity == 'login attempt'">
-                        User fail to log into the system
-                      </td>
-                      <td *ngIf="a.activity == 'account creation'">
-                        An account has been created
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="activity-preview">
+                  <table class="table table-primary table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let a of activities">
+                      <tr *ngIf="a.email == connecteduser.email">
+                        <th scope="row">{{ a.date }}</th>
+                        <td>{{ a.activity }}</td>
+                        <td *ngIf="a.activity == 'login attempt success'">
+                          User successfully logged into the system
+                        </td>
+                        <td *ngIf="a.activity == 'login attempt'">
+                          User fail to log into the system
+                        </td>
+                        <td *ngIf="a.activity == 'account creation'">
+                          An account has been created
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -555,31 +564,7 @@
                 </li>
               </ul>
 
-              <div
-                class="d-flex align-items-center justify-content-xl-between gap-3"
-              >
-                <div
-                  class="bg-light-200 text-center rounded-1 p-3"
-                  style="width: 167px"
-                >
-                  <p class="fs-14 mb-1">Project Complete</p>
-                  <h4 class="mb-0">
-                    <i class="bi bi-file-text-fill text-gray"></i>
-                    <span class="text-primary">100</span>
-                  </h4>
-                </div>
-
-                <div
-                  class="bg-light-200 text-center rounded-1 p-3"
-                  style="width: 167px"
-                >
-                  <p class="fs-14 mb-1">Project Ongoing</p>
-                  <h4 class="mb-0">
-                    <i class="bi bi-lightbulb-fill text-gray"></i>
-                    <span class="text-primary">50</span>
-                  </h4>
-                </div>
-              </div>
+            
 
               <div class="mr-top-40">
                 <div
@@ -589,37 +574,12 @@
                 </div>
                 <div class="card border-0 p-0 bg-primary text-white">
                   <div class="card-body">
-
-
-                    <app-call-history [connectedUser]="connecteduser"></app-call-history>
+                    <app-call-history
+                      [connectedUser]="connecteduser"
+                    ></app-call-history>
                   </div>
                 </div>
-                <div class="card border-0 p-0 bg-primary text-white">
-                  <div class="card-body">
-                    <div class="storage">
-                      <i class="bi bi-file-text-fill fs-24 text-white"></i>
-                      <h5 class="text-white">Project Kleon</h5>
-                      <div
-                        class="progress rounded-1 bg-dark"
-                        role="progressbar"
-                        aria-valuemin="0"
-                        aria-valuemax="100"
-                        style="height: 11px"
-                      >
-                        <div
-                          class="progress-bar bg-white rounded-1"
-                          style="width: 62%"
-                        ></div>
-                      </div>
-                      <h5
-                        class="d-flex justify-content-between fw-semibold text-white mt-2 mb-0"
-                      >
-                        <span>Progress</span>
-                        <span>62%</span>
-                      </h5>
-                    </div>
-                  </div>
-                </div>
+           
 
                 <div class="card border-0 p-0 bg-secondary text-white">
                   <div class="card-body">

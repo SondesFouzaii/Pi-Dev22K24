@@ -59,5 +59,7 @@ export class GeminiAPI {
     idappeler!: number;
     message!:string;
     date!: Date;
+    nomappelant!:string;
+    nomappeler!:string;
     
   }

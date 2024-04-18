@@ -9,7 +9,7 @@ import { UserTest } from '../models/usertest';
 import { GeminiAPI } from '../models/config';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuizService {
   private apiUrl = 'https://api.pexels.com/v1/';
@@ -19,13 +19,15 @@ export class QuizService {
   //private apiServerUrl = 'http://172.16.1.243:8089/codemasters/quiz';
   //private apiServerUrl = 'http://172.16.6.131:8089/codemasters/quiz';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   getImageUrl(query: string): Observable<string> {
-    const url = `${this.apiUrl}search/photos?query=${encodeURIComponent(query)}&per_page=1`;
+    const url = `${this.apiUrl}search/photos?query=${encodeURIComponent(
+      query
+    )}&per_page=1`;
     const headers = { Authorization: this.apiKey };
     return this.http.get<any>(url, { headers }).pipe(
-      map(response => {
+      map((response) => {
         if (response && response.photos && response.photos.length > 0) {
           return response.photos[0].src.large2x;
         } else {
@@ -34,7 +36,6 @@ export class QuizService {
       })
     );
   }
-
 
   public deletetest(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/delete/${id}`);
@@ -56,7 +57,10 @@ export class QuizService {
   }
 
   public activateanactivate(userId: number): Observable<void> {
-    return this.http.put<void>(`${this.apiServerUrl}/activateanactivate/${userId}`, {});
+    return this.http.put<void>(
+      `${this.apiServerUrl}/activateanactivate/${userId}`,
+      {}
+    );
   }
 
   public getaquestion(link: any): Observable<any> {
@@ -67,12 +71,22 @@ export class QuizService {
     return this.http.post<void>(`${this.apiServerUrl}/add-quiz-api`, quizs);
   }
 
-  public modifyTest(id: number, title: string, description: string): Observable<string> {
-    return this.http.put<string>(`${this.apiServerUrl}/updatetest/${id}/${title}/${description}`, {});
+  public modifyTest(
+    id: number,
+    title: string,
+    description: string
+  ): Observable<string> {
+    return this.http.put<string>(
+      `${this.apiServerUrl}/updatetest/${id}/${title}/${description}`,
+      {}
+    );
   }
 
   addQuestion(id: number, question: Question): Observable<void> {
-    return this.http.post<void>(`${this.apiServerUrl}/add-question/${id}`, question);
+    return this.http.post<void>(
+      `${this.apiServerUrl}/add-question/${id}`,
+      question
+    );
   }
 
   passAtest(usertest: UserTest): Observable<void> {
@@ -80,7 +94,7 @@ export class QuizService {
   }
 
   public getquizhistory(): Observable<UserTest[]> {
-    return this.http.get<any>(`${this.apiServerUrl}/retrieve-all-passed`);
+    return this.http.get<any>(`${this.apiServerUrl}/retrieve-rank`); //retrieve-all-passed
   }
 
   //gemini
@@ -92,4 +106,31 @@ export class QuizService {
     return this.http.get<any>(`${this.apiServerUrl}/retrieve-all-gemini/${id}`);
   }
 
+  // comment to the questions
+
+  addAQuestionToAcours(question: any): Observable<void> {
+    return this.http.post<void>(`${this.apiServerUrl}/createComment`, question);
+  }
+
+  //anserr to the question
+  replyToQuestion(quetionId: number, reply: string,id:number): Observable<any> {
+    return this.http.put<any>(
+      `${this.apiServerUrl}/updateComment/${reply}/${quetionId}/${id}`,
+      {}
+    );
+  }
+
+  // get the forom of the question
+  getComments(id: number): Observable<any[]> {
+    return this.http.get<any>(
+      `${this.apiServerUrl}/retrieve-all-TestComments/${id}`
+    );
+  }
+
+  // get the non replyed comments
+  getCommentsThatNeedToBeAnnsered(): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiServerUrl}/retrieve-non-replyedComments`
+    );
+  }
 }

@@ -227,12 +227,12 @@
                 Your browser does not support the audio element.
               </audio>
               <img
-                *ngIf="scorePercentage >= 70 && scorePercentage < 100"
+                *ngIf="scorePercentage >= 60 && scorePercentage < 100"
                 src="https://th.bing.com/th/id/OIP.kmm97M5xYdS6f9C9PWaPvgHaHa?w=193&h=193&c=7&r=0&o=5&pid=1.7"
                 alt="Passed"
               />
               <audio
-                *ngIf="scorePercentage >= 70 && scorePercentage < 100"
+                *ngIf="scorePercentage >= 60 && scorePercentage < 100"
                 controls
                 autoplay
                 style="display: none"
@@ -241,12 +241,12 @@
                 Your browser does not support the audio element.
               </audio>
               <img
-                *ngIf="scorePercentage < 70"
-                src="https://d1r3b8xpnlyvar.cloudfront.net/articles/candlepwr/nothing-succeeds-like-failure/failure%20certificate%20smith.jpg?v=j4hgitvl"
+                *ngIf="scorePercentage < 60"
+                src="https://www.birdcount.org/wp-content/uploads/2021/02/2021_GBBCParticipationCert_French_210211_EDITABLE.jpg"
                 alt="Failed"
               />
               <audio
-                *ngIf="scorePercentage < 70"
+                *ngIf="scorePercentage < 60"
                 controls
                 autoplay
                 style="display: none"
@@ -256,7 +256,7 @@
               </audio>
               <div *ngIf="showWastedEffect" class="overlay"></div>
               <img
-                *ngIf="scorePercentage < 70 && showWastedEffect"
+                *ngIf="scorePercentage < 60 && showWastedEffect"
                 width="30%"
                 src="https://www.pikpng.com/pngl/b/295-2956635_san-andreas-wasted-png-clipart-png-download-gta.png"
                 alt=""

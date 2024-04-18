@@ -29,15 +29,20 @@ public class CallServiceImp implements ICallService {
     public List<CallUser> getMyCallHistory(Long idUser) {
         List<CallUser> allthecalls = callRepository.findAll();
         List<CallUser> myCall = new ArrayList<>();
-        for (CallUser c : allthecalls)
+        for (CallUser c : allthecalls) {
+            c.setNomappelant(userRepository.findById(c.getIdappelant()).orElse(null).getFirst_name());
+            c.setNomappeler(userRepository.findById(c.getIdappeler()).orElse(null).getFirst_name());
             if (c.getIdappelant() == idUser || c.getIdappeler() == idUser) {
-                if (c.getIdappelant() == idUser)
-                {c.setMessage("you called " + userRepository.findById(c.getIdappeler()).orElse(null).getFirst_name() + " " + userRepository.findById(c.getIdappeler()).orElse(null).getLast_name());
-                myCall.add(c);}
-                if (c.getIdappeler() == idUser)
-                {c.setMessage(userRepository.findById(c.getIdappelant()).orElse(null).getFirst_name() + " " + userRepository.findById(c.getIdappelant()).orElse(null).getLast_name()+" called you");
-                    myCall.add(c);}
+                if (c.getIdappelant() == idUser) {
+                    c.setMessage("you called " + userRepository.findById(c.getIdappeler()).orElse(null).getFirst_name() + " " + userRepository.findById(c.getIdappeler()).orElse(null).getLast_name());
+                    myCall.add(c);
+                }
+                if (c.getIdappeler() == idUser) {
+                    c.setMessage(userRepository.findById(c.getIdappelant()).orElse(null).getFirst_name() + " " + userRepository.findById(c.getIdappelant()).orElse(null).getLast_name() + " called you");
+                    myCall.add(c);
+                }
             }
+        }
         return myCall;
     }
 

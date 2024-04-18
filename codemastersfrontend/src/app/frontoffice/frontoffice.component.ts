@@ -36,7 +36,7 @@ export class FrontofficeComponent implements OnInit {
           if (this.someoneIsCalling == true) {
             sleep(20000);
           }
-        }, 4000);
+        }, 400000);
       },
       (error) => {
         console.error('Error fetching user data:', error);

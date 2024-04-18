@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { sleep } from 'openai/core';
+import { forkJoin } from 'rxjs';
 import { QuizService } from 'src/app/services/quiz.service';
 
 @Component({
@@ -24,8 +26,8 @@ export class GeneratequizComponent implements OnInit {
       categorie: ['0'],
       difficulte: ['0'],
       nbrquestions: ['10',Validators.required],
-      anecdote: ['0'],
-      wikipedia: ['0']
+      anecdote: ['1'],
+      wikipedia: ['1']
     });
   }
   test() {
@@ -39,17 +41,29 @@ export class GeneratequizComponent implements OnInit {
                                     + "&wiki=" + this.apiform.value.wikipedia;
     
     //console.log(this.url);
-    for (let i = 1; i <= this.apiform.value.nbrquestions; i++) {
-      this.quizservice.getaquestion(this.url).subscribe((response: any) => { 
-          this.lequestionbidou = response.results; 
-          this.quizsbyapi = this.quizsbyapi.concat(this.lequestionbidou); // Use concat to merge arrays properly
-      });
+  //   for (let i = 1; i <= this.apiform.value.nbrquestions; i++) {
+  //     sleep(10)
+  //     this.quizservice.getaquestion(this.url).subscribe((response: any) => { 
+  //         this.lequestionbidou = response.results; 
+  //         this.quizsbyapi = this.quizsbyapi.concat(this.lequestionbidou); // Use concat to merge arrays properly
+  //     });
+  // }
+  const requests = [];
+  for (let i = 1; i <= this.apiform.value.nbrquestions; i++) {
+    requests.push(this.quizservice.getaquestion(this.url));
   }
   
     console.log(this.quizsbyapi);
-    this.quizservice.addQuizApi(this.quizsbyapi).subscribe(()=>{location.reload();});
+    // this.quizservice.addQuizApi(this.quizsbyapi).subscribe(()=>{location.reload();});
+    forkJoin(requests).subscribe((responses: any[]) => {
+      this.quizsbyapi = responses.flatMap((response: any) => response.results);
+      console.log(this.quizsbyapi);
+      this.quizservice.addQuizApi(this.quizsbyapi).subscribe(() => {
+        location.reload();
+      });
+    });
   }
-  private openquizzdbAPI = 'https://api.openquizzdb.org/?key=AUMU4B6S7CD';
+  private openquizzdbAPI = 'https://api.openquizzdb.org/?key=UMU4B6S7CD';
   private url: any
 
 

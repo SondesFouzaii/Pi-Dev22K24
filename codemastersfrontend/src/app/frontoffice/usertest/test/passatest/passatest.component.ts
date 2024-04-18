@@ -65,7 +65,7 @@ this.usrtest.user = this.connecteduser;
       this.scoreMessage = "Very Good! You are so good!";
 
       this.quizservice.passAtest(this.usrtest).subscribe();
-    } else if (this.scorePercentage >= 70 && this.scorePercentage < 100) {
+    } else if (this.scorePercentage >= 60 && this.scorePercentage < 100) {
 
       this.scoreMessage = "Congratulations! You passed the test!";
 

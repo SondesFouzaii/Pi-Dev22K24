@@ -7,6 +7,11 @@ import { AvailabletestsComponent } from './availabletests/availabletests.compone
 import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TowerBlocksComponent } from './tower-blocks/tower-blocks.component';
+import { ZenquotesComponent } from './zenquotes/zenquotes.component';
+import { StudyComponent } from './study/study.component';
+import { YoutubeComponent } from './youtube/youtube.component';
+import { QuestionforomeComponent } from './questionforome/questionforome.component';
+import { StudyforomComponent } from './studyforom/studyforom.component';
 
 
 @NgModule({
@@ -14,6 +19,11 @@ import { TowerBlocksComponent } from './tower-blocks/tower-blocks.component';
     PassatestComponent,
     AvailabletestsComponent,
     TowerBlocksComponent,
+    ZenquotesComponent,
+    StudyComponent,
+    YoutubeComponent,
+    QuestionforomeComponent,
+    StudyforomComponent,
   ],
   imports: [
     CommonModule,

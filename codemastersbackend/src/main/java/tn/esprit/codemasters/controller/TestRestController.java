@@ -96,19 +96,25 @@ public class TestRestController {
 
 
     // the comments of the test (not yet used)
-    @GetMapping("/retrieve-all-TestComments")
-    public List<TestComments> getComments() {
-        return testService.getComments();
+    @GetMapping("/retrieve-all-TestComments/{id}")
+    public List<TestComments> getComments(@PathVariable("id") Long id) {
+        return testService.getComments(id);
     }
+// get the non replyed comments
+    @GetMapping("/retrieve-non-replyedComments")
+    public List<TestComments> getCommentsThatNeedToBeAnnsered() {
+        return testService.getCommentsThatNeedToBeAnnsered();
+    }
+
 
     @PostMapping("/createComment")
     public TestComments createComment(@RequestBody TestComments testComments) {
         return testService.createComment(testComments);
     }
 
-    @PutMapping("/updateComment/{t}/{id}")
-    public void updateComment(@PathVariable("t") String t,@PathVariable("id") Long id) {
-        testService.updateComment(t,id);
+    @PutMapping("/updateComment/{t}/{id}/{idd}")
+    public void updateComment(@PathVariable("t") String t,@PathVariable("id") String id,@PathVariable("idd") Long idd) {
+        testService.updateComment(t,id,idd);
     }
 
     @DeleteMapping("/deleteComment/{id}")
@@ -117,4 +123,6 @@ public class TestRestController {
     }
 
 
+    @GetMapping("/retrieve-rank")
+    public List<UserTest> getTop3UsersPerTest(){return testService.getTop3UsersPerTest();}
 }

@@ -19,7 +19,9 @@ public class CallUser {
     long id;
     boolean ansered;
     long idappelant;
+    String nomappelant;
     long idappeler;
+    String nomappeler;
     String message;
     Date date;
     }

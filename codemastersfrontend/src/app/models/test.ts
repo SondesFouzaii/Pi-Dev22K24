@@ -14,6 +14,8 @@ export class Test {
     question!:string;
     image!:string;
     questionOptions!:QuestionOption[];
+    anecdote!:string;
+    wikipedia!:string;
 
 
   }

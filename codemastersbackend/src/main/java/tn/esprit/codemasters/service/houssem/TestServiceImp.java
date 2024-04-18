@@ -8,6 +8,7 @@ import tn.esprit.codemasters.entity.user.User;
 import tn.esprit.codemasters.repository.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -202,6 +203,8 @@ public class TestServiceImp implements ITestService {
 
             question.setQuestionOptions(options);
             questions.add(question);
+            question.setAnecdote(q.getAnecdote());
+            question.setWikipedia(q.getWikipedia());
         }
         test.setActive(true);
         test.setQuestions(questions);
@@ -233,29 +236,78 @@ public class TestServiceImp implements ITestService {
 
     // the comments of the test
     @Override
-    public List<TestComments> getComments() {
-        return testCommentsRepository.findAll();
+    public List<TestComments> getComments(Long id) {
+
+        // Retrieve all comments from the repository
+        List<TestComments> allComments = testCommentsRepository.findAll();
+        List<TestComments> modifiedlist=new ArrayList<>();
+        for(TestComments t :allComments){
+            t.setUserimage(userRepository.findById(Long.parseLong(t.getUserId())).orElse(null).getImage());
+            t.setUsername(userRepository.findById(Long.parseLong(t.getUserId())).orElse(null).getFirst_name());
+            modifiedlist.add(t);
+        }
+        // Filter the comments based on the provided questionId
+        return modifiedlist.stream()
+                .filter(comment -> Objects.equals(comment.getQuestionId(), id.toString()))
+                .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<TestComments> getCommentsThatNeedToBeAnnsered() {
+        List<TestComments> alllist=testCommentsRepository.findAll();
+        List<TestComments> filtredlist=new ArrayList<>();
+        for (TestComments c :alllist){
+            if (Objects.equals(c.getResponse(), "Not yet ansered ..."))
+                filtredlist.add(c);
+        }
+        return filtredlist;
     }
 
     @Override
     public TestComments createComment(TestComments testComments) {
+        testComments.setCreatedAt(new Date());
+        testComments.setResponse("Not yet ansered ...");
+
         //TestComments testComments=new TestComments();
         //testComments.setBody(text);
         //String id=testComments.getParentId();
         //testComments.setParentId(partnerId);
-        System.out.println(testComments);
+        //System.out.println(testComments);
         return testCommentsRepository.save(testComments);
     }
 
     @Override
-    public TestComments updateComment(String text, Long parentId) {
-        TestComments testComments = testCommentsRepository.findById(parentId).orElse(null);
-        testComments.setBody(text);
+    public TestComments updateComment(String text, String  parentId,Long id) {
+        TestComments testComments = testCommentsRepository.findByQuestionIdAndId(parentId,id);
+        testComments.setResponse(text);
+        testComments.setRepliedAt(new Date());
         return testCommentsRepository.save(testComments);
     }
 
     @Override
     public void deleteComment(Long parentId) {
         testCommentsRepository.deleteById(parentId);
+    }
+
+    @Override
+    public List<UserTest> getTop3UsersPerTest() {
+        List<UserTest> topUsers = new ArrayList<>();
+
+        // Retrieve all tests
+        List<Test> tests = testRepository.findAll();
+
+        for (Test test : tests) {
+            // Retrieve UserTests for the current test
+            List<UserTest> userTests = userTestRepository.findByTestIdOrderByScoreDesc(test.getId());
+
+            // Take the top 3 UserTests
+            if (!userTests.isEmpty()) {
+                int limit = Math.min(userTests.size(), 3);
+                topUsers.addAll(userTests.subList(0, limit));
+            }
+        }
+
+        return topUsers;
     }
 }
