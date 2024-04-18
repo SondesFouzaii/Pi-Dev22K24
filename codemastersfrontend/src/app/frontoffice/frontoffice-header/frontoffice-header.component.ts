@@ -8,6 +8,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./frontoffice-header.component.scss'],
 })
 export class FrontofficeHeaderComponent implements OnInit{
+  soundon=false;
+  soundoff=true;
 constructor(private auth:UserService){}
   logout():void{
     this.auth.logout();
@@ -23,5 +25,16 @@ constructor(private auth:UserService){}
         // Handle error accordingly
       }
     );
+  }
+
+
+  activesound(){
+    this.soundon=true;
+    this.soundoff=false;
+  }
+
+  desactivesound(){
+    this.soundon=false;
+    this.soundoff=true;
   }
 }

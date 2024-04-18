@@ -19,6 +19,8 @@ public class Question {
     long id;
     String question;
     String image;
+    String anecdote;
+    String wikipedia;
 
     @OneToMany(cascade = CascadeType.ALL)
     private Set<QuestionOption> questionOptions;

@@ -2,8 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Activities } from 'src/app/models/activitie';
-import { User } from 'src/app/models/user';
+import { GeminiAPI } from 'src/app/models/config';
+import { Activities, User } from 'src/app/models/user';
+import { UserTest } from 'src/app/models/usertest';
+import { QuizService } from 'src/app/services/quiz.service';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -13,20 +15,23 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./myprofile.component.scss']
 })
 export class MyprofileComponent implements OnInit {
-  msg!:string;
-  msge!:string;
+  msg!: string;
+  msge!: string;
   passwordForm!: FormGroup;
-oldpwd!:string;
-newpwd!:string;
-newpwd2!:string;
+  oldpwd!: string;
+  newpwd!: string;
+  newpwd2!: string;
   connecteduser!: User;
-  imgtest!: any ;
-  constructor(private serv: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  imgtest!: any;
+  search: any;
+  constructor(private serv: UserService, private activatedRoute: ActivatedRoute, private router: Router, private quizservice: QuizService) { }
 
   ngOnInit(): void {
     this.serv.getUserbyemail().subscribe(
       (user: User) => {
         this.connecteduser = user;
+        this.getTestHistory();
+        this.getgemenis();
       },
       (error) => {
         console.error('Error fetching user data:', error);
@@ -38,13 +43,13 @@ newpwd2!:string;
   }
 
 
-   activities!:Activities[];
-  public getallactivities(): void{
+  activities!: Activities[];
+  public getallactivities(): void {
     this.serv.getActivities().subscribe(
-      (response:Activities[])=>{
-        this.activities=response;
+      (response: Activities[]) => {
+        this.activities = response.reverse();
       },
-      (error:HttpErrorResponse)=>{
+      (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
@@ -69,7 +74,7 @@ newpwd2!:string;
         response => {
           // Handle success response
           this.msg = response.toString(); // Assuming response contains a success message
-          
+
         },
         error => {
           // Handle error response
@@ -82,6 +87,26 @@ newpwd2!:string;
       this.msg = "New password and confirmation password don't match or the password length is less than 6 characters.";
     }
   }
-  
+  quizhistory!: any[];
+  getTestHistory(): void {
+    this.quizservice.getquizhistory().subscribe(
+      (res: UserTest[]) => {
+        this.quizhistory = res;
+        console.log("Quiz History:", res);
+      },
 
+    );
+  }
+
+  gemenis: GeminiAPI[] = [];
+  getgemenis(): void {
+    this.quizservice.getgeminis(this.connecteduser.id).subscribe(
+      (response: GeminiAPI[]) => {
+        this.gemenis = response;
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error fetching tests:', error);
+      }
+    );
+  }
 }

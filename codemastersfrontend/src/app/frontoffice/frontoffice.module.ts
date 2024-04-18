@@ -7,6 +7,9 @@ import { FrontofficeHeaderComponent } from './frontoffice-header/frontoffice-hea
 import { FrontofficeSidebarComponent } from './frontoffice-sidebar/frontoffice-sidebar.component';
 import { FrontofficeFooterComponent } from './frontoffice-footer/frontoffice-footer.component';
 import { UsertestComponent } from './usertest/usertest.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ChatGPTComponent } from './chat-gpt/chat-gpt.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 
@@ -17,11 +20,14 @@ import { UsertestComponent } from './usertest/usertest.component';
     FrontofficeHeaderComponent,
     FrontofficeSidebarComponent,
     FrontofficeFooterComponent,
-    UsertestComponent
+    UsertestComponent,
+    ChatGPTComponent
   ],
   imports: [
     CommonModule,
-    FrontofficeRoutingModule
+    FrontofficeRoutingModule,
+    ReactiveFormsModule,
+    QRCodeModule
   ]
 })
 export class FrontofficeModule { }

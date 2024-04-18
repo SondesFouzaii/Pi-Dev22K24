@@ -1,0 +1,11 @@
+<div class="call-history">
+  <p>Call history:</p>
+  <div *ngFor="let call of historyofcalls">
+    <div class="call-item" [ngClass]="{'outgoing-call': call.idappelant === connectedUser.id, 'incoming-call': call.idappeler === connectedUser.id}">
+      <img [src]="getCallStatusImage(call)" alt="Call status" width="25px">
+      <span class="caller"> {{ getCallerName(call) }} </span>
+      <span>{{ call.date | date:'medium' }}</span>
+      <span class="tooltip">{{ getCallStatusMessage(call) }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+<main class="main-wrapper">
+    <div class="container-fluid">
+        <div class="inner-contents">
+
+            <div class="profile-header">
+                <img class="profile-picture" src="{{ user.image }}" alt="Profile Picture">
+                <div class="profile-details">
+                    <h1 class="profile-name">{{ user.first_name }} {{ user.last_name }}</h1>
+                    <p class="profile-handle">{{ user.email }}</p>
+                </div>
+            </div>
+
+            <div class="profile-info">
+                <div class="tweet-container">
+                    <div class="tweet">
+                        <table class="table">
+                            <tr>
+                                <td>Role:</td>
+                                <td>{{ user.role }}</td>
+                            </tr>
+                            <tr>
+                                <td>Birth Date:</td>
+                                <td>{{ user.birth_date }}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender:</td>
+                                <td>{{ user.gender }}</td>
+                            </tr>
+                            <tr>
+                                <td>Address:</td>
+                                <td>{{ user.address }}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone Number:</td>
+                                <td>{{ user.phone_number }}</td>
+                            </tr>
+                                <tr>
+                                <td>Member Sinse:</td>
+                                <td>{{ user.created_date }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- More tweets can be added here -->
+                </div>
+                <button type="button" (click)="openVideoCall()" class="btn btn-primary btn-video-call">Video Call</button>
+            </div>
+                <div class="container">
+                    <div class="card front-face">
+                        <header>
+                            <span class="logo">
+                                <img src="{{ user.image }}">
+                                <h5>Employee Card</h5>
+                            </span>
+                            <img src="../../../../../assets/img/Codemasters_Logo.png" class="chip">
+                        </header>
+                        <div class="card-details">
+                            <div class="name-number">
+                                <h6>Card Number</h6>
+                                <h5 class="number">{{ user.barrcode }}</h5>
+                                <h5 class="name">{{ user.first_name }} {{ user.last_name }}</h5>
+                            </div>
+        
+                            <div class="valid-date">
+                                <h6>Member sinse</h6>
+                                <h5>{{ user.created_date }}</h5>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="card back-face">
+                        <h6>
+                            For customer service call +216 55 249 321 or email codemasters@gmail.com
+                        </h6>
+                        <qrcode [qrdata]="linktocall"  [errorCorrectionLevel]="'M'"></qrcode>
+                        <div class="signature"><i>007</i></div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</main>

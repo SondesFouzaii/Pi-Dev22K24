@@ -1,9 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Activities } from 'src/app/models/activitie';
 import { UserService } from 'src/app/services/user.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { Activities } from 'src/app/models/user';
 
 
 @Component({

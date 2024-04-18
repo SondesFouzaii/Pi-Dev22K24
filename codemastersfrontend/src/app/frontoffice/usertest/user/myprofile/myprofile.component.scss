@@ -1,5 +1,6 @@
 table {
     width: 100%;
+    background-color: rgb(222, 250, 250);
   }
   
   .mat-mdc-form-field {
@@ -10,3 +11,21 @@ table {
   td, th {
     width: 25%;
   }
+  
+  input[type="file"] {
+    display: none;
+  }
+
+  .slider-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.chat-preview {
+    height: 400px; /* Set fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+.activity-preview {
+  height: 600px; /* Set fixed height */
+  overflow-y: auto; /* Enable vertical scrolling */
+}

@@ -31,3 +31,10 @@
         </div>
     </div>
 </div>
+
+<div *ngFor="let q of allquestionsnotansered" class="question-container">
+    <div class="question-body">Question: {{ q.body }}</div>
+    <div class="question-date">Date: {{ q.createdAt }}</div>
+    <input type="text" #replyText class="reply-input" />
+    <button (click)="replyToADevolopper(q.questionId, q.id)" class="reply-button">Reply</button>
+  </div>

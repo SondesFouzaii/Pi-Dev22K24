@@ -15,19 +15,22 @@ import tn.esprit.codemasters.entity.user.Activities;
 import tn.esprit.codemasters.entity.user.User;
 import tn.esprit.codemasters.repository.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Slf4j
 @Service
 @AllArgsConstructor
-public class UserServiceImp implements IUserService{
+public class UserServiceImp implements IUserService {
+    CallRepository callRepository;
     UserRepository userRepository;
     CommentRepository commentRepository;
     PostRepository postRepository;
     ActivitiesRepository activitiesRepository;
     AccountVerificationRepository accountVerificationRepository;
     private static final String key = "houssem";
+
     /**
      * @param simpleuser
      * @return
@@ -52,12 +55,11 @@ public class UserServiceImp implements IUserService{
 
             userRepository.save(simpleuser);
 
-            Activities activity=new Activities();
+            Activities activity = new Activities();
             activity.setDate(new Date());
             activity.setEmail(simpleuser.getEmail());
             activity.setActivity("account creation");
             activitiesRepository.save(activity);
-
 
 
             return "Account added successfully";
@@ -74,7 +76,7 @@ public class UserServiceImp implements IUserService{
      */
     @Override
     @Transactional
-        public String addUser(User advanceduser) {
+    public String addUser(User advanceduser) {
         try {
             // Check if the email already exists in the database
             if (userRepository.getUserByEmail(advanceduser.getEmail()) != null) {
@@ -93,7 +95,7 @@ public class UserServiceImp implements IUserService{
 
             userRepository.save(advanceduser);
 
-            Activities activity=new Activities();
+            Activities activity = new Activities();
             activity.setDate(new Date());
             activity.setEmail(advanceduser.getEmail());
             activity.setActivity("account creation");
@@ -144,12 +146,13 @@ public class UserServiceImp implements IUserService{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body("Your account needs to be verified.");
         }
-        if (user != null){
-        Activities activity2=new Activities();
-        activity2.setDate(new Date());
-        activity2.setEmail(user.getEmail());
-        activity2.setActivity("login attempt success");
-        activitiesRepository.save(activity2);}
+        if (user != null) {
+            Activities activity2 = new Activities();
+            activity2.setDate(new Date());
+            activity2.setEmail(user.getEmail());
+            activity2.setActivity("login attempt success");
+            activitiesRepository.save(activity2);
+        }
 
         if (user.getRole().equals(User.Role.ADMIN)) {
             return ResponseEntity.status(HttpStatus.OK).body("Welcome Admin");
@@ -187,7 +190,7 @@ public class UserServiceImp implements IUserService{
      */
     @Override
     public String updatepersonalinformations(User user) {
-        User olduser=userRepository.findById(user.getId()).orElse(null);
+        User olduser = userRepository.findById(user.getId()).orElse(null);
         olduser.setFirst_name(user.getFirst_name());
         olduser.setLast_name(user.getLast_name());
         olduser.setBirth_date(user.getBirth_date());
@@ -206,14 +209,14 @@ public class UserServiceImp implements IUserService{
      * @return
      */
     @Override
-    public String updatePWDUser(Long userid,String oldpwd,String pwd) {
-        User user=userRepository.findById(userid).orElse(null);
+    public String updatePWDUser(Long userid, String oldpwd, String pwd) {
+        User user = userRepository.findById(userid).orElse(null);
         assert user != null;
-        if (decrypt(user.getPassword()).equals(oldpwd)){
+        if (decrypt(user.getPassword()).equals(oldpwd)) {
             user.setPassword(encrypt(pwd));
             userRepository.save(user);
             return "password updated succesfully";
-        }else {
+        } else {
             return "Wrong password";
         }
     }
@@ -225,7 +228,7 @@ public class UserServiceImp implements IUserService{
      */
     @Override
     public String updateImgUser(Long userid, String image) {
-        User user=userRepository.findById(userid).orElse(null);
+        User user = userRepository.findById(userid).orElse(null);
         user.setImage(image);
         userRepository.save(user);
         return "your profile picture is updated succesfuly";
@@ -244,7 +247,7 @@ public class UserServiceImp implements IUserService{
      */
     @Override
     public void blockunblock(Long userid) {
-        User user=userRepository.findById(userid).orElse(null);
+        User user = userRepository.findById(userid).orElse(null);
         if (!user.isEnabled())
             user.setEnabled(true);
         else
@@ -258,7 +261,7 @@ public class UserServiceImp implements IUserService{
      */
     @Override
     public void modifyRole(Long userid, User.Role role) {
-        User user=userRepository.findById(userid).orElse(null);
+        User user = userRepository.findById(userid).orElse(null);
         user.setRole(role);
         userRepository.save(user);
     }
@@ -269,15 +272,12 @@ public class UserServiceImp implements IUserService{
      */
     @Override
     public String resetpwd(String email) {
-        if (userRepository.getUserByEmail(email)==null)
+        if (userRepository.getUserByEmail(email) == null)
             return "email dosent exist";
-        User user=userRepository.getUserByEmail(email);
-        sendEmail(email,user);
+        User user = userRepository.getUserByEmail(email);
+        sendEmail(email, user);
         return "password sent seccesfuly";
     }
-
-
-
 
 
     /**
@@ -312,12 +312,13 @@ public class UserServiceImp implements IUserService{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body("Your account needs to be verified.");
         }
-        if (user != null){
-        Activities activity=new Activities();
-        activity.setDate(new Date());
-        activity.setEmail(user.getEmail());
-        activity.setActivity("login attempt success");
-        activitiesRepository.save(activity);}
+        if (user != null) {
+            Activities activity = new Activities();
+            activity.setDate(new Date());
+            activity.setEmail(user.getEmail());
+            activity.setActivity("login attempt success");
+            activitiesRepository.save(activity);
+        }
 
         if (user.getRole().equals(User.Role.ADMIN)) {
             return ResponseEntity.status(HttpStatus.OK).body("Welcome Admin");
@@ -342,8 +343,8 @@ public class UserServiceImp implements IUserService{
      */
     @Override
     public String getmailbybarrcode(String code) {
-                //here i l do the transfer of mail to code to authentificate
-        User user =userRepository.getUserByBarrcode(code);
+        //here i l do the transfer of mail to code to authentificate
+        User user = userRepository.getUserByBarrcode(code);
         if (user == null) {
             return "this card is not valide.";
         }
@@ -364,88 +365,102 @@ public class UserServiceImp implements IUserService{
      */
     @Override
     public void addcard(Long id, String Code) {
-        User user=userRepository.findById(id).orElse(null);
+        User user = userRepository.findById(id).orElse(null);
         user.setBarrcode(Code);
         userRepository.save(user);
     }
 
+    @Override
+    public List<User> searchprofile(String keyword) {
+        List<User> allUsers = userRepository.findAll();
+        List<User> likeUsers = new ArrayList<>();
+        keyword = keyword.trim().toLowerCase();
 
+        for (User user : allUsers) {
+            String firstName = user.getFirst_name().toLowerCase();
+            String lastName = user.getLast_name().toLowerCase();
+            if (firstName.contains(keyword) || lastName.contains(keyword)) {
+                likeUsers.add(user);
+            }
+        }
+        return likeUsers;
+    }
 
 
     // encript the password
-        public static String encrypt(String text) {
-            StringBuilder encrypted = new StringBuilder();
-            int keyIndex = 0;
+    public static String encrypt(String text) {
+        StringBuilder encrypted = new StringBuilder();
+        int keyIndex = 0;
 
-            for (int i = 0; i < text.length(); i++) {
-                char currentChar = text.charAt(i);
-                char keyChar = key.charAt(keyIndex);
-                int shift = keyChar - 'a';
+        for (int i = 0; i < text.length(); i++) {
+            char currentChar = text.charAt(i);
+            char keyChar = key.charAt(keyIndex);
+            int shift = keyChar - 'a';
 
-                if (Character.isUpperCase(currentChar)) {
-                    char encryptedChar = (char) ('A' + (currentChar - 'A' + shift) % 26);
-                    encrypted.append(encryptedChar);
-                } else if (Character.isLowerCase(currentChar)) {
-                    char encryptedChar = (char) ('a' + (currentChar - 'a' + shift) % 26);
-                    encrypted.append(encryptedChar);
-                } else {
-                    // If it's not a letter, just append it as is
-                    encrypted.append(currentChar);
-                    continue;
-                }
-
-                // Move to the next character in the key
-                keyIndex = (keyIndex + 1) % key.length();
+            if (Character.isUpperCase(currentChar)) {
+                char encryptedChar = (char) ('A' + (currentChar - 'A' + shift) % 26);
+                encrypted.append(encryptedChar);
+            } else if (Character.isLowerCase(currentChar)) {
+                char encryptedChar = (char) ('a' + (currentChar - 'a' + shift) % 26);
+                encrypted.append(encryptedChar);
+            } else {
+                // If it's not a letter, just append it as is
+                encrypted.append(currentChar);
+                continue;
             }
 
-            return encrypted.toString();
+            // Move to the next character in the key
+            keyIndex = (keyIndex + 1) % key.length();
         }
-        //decrypt the password
-        public static String decrypt(String encryptedText) {
-            StringBuilder decrypted = new StringBuilder();
-            int keyIndex = 0;
 
-            for (int i = 0; i < encryptedText.length(); i++) {
-                char currentChar = encryptedText.charAt(i);
-                char keyChar = key.charAt(keyIndex);
-                int shift = keyChar - 'a';
+        return encrypted.toString();
+    }
 
-                if (Character.isUpperCase(currentChar)) {
-                    char decryptedChar = (char) ('A' + (currentChar - 'A' - shift + 26) % 26);
-                    decrypted.append(decryptedChar);
-                } else if (Character.isLowerCase(currentChar)) {
-                    char decryptedChar = (char) ('a' + (currentChar - 'a' - shift + 26) % 26);
-                    decrypted.append(decryptedChar);
-                } else {
-                    // If it's not a letter, just append it as is
-                    decrypted.append(currentChar);
-                    continue;
-                }
+    //decrypt the password
+    public static String decrypt(String encryptedText) {
+        StringBuilder decrypted = new StringBuilder();
+        int keyIndex = 0;
 
-                // Move to the next character in the key
-                keyIndex = (keyIndex + 1) % key.length();
+        for (int i = 0; i < encryptedText.length(); i++) {
+            char currentChar = encryptedText.charAt(i);
+            char keyChar = key.charAt(keyIndex);
+            int shift = keyChar - 'a';
+
+            if (Character.isUpperCase(currentChar)) {
+                char decryptedChar = (char) ('A' + (currentChar - 'A' - shift + 26) % 26);
+                decrypted.append(decryptedChar);
+            } else if (Character.isLowerCase(currentChar)) {
+                char decryptedChar = (char) ('a' + (currentChar - 'a' - shift + 26) % 26);
+                decrypted.append(decryptedChar);
+            } else {
+                // If it's not a letter, just append it as is
+                decrypted.append(currentChar);
+                continue;
             }
 
-            return decrypted.toString();
+            // Move to the next character in the key
+            keyIndex = (keyIndex + 1) % key.length();
         }
+
+        return decrypted.toString();
+    }
 
     @Autowired
     private JavaMailSender emailSender;
 
-    public void sendEmail(String recipient,User user) {
+    public void sendEmail(String recipient, User user) {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
             helper.setTo(recipient);
             helper.setSubject("Test email");
-            helper.setText("Bonjour, "+user.getFirst_name()+" " +user.getLast_name()+" your password is :"+decrypt(user.getPassword()));
+            helper.setText("Bonjour, " + user.getFirst_name() + " " + user.getLast_name() + " your password is :" + decrypt(user.getPassword()));
             emailSender.send(message);
             System.out.println("Message envoye");
         } catch (MessagingException e) {
             System.out.println("Error: " + e.toString());
         }
     }
-
 
 
 }

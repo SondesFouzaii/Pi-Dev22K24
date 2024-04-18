@@ -1,5 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Test } from 'src/app/models/test';
 import { QuizService } from 'src/app/services/quiz.service';
 
@@ -9,24 +11,52 @@ import { QuizService } from 'src/app/services/quiz.service';
   styleUrls: ['./availabletests.component.scss']
 })
 export class AvailabletestsComponent implements OnInit{
-  constructor(private quizservice:QuizService) { }
-  ngOnInit(): void {
-   
-this.getalltests();
+  dataSource: MatTableDataSource<Test>; // Specify the data source type
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  gridview = true;
+  listview = false;
 
+  tests: Test[] = [];
+  interval: any;
+
+  constructor(private quizservice: QuizService) {
+    this.dataSource = new MatTableDataSource<Test>(this.tests); // Specify the data source type
   }
-  public tests!:Test[];
-  public getalltests(): void{
+
+  ngOnInit(): void {
+    this.getTests(); // Initial call to fetch tests
+    this.interval = setInterval(() => {
+      this.getTests(); // Fetch tests at fixed intervals
+    }, 5000);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.interval); // Clear interval on component destruction
+  }
+
+  getTests(): void {
     this.quizservice.getTests().subscribe(
-      (response:Test[])=>{
-        this.tests=response;
+      (response: Test[]) => {
+        this.tests = response;
+        this.dataSource.data = this.tests; // Update the data source with fetched tests
       },
-      (error:HttpErrorResponse)=>{
-        alert(error.message);
+      (error: HttpErrorResponse) => {
+        console.error('Error fetching tests:', error);
       }
     );
   }
+
   getActiveTests(): Test[] {
     return this.tests.filter(test => test.active);
+  }
+
+  toListView(): void {
+    this.gridview = false;
+    this.listview = true;
+  }
+
+  toGridView(): void {
+    this.gridview = true;
+    this.listview = false;
   }
 }

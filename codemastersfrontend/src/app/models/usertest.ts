@@ -3,10 +3,9 @@ import { User } from "./user";
 
 export class UserTest {
     id!: number;
-    score!:string;
+    score!:number;
     date!:Date;
     user!:User;
     test!:Test;
    
-
   }

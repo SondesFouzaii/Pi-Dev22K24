@@ -1,36 +1,38 @@
 package tn.esprit.codemasters.service.houssem;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import tn.esprit.codemasters.entity.*;
 import tn.esprit.codemasters.entity.quiz.*;
 import tn.esprit.codemasters.entity.user.User;
 import tn.esprit.codemasters.repository.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class TestServiceImp implements ITestService{
-TestRepository testRepository;
-QuestionRepository questionRepository;
-QuestionOptionRepository questionOptionRepository;
+public class TestServiceImp implements ITestService {
+    TestRepository testRepository;
+    QuestionRepository questionRepository;
+    QuestionOptionRepository questionOptionRepository;
+    GeminiRepository geminiRepository;
+    TestCommentsRepository testCommentsRepository;
 
-UserRepository userRepository;
-UserTestRepository userTestRepository;
+    UserRepository userRepository;
+    UserTestRepository userTestRepository;
+
     /**
      * @param test
      * @return
      */
     @Override
     public String addTest(Test test) {
-        Set<Question> questions=new HashSet<>();
-        for (Question q:test.getQuestions()) {
+        Set<Question> questions = new HashSet<>();
+        for (Question q : test.getQuestions()) {
             questions.add(q);
-            Set<QuestionOption> options=new HashSet<>();
-            for (QuestionOption o:q.getQuestionOptions())
+            Set<QuestionOption> options = new HashSet<>();
+            for (QuestionOption o : q.getQuestionOptions())
                 options.add(o);
             q.setQuestionOptions(options);
         }
@@ -46,7 +48,7 @@ UserTestRepository userTestRepository;
      */
     @Override
     public void activateanactivate(Long testId) {
-        Test test=testRepository.findById(testId).orElse(null);
+        Test test = testRepository.findById(testId).orElse(null);
         if (!test.isActive())
             test.setActive(true);
         else
@@ -54,16 +56,20 @@ UserTestRepository userTestRepository;
         testRepository.save(test);
     }
 
+    @Override
+    public void deletetest(Long testId) {
+        testRepository.deleteById(testId);
+    }
+
     /**
-     * @param test
      * @return
      */
     @Override
-    public String modifyTest(Test test) {
-        Test oldtest=testRepository.findById(test.getId()).orElse(null);
-        oldtest.setTitle(test.getTitle());
-        oldtest.setDescription(test.getDescription());
-        oldtest.setImage(test.getImage());
+    public String modifyTest(Long id, String title, String description) {
+        Test oldtest = testRepository.findById(id).orElse(null);
+        oldtest.setTitle(title);
+        oldtest.setDescription(description);
+        //oldtest.setImage(test.getImage());
         testRepository.save(oldtest);
         return "test updated succesfuly";
     }
@@ -87,11 +93,14 @@ UserTestRepository userTestRepository;
 
     /**
      * @param idTest
-     * @param idQustion
+     * @param question
      * @return
      */
     @Override
-    public String addquestiontotest(Long idTest, Long idQustion) {
+    public String addquestiontotest(Long idTest, Question question) {
+        Test test = testRepository.findById(idTest).orElse(null);
+        test.getQuestions().add(question);
+        testRepository.save(test);
         return null;
     }
 
@@ -99,12 +108,25 @@ UserTestRepository userTestRepository;
      * @param questionId
      */
     @Override
+    @Transactional
     public void deletequestion(Long questionId) {
-
+        Question question = questionRepository.findById(questionId).orElse(null);
+        List<Test> tests = testRepository.findAllByQuestionId(questionId);
+        for (Test test : tests) {
+            Set<Question> newquestions = new HashSet<>();
+            for (Question q : test.getQuestions())
+                if (q.getId() != questionId)
+                    newquestions.add(q);
+            test.setQuestions(newquestions);
+            testRepository.save(test);
+        }
+        assert question != null;
+        questionOptionRepository.deleteAll(question.getQuestionOptions());
+        questionRepository.deleteById(questionId);
     }
 
     @Override
-    public void importquiz(Quizimport quiz) {
+    public void importquiz(Quizimport quiz, String imgnbr) {
         QQuizimport[] qQuizimport = quiz.getQuizz();
         Test test = new Test();
         test.setTitle(quiz.getNom());
@@ -131,24 +153,161 @@ UserTestRepository userTestRepository;
             question.setQuestionOptions(options);
             questions.add(question);
         }
-
+        test.setImage(imgnbr);
         test.setActive(true);
         test.setQuestions(questions);
         testRepository.save(test);
-        }
+    }
 
 
     @Override
     public void addusertest(UserTest userTest) {
-        User user=userTest.getUser();
-        Test test=userTest.getTest();
+        User user = userTest.getUser();
+        Test test = userTest.getTest();
         userTest.setUser(user);
         userTest.setTest(test);
+        userTest.setDate(new Date());
         userTestRepository.save(userTest);
     }
 
     @Override
     public List<UserTest> showalltests() {
         return userTestRepository.findAll();
+    }
+
+    @Override
+    public void addtestwithapi(List<ApiOpenquizzdb> apiOpenquizzdbs) {
+        Test test = new Test();
+        ApiOpenquizzdb anyone = apiOpenquizzdbs.get(0);
+        test.setTitle(anyone.getCategorie());
+        test.setDescription("a simple test about " + anyone.getCategorie() + " in" + anyone.getLangue() + " and the difficulti is : " + anyone.getDifficulte());
+        test.setImage("assets/img/quiz/" + anyone.getCategorie() + ".png");
+        Set<Question> questions = new HashSet<>();
+        for (ApiOpenquizzdb q : apiOpenquizzdbs) {
+            Question question = new Question();
+            question.setQuestion(q.getQuestion());
+            question.setImage(q.getTheme());
+            Set<QuestionOption> options = new HashSet<>();
+            String[] propositions = q.getAutres_choix();
+            String ans = q.getReponse_correcte();
+            for (String proposition : propositions) {
+                QuestionOption option = new QuestionOption();
+                option.setAnswer(proposition);
+                if (option.getAnswer().equals(ans)) {
+                    option.setIscorrect(true);
+                } else {
+                    option.setIscorrect(false);
+                }
+                options.add(option);
+            }
+
+            question.setQuestionOptions(options);
+            questions.add(question);
+            question.setAnecdote(q.getAnecdote());
+            question.setWikipedia(q.getWikipedia());
+        }
+        test.setActive(true);
+        test.setQuestions(questions);
+        testRepository.save(test);
+
+    }
+
+    @Override
+    public void deleteut(Long id) {
+        userTestRepository.deleteById(id);
+    }
+
+    @Override
+    public void addgemini(Gemini gemini) {
+        gemini.setDate(new Date());
+        geminiRepository.save(gemini);
+    }
+
+    @Override
+    public List<Gemini> getallgemini(Long id) {
+        List<Gemini> all = geminiRepository.findAll();
+        List<Gemini> finallist = new ArrayList<>();
+        for (Gemini g : all)
+            if (g.getIduser() == id)
+                finallist.add(g);
+        return finallist;
+    }
+
+
+    // the comments of the test
+    @Override
+    public List<TestComments> getComments(Long id) {
+
+        // Retrieve all comments from the repository
+        List<TestComments> allComments = testCommentsRepository.findAll();
+        List<TestComments> modifiedlist=new ArrayList<>();
+        for(TestComments t :allComments){
+            t.setUserimage(userRepository.findById(Long.parseLong(t.getUserId())).orElse(null).getImage());
+            t.setUsername(userRepository.findById(Long.parseLong(t.getUserId())).orElse(null).getFirst_name());
+            modifiedlist.add(t);
+        }
+        // Filter the comments based on the provided questionId
+        return modifiedlist.stream()
+                .filter(comment -> Objects.equals(comment.getQuestionId(), id.toString()))
+                .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<TestComments> getCommentsThatNeedToBeAnnsered() {
+        List<TestComments> alllist=testCommentsRepository.findAll();
+        List<TestComments> filtredlist=new ArrayList<>();
+        for (TestComments c :alllist){
+            if (Objects.equals(c.getResponse(), "Not yet ansered ..."))
+                filtredlist.add(c);
+        }
+        return filtredlist;
+    }
+
+    @Override
+    public TestComments createComment(TestComments testComments) {
+        testComments.setCreatedAt(new Date());
+        testComments.setResponse("Not yet ansered ...");
+
+        //TestComments testComments=new TestComments();
+        //testComments.setBody(text);
+        //String id=testComments.getParentId();
+        //testComments.setParentId(partnerId);
+        //System.out.println(testComments);
+        return testCommentsRepository.save(testComments);
+    }
+
+    @Override
+    public TestComments updateComment(String text, String  parentId,Long id) {
+        TestComments testComments = testCommentsRepository.findByQuestionIdAndId(parentId,id);
+        testComments.setResponse(text);
+        testComments.setRepliedAt(new Date());
+        return testCommentsRepository.save(testComments);
+    }
+
+    @Override
+    public void deleteComment(Long parentId) {
+        testCommentsRepository.deleteById(parentId);
+    }
+
+    @Override
+    public List<UserTest> getTop3UsersPerTest() {
+        List<UserTest> topUsers = new ArrayList<>();
+
+        // Retrieve all tests
+        List<Test> tests = testRepository.findAll();
+
+        for (Test test : tests) {
+            // Retrieve UserTests for the current test
+            List<UserTest> userTests = userTestRepository.findByTestIdOrderByScoreDesc(test.getId());
+
+            // Take the top 3 UserTests
+            if (!userTests.isEmpty()) {
+                int limit = Math.min(userTests.size(), 3);
+                topUsers.addAll(userTests.subList(0, limit));
+            }
+        }
+
+        return topUsers;
     }
 }

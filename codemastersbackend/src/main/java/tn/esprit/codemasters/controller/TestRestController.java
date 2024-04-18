@@ -2,9 +2,7 @@ package tn.esprit.codemasters.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.codemasters.entity.quiz.Quizimport;
-import tn.esprit.codemasters.entity.quiz.Test;
-import tn.esprit.codemasters.entity.UserTest;
+import tn.esprit.codemasters.entity.quiz.*;
 import tn.esprit.codemasters.service.houssem.ITestService;
 
 import java.util.List;
@@ -19,10 +17,11 @@ public class TestRestController {
         return testService.addTest(test);
     }
 
-    @PostMapping("/add-quiz")
-    public void importquiz(@RequestBody Quizimport quiz) {
+    @PostMapping("/add-quiz/{img}")
+    public void importquiz(@RequestBody Quizimport quiz,@PathVariable("img") String img) {
         //https://openquizzdb.org/media/cover/oqdb_quizz_204.jpg
-         testService.importquiz(quiz);
+        String image="https://openquizzdb.org/media/cover/oqdb_quizz_"+img+".jpg";
+         testService.importquiz(quiz,image);
     }
 
     @GetMapping("/retrieve-all-tests")
@@ -50,4 +49,80 @@ public class TestRestController {
         testService.activateanactivate(testId);
     }
 
+    @PostMapping("/add-quiz-api")
+    public void addtestwithapi(@RequestBody List<ApiOpenquizzdb> apiOpenquizzdbs) {
+        testService.addtestwithapi(apiOpenquizzdbs);
+    }
+
+    @DeleteMapping("/delete/{testId}")
+    public void deletetest(@PathVariable("testId") Long testId) {
+        testService.deletetest(testId);
+    }
+
+    @PutMapping("/updatetest/{id}/{title}/{description}")
+    public String modifyTest(@PathVariable("id") Long id,@PathVariable("title") String title,@PathVariable("description") String description){
+        return testService.modifyTest(id,title,description);
+    }
+
+    @DeleteMapping("/deletequestion/{id}")
+    public void deletequestion(@PathVariable("id") Long id) {
+        testService.deletequestion(id);
+    }
+
+    @PostMapping("/add-question/{id}")
+    public String addquestiontotest(@PathVariable("id") Long id, @RequestBody Question question){
+        return testService.addquestiontotest(id,question);
+    }
+
+    @DeleteMapping("/deletehistory/{id}")
+    public void deleteut(@PathVariable("id") Long id) {
+        testService.deleteut(id);
+    }
+
+
+    //gemini
+    @PostMapping("/add-gemini")
+    public void addgemini(@RequestBody Gemini gemini){
+        testService.addgemini(gemini);
+    }
+
+    @GetMapping("/retrieve-all-gemini/{id}")
+    public List<Gemini> getallgemini(@PathVariable("id") Long id) {
+        return testService.getallgemini(id);
+    }
+
+
+
+
+
+    // the comments of the test (not yet used)
+    @GetMapping("/retrieve-all-TestComments/{id}")
+    public List<TestComments> getComments(@PathVariable("id") Long id) {
+        return testService.getComments(id);
+    }
+// get the non replyed comments
+    @GetMapping("/retrieve-non-replyedComments")
+    public List<TestComments> getCommentsThatNeedToBeAnnsered() {
+        return testService.getCommentsThatNeedToBeAnnsered();
+    }
+
+
+    @PostMapping("/createComment")
+    public TestComments createComment(@RequestBody TestComments testComments) {
+        return testService.createComment(testComments);
+    }
+
+    @PutMapping("/updateComment/{t}/{id}/{idd}")
+    public void updateComment(@PathVariable("t") String t,@PathVariable("id") String id,@PathVariable("idd") Long idd) {
+        testService.updateComment(t,id,idd);
+    }
+
+    @DeleteMapping("/deleteComment/{id}")
+    public void deleteComment(@PathVariable("id") Long id) {
+        testService.deleteComment(id);
+    }
+
+
+    @GetMapping("/retrieve-rank")
+    public List<UserTest> getTop3UsersPerTest(){return testService.getTop3UsersPerTest();}
 }

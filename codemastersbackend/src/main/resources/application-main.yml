@@ -39,11 +39,3 @@ server:
   servlet:
     context-path: /codemasters
   port: 8089
-
-  ### mail
-
-
-
-
-
-

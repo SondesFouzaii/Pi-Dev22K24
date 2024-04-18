@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.codemasters.entity.user.Activities;
+import tn.esprit.codemasters.entity.user.CallUser;
 import tn.esprit.codemasters.entity.user.User;
 import tn.esprit.codemasters.service.houssem.IUserService;
 
@@ -107,6 +108,9 @@ public class UserRestController {
         return userService.updatePWDUser(userid,oldpwd,pwd);
     }
 
-
+    @GetMapping("/searchprofile/{keywoard}")
+    public List<User> searchprofile(@PathVariable ("keywoard") String keywoard){
+        return userService.searchprofile(keywoard);
+    }
 
 }

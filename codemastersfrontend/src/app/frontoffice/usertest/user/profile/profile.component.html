@@ -1,1 +1,73 @@
-<p>profile works!</p>
+<!-- Main Wrapper-->
+<main class="main-wrapper">
+    <div class="container-fluid">
+        <div class="inner-contents">
+            <div class="page-header d-flex align-items-center justify-content-between mr-bottom-30">
+                <div class="left-part">
+                    <h2 class="text-dark">Employees</h2>
+                    <p class="text-gray mb-0">Search Result</p>
+                </div>
+                <div class="right-part d-flex align-items-center">
+                    <form class="search-form w-auto">
+                        <input type="text" name="search" class=" bg-white form-control" placeholder="Search"
+                            [(ngModel)]="keyword">
+                        <button type="submit" class="btn" [routerLink]="['../../profile', keyword]"><img
+                                src="../../../../../assets/assets_FrontOffice/assets/img/svg/search.svg"
+                                alt=""></button>
+                    </form>
+                    <div class="filtering d-flex align-items-center gap-3 ms-3">
+                        <a  class="btn list-view p-0 fs-30"><i class="bi bi-list"></i></a>
+                        <a  class="btn grid-view p-0 fs-30 active"><i class="bi bi-grid"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xxl-3 col-lg-4"
+                    *ngFor="let one of dataSource.data | slice: paginator.pageIndex * paginator.pageSize : (paginator.pageIndex + 1) * paginator.pageSize">
+                    <div class="card border-0 shadow-sm" style="background-color: rgb(240, 208, 252);">
+                        <div class="card-body">
+                            <div class="mb-5 text-center">
+                                <div class="avatar-img m-auto position-relative" style="width: 105px; height: 105px;">
+                                    <img src="{{one.image}}" alt="img" class="rounded-2 w-100">
+                                    <img src="https://github.githubassets.com/assets/1f334-453759c3779f.png" alt="img"
+                                        width="42" height="42" class="rounded-2 position-absolute bottom-0"
+                                        style="right: -18px;">
+                                </div>
+                                <div class="card-content mt-3">
+                                    <h6><b>{{one.status}}</b></h6>
+                                    <h5 class="mb-0"><a href="#" class="text-dark">{{one.first_name}}
+                                            {{one.last_name}}</a></h5>
+                                    <small class="d-inline-block text-gray fs-14 fw-normal">{{one.role}} at</small>
+                                    <a href="#" class="fs-14 fw-semibold">Codemasters</a>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div *ngIf="one.phone_number">
+                                    <p class="fw-semibold"><span
+                                            class="bg-muted rounded-1 d-inline-block text-center text-primary lh-36 px-2 py-0 me-2"><i
+                                                class="bi bi-telephone-fill"></i></span> <a href="tel:+216 "
+                                            class="text-dark">+216
+                                            {{one.phone_number}}</a></p>
+                                </div>
+                                <div>
+                                    <p class="fw-semibold"><span
+                                            class="bg-muted rounded-1 d-inline-block text-center text-primary lh-36 px-2 py-0 me-2"><i
+                                                class="bi bi-envelope-fill"></i></span> <a href="mailto:{{one.email}}"
+                                            class="text-dark">{{one.email}}</a></p>
+                                </div>
+                            </div>
+                            <button [routerLink]="['../../teamate', one.id]" class="btn btn-primary">visit profile</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <mat-paginator [length]="list.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+                aria-label="Select page">
+            </mat-paginator>
+
+        </div>
+    </div>
+</main>
