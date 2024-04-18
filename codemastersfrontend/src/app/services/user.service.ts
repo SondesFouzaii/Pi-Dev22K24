@@ -13,10 +13,10 @@ export class UserService {
   v1!: string;
   v2!: string;
   //http://localhost:8089/codemasters/user/retrieve-all-users
-  private apiServerUrl='http://localhost:8089/codemasters/user';
+  //private apiServerUrl='http://localhost:8089/codemasters/user';
   //private apiServerUrl = 'http://172.16.0.206:8089/codemasters/user';
   //private apiServerUrl = 'http://172.16.1.243:8089/codemasters/user';
-  //private apiServerUrl = 'http://172.16.6.131:8089/codemasters/user';
+  private apiServerUrl = 'http://172.16.2.122:8089/codemasters/user';
 
   constructor(private http: HttpClient, private router: Router) {}
 
