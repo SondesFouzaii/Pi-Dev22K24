@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import tn.esprit.codemasters.entity.user.Activities;
 import tn.esprit.codemasters.entity.user.CallUser;
 import tn.esprit.codemasters.entity.user.User;
+import tn.esprit.codemasters.entity.user.UserImportFromJson;
 
 import java.util.List;
 
@@ -31,5 +32,6 @@ public interface IUserService {
     //public String generateUniqueCode(int length);
     public List<User> searchprofile(String keyword);
 
-
+// for the data amigning part of the project
+    public int importRandomUsersFromARandomJsonFile(List<UserImportFromJson> randomUsers);
 }

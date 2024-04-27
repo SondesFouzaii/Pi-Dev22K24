@@ -13,11 +13,13 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import tn.esprit.codemasters.entity.user.Activities;
 import tn.esprit.codemasters.entity.user.User;
+import tn.esprit.codemasters.entity.user.UserImportFromJson;
 import tn.esprit.codemasters.repository.*;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Service
@@ -384,6 +386,37 @@ public class UserServiceImp implements IUserService {
             }
         }
         return likeUsers;
+    }
+
+    @Override
+    public int importRandomUsersFromARandomJsonFile(List<UserImportFromJson> randomUsers) {
+        int numberOfImportedUsers =0;
+        for (UserImportFromJson randomUser: randomUsers)
+        {
+            User newUser= new User();
+            newUser.setFirst_name(randomUser.getFirstName());
+            newUser.setLast_name(randomUser.getLastName());
+            newUser.setEmail(randomUser.getEmail());
+            newUser.setPassword(encrypt(randomUser.getPassword()));
+            newUser.setImage(randomUser.getImage());
+            newUser.setRole(User.Role.DEVELOPER);
+            newUser.setBirth_date(randomUser.getBirthDate());
+            if (Objects.equals(randomUser.getGender(), "male"))
+                newUser.setGender(User.Gender.Homme);
+            if (Objects.equals(randomUser.getGender(), "female"))
+                newUser.setGender(User.Gender.Femme);
+            newUser.setAddress(randomUser.getAddress().getAddress());
+            newUser.setPhone_number(randomUser.getPhone());
+            newUser.setBarrcode(randomUser.getBank().getCardNumber());
+            //default fields
+            newUser.setCreated_date(new Date());
+            newUser.setEnabled(true);
+            newUser.setNon_locked(true);
+            newUser.setUsing_mfa(false);
+            userRepository.save(newUser);
+            numberOfImportedUsers+=1;
+        }
+        return numberOfImportedUsers;
     }
 
 

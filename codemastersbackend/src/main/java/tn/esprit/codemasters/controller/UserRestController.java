@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.codemasters.entity.user.Activities;
 import tn.esprit.codemasters.entity.user.CallUser;
 import tn.esprit.codemasters.entity.user.User;
+import tn.esprit.codemasters.entity.user.UserImportFromJson;
 import tn.esprit.codemasters.service.houssem.IUserService;
 
 import java.util.Arrays;
@@ -111,6 +112,12 @@ public class UserRestController {
     @GetMapping("/searchprofile/{keywoard}")
     public List<User> searchprofile(@PathVariable ("keywoard") String keywoard){
         return userService.searchprofile(keywoard);
+    }
+
+    // an api to import a list of random users
+    @PostMapping("/import-users-json")
+    public int importRandomUsersFromARandomJsonFile(@RequestBody List<UserImportFromJson> randomUsers) {
+        return userService.importRandomUsersFromARandomJsonFile(randomUsers);
     }
 
 }

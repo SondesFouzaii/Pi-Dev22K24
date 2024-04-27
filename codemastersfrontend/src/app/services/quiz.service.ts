@@ -14,10 +14,10 @@ import { GeminiAPI } from '../models/config';
 export class QuizService {
   private apiUrl = 'https://api.pexels.com/v1/';
   private apiKey = '3HmjnHyURxliuydjkOoYf50Pd1oOdNifZv9JW6IY';
-  //private apiServerUrl = 'http://localhost:8089/codemasters/quiz';
+  private apiServerUrl = 'http://localhost:8089/codemasters/quiz';
   //private apiServerUrl = 'http://172.16.0.206:8089/codemasters/quiz';
   //private apiServerUrl = 'http://172.16.1.243:8089/codemasters/quiz';
-  private apiServerUrl = 'http://172.16.2.122:8089/codemasters/quiz';
+  //private apiServerUrl = 'http://172.16.2.122:8089/codemasters/quiz';
 
   constructor(private http: HttpClient, private router: Router) {}
 

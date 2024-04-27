@@ -59,8 +59,8 @@ export class CallComponent {
 
   startCall(): void {
     // Generate Kit Token
-    const appID = 4380595200;
-    const serverSecret = '01c949cbae46e9a46470c3313ec844de0';
+    const appID = 438059520;
+    const serverSecret = '01c949cbae46e9a46470c3313ec844de';
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
       appID,
       serverSecret,

@@ -9,8 +9,8 @@ import { User } from '../models/user';
 })
 export class CallService {
 
-  private apiServerUrl = 'http://172.16.2.122:8089/codemasters/call';
-  //private apiServerUrl = 'http://localhost:8089/codemasters/call';
+  //private apiServerUrl = 'http://172.16.2.122:8089/codemasters/call';
+  private apiServerUrl = 'http://localhost:8089/codemasters/call';
 
   constructor(private http: HttpClient) {}
 

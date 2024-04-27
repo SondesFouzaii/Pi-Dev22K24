@@ -49,3 +49,18 @@ export class User {
     email!: string;
     
   }
+  
+  export class UserImportFromJson {
+    id!: number;
+    firstName!: string;
+    lastName!: string;
+    email!: string;
+    password!: string;
+    image!: string;
+    birthDate!: Date;
+    gender!: string;
+    address!: any;
+    phone!: string;
+    bank!: any;
+  }
+  
