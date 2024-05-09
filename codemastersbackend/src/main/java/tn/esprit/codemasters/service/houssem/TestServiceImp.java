@@ -136,6 +136,9 @@ public class TestServiceImp implements ITestService {
             Question question = new Question();
             question.setQuestion(q.getQuestion());
 
+            question.setImage(q.getQuestion());
+            question.setAnecdote(q.getAnecdote());
+            
             Set<QuestionOption> options = new HashSet<>();
             String[] propositions = q.getPropositions();
             String ans = q.getRéponse();
